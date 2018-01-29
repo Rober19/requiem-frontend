@@ -1,0 +1,8 @@
+    
+
+    <h3 *ngIf="best_song != true" > La Mejor Cancion :{{song_pack.song1}}</h3>
+    <h3 *ngIf="best_song"> La Mejor Cancion :{{song_pack.song2}}</h3>
+    <h1 [ngStyle]="{'background-color': 'green'}">color</h1>
+    <div>
+        <h3 *ngFor = "let s of pack">{{s}}</h3>
+    </div>
