@@ -4,11 +4,15 @@ import { NgModule } from '@angular/core';
 
 import { AppComponent } from './app.component';
 import { musicaComp } from './musica/musica.component';
+import { RegisterComponent } from './components/register/register.component'
+import { LoginComponent } from './components/login/login.component'
+
 
 @NgModule({
   declarations: [
     AppComponent,
-    musicaComp
+    RegisterComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule
