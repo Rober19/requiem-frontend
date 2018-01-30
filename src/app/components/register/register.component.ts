@@ -13,11 +13,13 @@ import { User } from '../../models/user';
 export class RegisterComponent {
   public header_p1:string;   
   public Model_user:User;
+  public a1:string;
 
   constructor(
     private _route: ActivatedRoute,
     private _router: Router
   ){
+    this.a1 = "form-control"  
     this.header_p1 = 'ingrese los datos';
     //este seria un objeto usuario
     this.Model_user = new User(
@@ -36,5 +38,9 @@ export class RegisterComponent {
 
   ngOnInit(){
     console.log('')
+  }
+
+  onSubmit(){
+    console.log(this.Model_user);    
   }
 }
