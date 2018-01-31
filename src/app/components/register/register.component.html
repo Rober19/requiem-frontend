@@ -2,14 +2,14 @@
   <div class="d-flex justify-content-center">
     <div class="col-lg-6 text-center " id="formreg">
 
-      <form class="needs-validation" #registerForm="ngForm" (ngClick)="onSubmit()" (ngSubmit)="onSubmit(registerForm)" novalidate>
+      <form class="needs-validation" name="registerForm" #registerForm="ngForm" novalidate>
 
         <div class="form-row">
           
 
           <div class="col-md-4 mb-3">
             <label for="validationCustom01">First name</label>
-            <input type="text" name="name" [ngClass]="{'form-control is-valid': name.valid, 'form-control is-invalid': !name.valid && name.touched, 'form-control': 1==1 }" id="validationCustom01" #name="ngModel" [(ngModel)]="Model_user.name" placeholder="First name" value="Mark" required>
+            <input type="text" name="name" [ngClass]="{'form-control is-valid': name.valid, 'form-control is-invalid': !name.valid && name.touched, 'form-control': 1==1 }" id="validationCustom01" #name="ngModel" [(ngModel)]="Model_user.name" placeholder="First name" required>
             <div class="valid-feedback">
                 Looks good!
               </div>
@@ -19,33 +19,30 @@
           </div>
 
           <div class="col-md-4 mb-3">
-            <label for="validationCustom02">Last name</label>
-            <input type="text" [ngClass]="{'form-control is-valid': surname.valid, 'form-control is-invalid': !surname.valid && surname.touched, 'form-control': 1==1 }" id="validationCustom02" placeholder="Last name" name="surname" #surname="ngModel"
-            [(ngModel)]="Model_user.surname" required>
-            <div class="valid-feedback">
-                Looks good!
+              <label for="validationCustom02">Last name</label>
+              <input type="text" name="lastnm" [ngClass]="{'form-control is-valid': lastnm.valid, 'form-control is-invalid': !lastnm.valid && lastnm.touched, 'form-control': 1==1 }" id="validationCustom02" #lastnm="ngModel" [(ngModel)]="Model_user.surname" placeholder="Last name" required>
+              <div class="valid-feedback">
+                  Looks good!
+                </div>
+              <div class="invalid-feedback">
+                Please provide a valid name.
               </div>
-            <div class="invalid-feedback">
-              Please provide a valid Last Name.
             </div>
-          </div>
 
           <div class="col-md-4 mb-3">
             <label for="validationCustomUsername">Character</label>
             <div class="input-group">
-              <div class="input-group-prepend">
-                <span class="input-group-text" id="inputGroupPrepend">@</span>
-              </div>
-              <input type="text" [ngClass]="{'form-control is-valid': character.valid, 'form-control is-invalid': !character.valid && character.touched, 'form-control': 1==1 }" id="validationCustomUsername" placeholder="nickname" name="character" #surname="ngModel"
-              [(ngModel)]="Model_user.character" aria-describedby="inputGroupPrepend"
-                required>
+                <div class="input-group-prepend">
+                  <span class="input-group-text" id="inputGroupPrepend3">@</span>
+                </div>
+                <input type="text" name="nicknm" #nicknm="ngModel" [(ngModel)]="Model_user.nick" [ngClass]="{'form-control is-valid': nicknm.valid, 'form-control is-invalid': !nicknm.valid && nicknm.touched, 'form-control': 1==1 }" id="validationServerUsername" placeholder="Username" aria-describedby="inputGroupPrepend3" required>
                 <div class="valid-feedback">
                     Looks good!
                   </div>
                 <div class="invalid-feedback">
                   Please provide a valid name.
                 </div>
-            </div>
+              </div>
           </div>
 
         </div>
@@ -62,7 +59,7 @@
           </div>
           <div class="col-md-3 mb-3">
             <label for="validationCustom04">Password</label>
-            <input type="password" [ngClass]="{'form-control is-valid': password.valid, 'form-control is-invalid': !password.valid && password.touched, 'form-control': 1==1 }" id="validationCustom04" placeholder="password" name="password" #surname="ngModel"
+            <input type="password" [ngClass]="{'form-control is-valid': passwd.valid, 'form-control is-invalid': !passwd.valid && passwd.touched, 'form-control': 1==1 }" id="validationCustom04" placeholder="password" name="passwd" #passwd="ngModel"
             [(ngModel)]="Model_user.password" required>
             <div class="valid-feedback">
                 Looks good!
@@ -73,7 +70,7 @@
           </div>
           <div class="col-md-3 mb-3">
             <label for="validationCustom05">Zip</label>
-            <input type="text" [ngClass]="{'form-control is-valid': image.valid, 'form-control is-invalid': !image.valid && image.touched, 'form-control': 1==1 }" id="validationCustom05" placeholder="Zip" name="image" #surname="ngModel"
+            <input type="text" [ngClass]="{'form-control is-valid': image.valid, 'form-control is-invalid': !image.valid && image.touched, 'form-control': 1==1 }" id="validationCustom05" placeholder="Zip" name="image" #image="ngModel"
             [(ngModel)]="Model_user.image" required>
             <div class="valid-feedback">
                 Looks good!
@@ -84,7 +81,7 @@
           </div>
         </div>
         <br>       
-        <button class="btn btn-primary" type="submit">Sign Up</button>
+        <button [ngClass]="{'btn btn-lg btn-primary': true }" type="button" (click)="onSubmit(registerForm)" [disabled]="!registerForm.valid">Sign Up</button>
       </form>
     </div>
   </div>

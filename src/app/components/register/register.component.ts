@@ -19,7 +19,7 @@ export class RegisterComponent {
     private _route: ActivatedRoute,
     private _router: Router
   ){
-    this.a1 = "form-control"  
+    this.a1 = "disabled"  
     this.header_p1 = 'ingrese los datos';
     //este seria un objeto usuario
     this.Model_user = new User(
