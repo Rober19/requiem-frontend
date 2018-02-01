@@ -69,8 +69,8 @@
             </div>
           </div>
           <div class="col-md-3 mb-3">
-            <label for="validationCustom05">Zip</label>
-            <input type="text" [ngClass]="{'form-control is-valid': image.valid, 'form-control is-invalid': !image.valid && image.touched, 'form-control': 1==1 }" id="validationCustom05" placeholder="Zip" name="image" #image="ngModel"
+            <label for="validationCustom05">image</label>
+            <input type="text" [ngClass]="{'form-control is-valid': image.valid, 'form-control is-invalid': !image.valid && image.touched, 'form-control': 1==1 }" id="validationCustom05" placeholder="image" name="image" #image="ngModel"
             [(ngModel)]="Model_user.image" required>
             <div class="valid-feedback">
                 Looks good!
@@ -82,6 +82,7 @@
         </div>
         <br>       
         <button [ngClass]="{'btn btn-lg btn-primary': true }" type="button" (click)="onSubmit(registerForm)" [disabled]="!registerForm.valid">Sign Up</button>
+        <button [ngClass]="{'btn btn-lg btn-success': true }" type="button" (click)="onSubmit(registerForm)" >test</button>
       </form>
     </div>
   </div>

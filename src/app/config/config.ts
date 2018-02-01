@@ -1,10 +1,7 @@
-'use strict'
 
-const port = process.env.PORT || 3000;
-
-const resMsg = {
+export var resMsg = {
   found: 'Encontrado',
-  notfound : 'No Encontrado',
+  notfound: 'No Encontrado',
   confirm: 'Confirmado',
   error: 'Ha ocurrido un error',
   deleted: 'Ha sido eliminado correctamente',
@@ -32,15 +29,3 @@ const resMsg = {
   tokenExp: 'El token ha expirado',
   tokenInvalid: 'El token no es válido'
 };
-
-
-function resJson(msg, status) {
-  const answer = { data: msg, status: status}
-  return answer;
-}
-
-module.exports = {
-  port,
-  resMsg,
-  resJson
-}
