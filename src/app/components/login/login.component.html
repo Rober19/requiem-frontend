@@ -1,19 +1,21 @@
 <body class="text-center">
 
-  <form class="form-signin">
+  <form class="form-signin" name="loginForm" #loginForm="ngForm" novalidate>
     <img class="mb-4" src="https://image.ibb.co/j3jkdm/afaw.png" alt="" width="100">
     <h1 class="h3 mb-3 font-weight-normal" id="textdown">Please sign in</h1>
     <label for="inputEmail" class="sr-only">Email address</label>
-    <input type="email" id="inputEmail" class="form-control" placeholder="Email address" required autofocus>
+    <input type="email" id="inputEmail" class="form-control" name="email" #email="ngModel" [(ngModel)]="login_user.email" placeholder="Email address" required autofocus>    
     <label for="inputPassword" class="sr-only">Password</label>
-    <input type="password" id="inputPassword" class="form-control" placeholder="Password" required>
+    <input type="password" id="inputPassword" class="form-control" name="passwd" #passwd="ngModel" [(ngModel)]="login_user.password" placeholder="Password" required>
+    
     <div class="checkbox mb-3">
       <label id="textdown">
-        <input type="checkbox"  value="remember-me"> Remember me
+        <input type="checkbox" value="remember-me"> Remember me
       </label>
     </div>
-    <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
+    <button class="btn btn-lg btn-primary btn-block" (click)="sendLogin(loginForm)" type="submit">Sign in</button>
+    <button class="btn btn-lg btn-secondary btn-block" type="submit" (click)="sendLogin(loginForm)">%i'm a test%</button>
     <p class="mt-5 mb-3 text-muted" id="textdown">&copy; 2017-2018</p>
   </form>
-  
+
 </body>

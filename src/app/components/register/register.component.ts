@@ -43,11 +43,12 @@ export class RegisterComponent {
     console.log('')
   }
 
-  onSubmit(){
+  onSubmit(form){
     console.log(this.Model_user);    
     this._userService.register(this.Model_user).subscribe(
       res => {
         console.log(res)
+        form.reset();
       },
       err => {
         console.warn(err)

@@ -18,11 +18,19 @@ export class userService{
   //aqui van las peticiones http
   register(user : User): Observable<any>{
 
-    let model = JSON.stringify(user);
-    let headers = new HttpHeaders().set('Content-Type', 'application/json')
+    const model = JSON.stringify(user);
+    const headers = new HttpHeaders().set('Content-Type', 'application/json');
     
 
     return this._http.post(`${this.url}/register`, model,  {headers: headers})
+  }
+
+  login(user : User): Observable<any>{
+
+    const model = JSON.stringify(user);
+    const headers = new HttpHeaders().set('Content-Type', 'application/json');
+
+    return this._http.post(`${this.url}/login`, model, { headers: headers });
   }
 
 }
