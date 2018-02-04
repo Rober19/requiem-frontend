@@ -25,7 +25,11 @@ export class userService{
     return this._http.post(`${this.url}/register`, model,  {headers: headers})
   }
 
-  login(user : User): Observable<any>{
+  login(user : User, tokenget = null): Observable<any>{
+
+    if (tokenget != null){
+      user.tokenget = tokenget;
+    }
 
     const model = JSON.stringify(user);
     const headers = new HttpHeaders().set('Content-Type', 'application/json');

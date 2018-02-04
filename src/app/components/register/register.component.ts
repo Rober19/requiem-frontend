@@ -34,6 +34,7 @@ export class RegisterComponent {
       '',
       'ROLE_USER',
       '',
+      '',
     );
   }
 

@@ -17,7 +17,6 @@ export class LoginComponent implements OnInit{
   private config:any;
   private login_user: User;
   private ident;
-  private getToken;
 
 
   constructor(
@@ -28,6 +27,7 @@ export class LoginComponent implements OnInit{
     this.title = 'ingrese su indetificacion'
     this.config = resMsg;
     this.login_user = new User(
+      '',
       '',
       '',
       '',
@@ -51,10 +51,44 @@ export class LoginComponent implements OnInit{
   sendLogin(){
     this.userService.login(this.login_user).subscribe(
       res => {
-        this.ident = res
+
+        // this.ident = res.data
+
+        console.log(res)
+        this.Token();
+        // if (!this.ident || !this.ident.id) {
+        //   console.error(res);
+        // } else {
+        //   console.log(res);
+        // }
+
+        
+        
       },
       err => {
-        console.log(err)
+        console.warn(err.error.data)
+      }
+    )
+  }
+
+  Token(){
+    this.userService.login(this.login_user, 'true').subscribe(
+      res => {
+
+        // this.ident = res.data
+
+        console.log(res)
+        // if (!this.ident || !this.ident.id) {
+        //   console.error(res);
+        // } else {
+        //   console.log(res);
+        // }
+
+        
+        
+      },
+      err => {
+        console.warn(err.error.data)
       }
     )
   }
