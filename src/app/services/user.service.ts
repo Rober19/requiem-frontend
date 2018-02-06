@@ -9,6 +9,8 @@ import { User } from '../models/user';
 @Injectable()
 export class userService{
   public url:string;
+  public  ident_login;
+  public token_login;
  
 
   constructor(public _http: HttpClient){
@@ -35,6 +37,28 @@ export class userService{
     const headers = new HttpHeaders().set('Content-Type', 'application/json');
 
     return this._http.post(`${this.url}/login`, model, { headers: headers });
+  }
+
+  getIdent_login(){
+    const identity = JSON.parse(localStorage.getItem('identity'));    
+
+    if( identity != undefined){
+      this.ident_login = identity;
+    } else {
+      this.ident_login = null;
+    }
+
+    
+  }
+
+  getToken_login(){
+    const token = JSON.parse(localStorage.getItem('token'));
+
+    if( token != undefined){
+      this.token_login = token;
+    } else {
+      this.token_login = null;
+    }
   }
 
 }
