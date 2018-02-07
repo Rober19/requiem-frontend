@@ -10,6 +10,7 @@ import { AppComponent } from './app.component';
 
 import { RegisterComponent } from './components/register/register.component';
 import { LoginComponent } from './components/login/login.component';
+import { HomeComponent } from './components/home/home.component';
 
 
 
@@ -17,7 +18,8 @@ import { LoginComponent } from './components/login/login.component';
   declarations: [
     AppComponent,
     RegisterComponent,
-    LoginComponent
+    LoginComponent,
+    HomeComponent
   ],
   imports: [
     BrowserModule,
