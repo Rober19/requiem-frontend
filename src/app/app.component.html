@@ -1,5 +1,5 @@
 <!--The content below is only a placeholder and can be replaced.-->
-<nav class="site-header sticky-top py-1">
+<nav class="site-header sticky-top py-1" *ngIf="ident" >
   <div class="container d-flex flex-column flex-md-row justify-content-between">
     <a class="py-2" routerLink="/">
       <img src="https://image.ibb.co/j3jkdm/afaw.png" alt="" width="20">
@@ -10,6 +10,20 @@
     
     <a class="py-2 d-none d-md-inline-block" routerLink="/">Characters</a>
     <a class="py-2 d-none d-md-inline-block" routerLink="/">Profile</a>
+    
+  </div>
+</nav>
+
+<nav class="site-header sticky-top py-1" *ngIf="!ident" >
+  <div class="container d-flex flex-column flex-md-row justify-content-between">
+    <a class="py-2" routerLink="/">
+      <img   src="https://image.ibb.co/j3jkdm/afaw.png" alt="" width="20">
+    </a>
+    <a class="py-2 d-none d-md-inline-block" routerLink="/register">Register</a> 
+    
+    
+    
+    
     
   </div>
 </nav>

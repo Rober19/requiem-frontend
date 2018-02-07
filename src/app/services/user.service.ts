@@ -41,14 +41,14 @@ export class userService{
 
   getIdent_login(){
     const identity = JSON.parse(localStorage.getItem('identity'));    
-
+    
     if( identity != undefined){
       this.ident_login = identity;
     } else {
       this.ident_login = null;
     }
 
-    
+    return identity;
   }
 
   getToken_login(){
