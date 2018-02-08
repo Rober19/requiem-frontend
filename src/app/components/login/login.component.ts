@@ -29,8 +29,8 @@ export class LoginComponent implements OnInit{
 
   constructor(
     private userService:userService,
-    // private _route: ActivatedRoute,
-    // private _router: Router,
+    private _route: ActivatedRoute,
+    private _router: Router,
   ){
     this.title = 'ingrese su indetificacion';
     //esta es la instancia de CONFIG
@@ -73,7 +73,7 @@ export class LoginComponent implements OnInit{
         this.Token();
 
         localStorage.setItem('identity', JSON.stringify(this.identLogin));
-      
+        this._router.navigate(['/home']);
         
         
       },
