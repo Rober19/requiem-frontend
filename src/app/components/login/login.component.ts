@@ -53,6 +53,11 @@ export class LoginComponent implements OnInit{
   }
 
   ngOnInit(){
+
+    if (this.userService.getIdent_login() != null) {
+      console.log(this.userService.getIdent_login())
+      this._router.navigate(['/home']);
+    }
     console.log('componente cargado');
   }
 

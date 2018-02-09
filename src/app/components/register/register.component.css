@@ -1,4 +1,12 @@
 
+body{     
+  background-image: url(https://image.ibb.co/kzXwJm/awf.png);  
+  margin:0px; padding:0px;
+}
+
+
+
 #formreg {
+  color: white;
   margin-top: 70px;
 }
