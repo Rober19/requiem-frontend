@@ -21,8 +21,8 @@ export class AppComponent implements DoCheck, OnInit {
   }
   //onInit es para cuando se inicia el componente
   ngOnInit(){
-    this.ident = this._userService.getIdent_login();
-    console.log(this.ident);
+    
+    
   }
   //para comprobar
   ngDoCheck(){

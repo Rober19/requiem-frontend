@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { resMsg } from '../../config/config'
 import { User } from '../../models/user';
 import { userService } from '../../services/user.service'
-
+import { JwtHelper } from 'angular2-jwt'
 import { Router, ActivatedRoute, Params } from '@angular/router';
 import { tokenKey } from '@angular/core/src/view/util';
 
@@ -10,7 +10,7 @@ import { tokenKey } from '@angular/core/src/view/util';
   selector: 'login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css'],
-  providers: [userService]
+  providers: [userService, JwtHelper]
 })
 
 export class LoginComponent implements OnInit{
@@ -31,6 +31,8 @@ export class LoginComponent implements OnInit{
     private userService:userService,
     private _route: ActivatedRoute,
     private _router: Router,
+    private jwt: JwtHelper   
+    
   ){
     this.title = 'ingrese su indetificacion';
     //esta es la instancia de CONFIG
@@ -55,8 +57,9 @@ export class LoginComponent implements OnInit{
   ngOnInit(){
 
     if (this.userService.getIdent_login() != null) {
-      console.log(this.userService.getIdent_login())
-      this._router.navigate(['/home']);
+      console.log(this.userService.getIdent_login());
+      this._router.navigate(['/home']);      
+
     }
     console.log('componente cargado');
   }
@@ -66,18 +69,16 @@ export class LoginComponent implements OnInit{
   }
 
   sendLogin(){
-    this.userService.login(this.login_user).subscribe(
+    this.userService.login(this.login_user, 'true').subscribe(
       res => {
-        //esta variable tendra los datos del usuario obtenido
-        this.identLogin = res.data;
+        //esta variable tendra los datos del usuario obtenido          
+        this.tokenLogin = res.data;
+        
+        //'secret_token_summertime_sadness'        
+        console.log(this.jwt.decodeToken(res.data));
 
-        //mostramos la respuesta traida por consola
-        console.log(res);
-
-        //aqui llamamos al token para recibirlo
-        this.Token();
-
-        localStorage.setItem('identity', JSON.stringify(this.identLogin));
+        localStorage.setItem('identity', JSON.stringify(this.tokenLogin));
+        
         this._router.navigate(['/home']);
         
         
@@ -91,22 +92,24 @@ export class LoginComponent implements OnInit{
   }
 
   //aqui recibimos el token del usuario
-  Token(){
-    this.userService.login(this.login_user, 'true').subscribe(
-      res => {
+  // Token(){
+  //   this.userService.login(this.login_user, 'true').subscribe(
+  //     res => {
 
-        this.tokenLogin = res.data;
+  //       this.tokenLogin = res.data;
 
-        console.log(res);
+  //       console.log(res);
+  //       //'secret_token_summertime_sadness'        
+  //       console.log(this.jwt.decodeToken(res.data));
 
-        localStorage.setItem('token', JSON.stringify(this.tokenLogin));
+  //       localStorage.setItem('identity', JSON.stringify(this.tokenLogin));
         
         
-      },
-      err => {
-        console.warn(err.error.data);
-      }
-    )
-  }
+  //     },
+  //     err => {
+  //       console.warn(err.error.data);
+  //     }
+  //   )
+  // }
 
 }
