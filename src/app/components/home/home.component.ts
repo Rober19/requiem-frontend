@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core'
 import { JwtHelper } from 'angular2-jwt'
 import { Router } from '@angular/router'
 
+import { data_global } from '../../services/global'
+
 @Component({
   selector: 'Home',
   templateUrl: './home.component.html',  
@@ -12,7 +14,7 @@ import { Router } from '@angular/router'
 
 export class HomeComponent implements OnInit{
   public title:string;
-  private userData: any;
+  public userData: any;
   constructor(
     private jwt: JwtHelper,
     private _router: Router
@@ -23,12 +25,16 @@ export class HomeComponent implements OnInit{
   ngOnInit(){
     console.log('HOME - cargado')
     this.userData = this.jwt.decodeToken(localStorage.getItem('identity'));
-    console.log(this.userData);
+    
   }
 
   logOut(){
-    localStorage.clear();    
+    localStorage.clear();
+    data_global.tokenDecode = {
+      sub: undefined
+    };    
     this._router.navigate(['/lobby']);
+
   }
 
 }

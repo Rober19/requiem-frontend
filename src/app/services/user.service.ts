@@ -13,7 +13,9 @@ export class userService{
   public token_login;
  
 
-  constructor(public _http: HttpClient){
+  constructor(
+    private _http: HttpClient    
+  ){
     this.url = data_global.url;
   }
 
@@ -40,9 +42,10 @@ export class userService{
   }
 
   getIdent_login(){
-    const identity = JSON.parse(localStorage.getItem('identity'));    
+    const identity = JSON.parse(localStorage.getItem('identity'));   
     
-    if( identity != undefined){
+
+    if(identity){
       this.ident_login = identity;
     } else {
       this.ident_login = null;
@@ -51,14 +54,14 @@ export class userService{
     return identity;
   }
 
-  getToken_login(){
-    const token = JSON.parse(localStorage.getItem('token'));
+  // getToken_login(){
+  //   const token = JSON.parse(localStorage.getItem('token'));
 
-    if( token != undefined){
-      this.token_login = token;
-    } else {
-      this.token_login = null;
-    }
-  }
+  //   if(token){
+  //     this.token_login = token;
+  //   } else {
+  //     this.token_login = null;
+  //   }
+  // }
 
 }
