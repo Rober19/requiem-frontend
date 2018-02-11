@@ -4,13 +4,13 @@
   "license": "MIT",
   "scripts": {
     "ng": "ng",
-    "start": "ng serve",
     "dev": "ng serve --host 0.0.0.0 --port 4200",
-    "build": "ng build --prod",
+    "build": "ng build",
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",
-    "postinstall": "ng build --aot --target=production"
+    "postinstall": "ng build --aot --target=production",
+    "start": "node server.js"
   },
   "private": true,
   "dependencies": {
@@ -28,6 +28,7 @@
     "angular2-jwt": "^0.2.3",
     "bootstrap": "4.0.0",
     "core-js": "^2.4.1",
+    "express": "^4.16.2",
     "jquery": "1.12",
     "jsonwebtoken": "^8.1.1",
     "popper.js": "^1.12.9",
