@@ -10,41 +10,46 @@ import { JwtHelper } from 'angular2-jwt'
   providers: [userService, JwtHelper]
 })
 export class AppComponent implements DoCheck, OnInit {
-    public title:string;
-    public ident;
-    
+  public title: string;
+  public ident;
+
 
   constructor(
     private _userService: userService,
     private _route: ActivatedRoute,
     private _router: Router,
     private _jwt: JwtHelper
-  ){
-    this.title = 'app';    
+  ) {
+    this.title = 'app';
   }
   //onInit es para cuando se inicia el componente
-  ngOnInit(){
-    
-    if (localStorage.getItem('identity')){
-      data_global.tokenDecode = this._jwt.decodeToken(JSON.parse(localStorage.getItem('identity')));
-      console.log(data_global.tokenDecode);
+  ngOnInit() {
+
+    if (localStorage.getItem('identity')) {
+      try {
+        data_global.tokenDecode = this._jwt.decodeToken(JSON.parse(localStorage.getItem('identity')));
+        console.log(data_global.tokenDecode);
+      } catch (err) {
+
+      }
+
       //this._jwt.decodeToken(JSON.parse(localStorage.getItem('identity')));
     } else {
       console.log('Nadie en Storage')
     }
-    
+
   }
   //para comprobar
-  ngDoCheck(){
+  ngDoCheck() {
     this.ident = this._userService.getIdent_login();
   }
 
-  logOut(){
+  logOut() {
     localStorage.clear();
     this.ident = null;
     data_global.tokenDecode = {
       sub: undefined
-    }; 
+    };
     this._router.navigate(['/lobby']);
   }
 
