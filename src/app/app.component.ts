@@ -27,8 +27,7 @@ export class AppComponent implements DoCheck, OnInit {
 
     if (localStorage.getItem('identity')) {
       try {
-        data_global.tokenDecode = this._jwt.decodeToken(JSON.parse(localStorage.getItem('identity')));
-        console.log(data_global.tokenDecode);
+        data_global.tokenDecode = this._jwt.decodeToken(JSON.parse(localStorage.getItem('identity')));      
       } catch (err) {
 
       }

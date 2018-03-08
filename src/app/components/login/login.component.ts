@@ -52,18 +52,16 @@ export class LoginComponent implements OnInit {
       '',
     );
 
-    this.valid = false;    
+    this.valid = false;
 
 
   }
 
-  ngOnInit() {    
+  ngOnInit() {
 
 
-    if (data_global.tokenDecode.sub != undefined) {
-      console.log('user found', data_global.tokenDecode);
-      this._router.navigate(['/home']);      
-
+    if (data_global.tokenDecode.sub != undefined) {      
+      return this._router.navigate(['/home']);      
     }
 
     console.log('componente cargado');
@@ -79,14 +77,9 @@ export class LoginComponent implements OnInit {
         //esta variable tendra los datos del usuario obtenido          
         this.tokenLogin = res.data;
 
-        //'secret_token_summertime_sadness'        
-
-
-        localStorage.setItem('identity', JSON.stringify(this.tokenLogin));
-
+        //'secret_token_summertime_sadness' 
+        localStorage.setItem('identity', JSON.stringify(this.tokenLogin));              
         this._router.navigate(['/home']);
-
-
       },
       err => {
         console.warn(err.error.data);
@@ -95,6 +88,8 @@ export class LoginComponent implements OnInit {
       }
     )
   }
+
+  
 
   //aqui recibimos el token del usuario
   // Token(){

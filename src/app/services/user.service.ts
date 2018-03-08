@@ -5,33 +5,32 @@ import { data_global } from './global'
 import { resMsg } from '../config/config'
 import { User } from '../models/user';
 
-
 @Injectable()
-export class userService{
-  public url:string;
-  public  ident_login;
+export class userService {
+  public url: string;
+  public ident_login;
   public token_login;
- 
+
 
   constructor(
-    private _http: HttpClient    
-  ){
+    private _http: HttpClient
+  ) {
     this.url = data_global.url;
   }
 
   //aqui van las peticiones http
-  register(user : User): Observable<any>{
+  register(user: User): Observable<any> {
 
     const model = JSON.stringify(user);
     const headers = new HttpHeaders().set('Content-Type', 'application/json');
-    
 
-    return this._http.post(`${this.url}/register`, model,  {headers: headers})
+
+    return this._http.post(`${this.url}/register`, model, { headers: headers })
   }
 
-  login(user : User, tokenget = null): Observable<any>{
+  login(user: User, tokenget = null): Observable<any> {
 
-    if (tokenget != null){
+    if (tokenget != null) {
       user.tokenget = tokenget;
     }
 
@@ -41,11 +40,11 @@ export class userService{
     return this._http.post(`${this.url}/login`, model, { headers: headers });
   }
 
-  getIdent_login(){
-    const identity = JSON.parse(localStorage.getItem('identity'));   
-    
+  getIdent_login() {
+    const identity = JSON.parse(localStorage.getItem('identity'));
 
-    if(identity){
+
+    if (identity) {
       this.ident_login = identity;
     } else {
       this.ident_login = null;
@@ -53,6 +52,27 @@ export class userService{
 
     return identity;
   }
+
+  getStats() {
+    let stats = JSON.parse(localStorage.getItem('stats'));
+
+    if (stats) {
+
+    } else {
+
+    }
+  }
+
+  getCounters(userId): Observable<any> {
+    
+    let headers = new HttpHeaders()
+      .set('Content-Type', 'application/json')
+      .set('Authorization', localStorage.getItem('identity'));
+
+    return this._http.get(`${this.url}/get-counters/${userId}`, { headers: headers });
+
+  }
+
 
   // getToken_login(){
   //   const token = JSON.parse(localStorage.getItem('token'));
