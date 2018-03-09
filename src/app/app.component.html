@@ -5,14 +5,12 @@
     <a class="py-2" routerLink="/">
       <img src="https://image.ibb.co/j3jkdm/afaw.png" alt="" width="20">
     </a>
-    <a class="py-2 d-none d-md-inline-block" routerLink="/home">Timeline</a>
-
-
-    <a class="py-2 d-none d-md-inline-block" routerLink="/">Characters</a>
-    <a class="py-2 d-none d-md-inline-block" routerLink="/">Profile</a>
+    <a class="py-2 d-none d-md-inline-block" routerLink="/home">{{resMsg.timeline}}</a>
+    
+    <a class="py-2 d-none d-md-inline-block" routerLink="/">{{resMsg.profile}}</a>
     <div class="py-2 d-none d-md-inline-block">
       
-      <button [ngClass]="{'btn btn-outline-danger btn-sm': true }" type="button" (click)="logOut()">Sign Out</button>
+      <button [ngClass]="{'btn btn-outline-danger btn-sm': true }" type="button" (click)="logOut()">{{resMsg.sign_out}}</button>
     </div>   
 
 
@@ -24,8 +22,8 @@
     <a class="py-2">
       <img src="https://image.ibb.co/j3jkdm/afaw.png" alt="" width="20" routerLink="/lobby">
     </a>
-    <a class="py-2 d-none d-md-inline-block" routerLink="/login">Login</a>
-    <a class="py-2 d-none d-md-inline-block" routerLink="/register">Register</a>
+    <a class="py-2 d-none d-md-inline-block" routerLink="/login">{{resMsg.login}}</a>
+    <a class="py-2 d-none d-md-inline-block" routerLink="/register">{{resMsg.sign_in}}</a>
 
 
 

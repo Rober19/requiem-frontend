@@ -2,7 +2,8 @@ import { Component, DoCheck, OnInit } from '@angular/core';
 import { Router, ActivatedRoute, Params } from '@angular/router'
 import { userService } from './services/user.service';
 import { data_global } from './services/global';
-import { JwtHelper } from 'angular2-jwt'
+import { JwtHelper } from 'angular2-jwt';
+import { resMsg } from '../app/config/config'
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -12,7 +13,7 @@ import { JwtHelper } from 'angular2-jwt'
 export class AppComponent implements DoCheck, OnInit {
   public title: string;
   public ident;
-
+  public resMsg: any;
 
   constructor(
     private _userService: userService,
@@ -21,11 +22,12 @@ export class AppComponent implements DoCheck, OnInit {
     private _jwt: JwtHelper
   ) {
     this.title = 'app';
+    this.resMsg = resMsg;
   }
   //onInit es para cuando se inicia el componente
   ngOnInit() {
 
-    
+
 
   }
   //para comprobar

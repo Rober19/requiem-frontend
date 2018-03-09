@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core'
+import { resMsg } from '../../config/config'
 
 @Component({
   selector: 'lobby',
@@ -7,13 +8,18 @@ import { Component, OnInit } from '@angular/core'
   providers: []
 })
 
-export class LobbyComponent{
+export class LobbyComponent {
 
-public palo:Array<number>;
+  public palo: Array<number>;
+  public resMsg: any;
 
-  ngOnInit(){
-    this.palo = [1,2,3,4];
-    console.log('LOBBY - cargado')
+  constructor() {
+    this.resMsg = resMsg;
+  }
+
+  ngOnInit() {
+    this.palo = [1, 2, 3, 4];
+    console.log(`LOBBY ${resMsg.loaded}`)
   }
 
 }
