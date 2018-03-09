@@ -3,19 +3,19 @@
   <form class="form-signin" name="loginForm" #loginForm="ngForm" novalidate>
     <img class="mb-4" src="https://image.ibb.co/j3jkdm/afaw.png" alt="" width="100">
 
-    <h1 class="h3 mb-3 font-weight-normal" id="textdown">Please sign in</h1>
+    <h1 class="h3 mb-3 font-weight-normal" id="textdown">{{resMsg.please_login}}</h1>
 
-    <label for="inputEmail" class="sr-only">Email address</label>
+    <label for="inputEmail" class="sr-only">{{resMsg.email_address}}</label>
     <input type="email" id="inputEmail" [ngClass]="{'form-control is-valid': email.valid, 'form-control is-invalid': !email.valid && email.touched, 'form-control': 1==1 }" name="email" #email="ngModel" [(ngModel)]="login_user.email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$"
-      placeholder="Email address" required autofocus>
+      placeholder="{{resMsg.email_address}}" required autofocus>
 
-    <label for="inputPassword" class="sr-only">Password</label>
+    <label for="inputPassword" class="sr-only">{{resMsg.password}}</label>
     <input type="password" id="inputPassword" class="form-control" name="passwd" #passwd="ngModel" [(ngModel)]="login_user.password"
-      placeholder="Password" required>
+      placeholder="{{resMsg.password}}" required>
 
     <div class="checkbox mb-3">
       <label id="textdown">
-        <input type="checkbox" value="remember-me"> Remember me
+        <input type="checkbox" value="remember-me"> {{resMsg.remember}}
       </label>
     </div>
     <div class="">
@@ -23,7 +23,7 @@
         {{msgRes}}
       </div>
     </div>
-    <button class="btn btn-lg btn-primary btn-block" (click)="sendLogin()" type="submit">Sign in</button>
+    <button class="btn btn-lg btn-primary btn-block" (click)="sendLogin()" type="submit">{{resMsg.login}}</button>
 
     <p class="mt-5 mb-3 text-muted" id="textdown">&copy; 2017-2018</p>
   </form>

@@ -25,17 +25,7 @@ export class AppComponent implements DoCheck, OnInit {
   //onInit es para cuando se inicia el componente
   ngOnInit() {
 
-    if (localStorage.getItem('identity')) {
-      try {
-        data_global.tokenDecode = this._jwt.decodeToken(JSON.parse(localStorage.getItem('identity')));      
-      } catch (err) {
-
-      }
-
-      //this._jwt.decodeToken(JSON.parse(localStorage.getItem('identity')));
-    } else {
-      console.log('Nadie en Storage')
-    }
+    
 
   }
   //para comprobar

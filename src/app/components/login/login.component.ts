@@ -26,7 +26,7 @@ export class LoginComponent implements OnInit {
   public tokenLogin;
   //esta variable validara la entrada del usuario
   public valid: boolean;
-  public msgRes: string;
+  public resMsg: any;
 
 
   constructor(
@@ -53,7 +53,7 @@ export class LoginComponent implements OnInit {
     );
 
     this.valid = false;
-
+    this.resMsg = resMsg;
 
   }
 
@@ -64,11 +64,7 @@ export class LoginComponent implements OnInit {
       return this._router.navigate(['/home']);      
     }
 
-    console.log('componente cargado');
-  }
-
-  prueba() {
-    console.log(this.login_user);
+    console.log(`LOGIN ${resMsg.loaded}`);
   }
 
   sendLogin() {
@@ -83,8 +79,7 @@ export class LoginComponent implements OnInit {
       },
       err => {
         console.warn(err.error.data);
-        this.valid = true;
-        this.msgRes = err.error.data;
+        this.valid = true;        
       }
     )
   }

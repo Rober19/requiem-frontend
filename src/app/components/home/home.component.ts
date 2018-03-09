@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core'
 import { JwtHelper } from 'angular2-jwt'
 import { Router } from '@angular/router'
-
+import { resMsg } from '../../config/config'
 import { data_global } from '../../services/global'
 import { userService } from '../../services/user.service';
 
@@ -17,23 +17,44 @@ export class HomeComponent implements OnInit {
   public title: string;
   public userData: any;
   public Counters: any;
+  public resMsg: any;
   constructor(
-    private jwt: JwtHelper,
+    private _jwt: JwtHelper,
     private _router: Router,
     private userService: userService
   ) {
-    this.title = 'Hub de USUARIO'
+    this.title = 'Hub de USUARIO';
+    this.Counters = {
+      followers: '',
+      following: '',
+      publications: ''
+    };
+    this.resMsg = resMsg;
   }
 
   ngOnInit() {
+
+    if (localStorage.getItem('identity')) {
+      try {
+        data_global.tokenDecode = this._jwt.decodeToken(JSON.parse(localStorage.getItem('identity')));    
+      } catch (err) {
+
+      }
+
+      //this._jwt.decodeToken(JSON.parse(localStorage.getItem('identity')));
+    } else {
+      console.log('Nadie en Storage')
+    }
+
     if (!localStorage.getItem('identity')) {
 
       return this._router.navigate(['/lobby']);
 
     } else {
-      console.log('HOME - cargado')
+      console.log(resMsg.confirm)
       //aqui ponemos los datos decodificados del token para pintarlos en la vista
       this.userData = data_global.tokenDecode;
+
       this.getCounters(this.userData.sub);
 
       ;
