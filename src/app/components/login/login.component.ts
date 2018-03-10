@@ -60,7 +60,7 @@ export class LoginComponent implements OnInit {
   ngOnInit() {
 
 
-    if (data_global.tokenDecode.sub != undefined) {      
+    if (data_global.tokenDecode.sub != undefined || localStorage.getItem('identity')) {      
       return this._router.navigate(['/home']);      
     }
 

@@ -14,12 +14,14 @@ export class AppComponent implements DoCheck, OnInit {
   public title: string;
   public ident;
   public resMsg: any;
+  
 
   constructor(
     private _userService: userService,
     private _route: ActivatedRoute,
     private _router: Router,
     private _jwt: JwtHelper
+    
   ) {
     this.title = 'app';
     this.resMsg = resMsg;

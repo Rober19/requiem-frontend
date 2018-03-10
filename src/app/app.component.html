@@ -1,18 +1,17 @@
 
 
-<nav class="site-header sticky-top py-1 " *ngIf="ident" id="navbarHeader">
-  <div class="container d-flex flex-column flex-md-row justify-content-between">
+<nav class="site-header sticky-top" *ngIf="ident" id="navbarHeader">
+  <div class="container d-flex flex-md-row justify-content-between">
     <a class="py-2" routerLink="/">
       <img src="https://image.ibb.co/j3jkdm/afaw.png" alt="" width="20">
     </a>
-    <a class="py-2 d-none d-md-inline-block" routerLink="/home">{{resMsg.timeline}}</a>
+    <a class="py-2 d-md-inline-block" routerLink="/home">{{resMsg.timeline}}</a>
     
-    <a class="py-2 d-none d-md-inline-block" routerLink="/">{{resMsg.profile}}</a>
-    <div class="py-2 d-none d-md-inline-block">
+    <a class="py-2 d-md-inline-block" routerLink="/">{{resMsg.profile}}</a>
+    <div class="py-2 d-md-inline-block">
       
       <button [ngClass]="{'btn btn-outline-danger btn-sm': true }" type="button" (click)="logOut()">{{resMsg.sign_out}}</button>
-    </div>   
-
+    </div> 
 
   </div>
 </nav>
