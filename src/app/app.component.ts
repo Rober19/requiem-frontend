@@ -20,7 +20,7 @@ export class AppComponent implements DoCheck, OnInit {
   public title: string;
   public ident;
   public resMsg: any;
-  
+
   socket = io('http://192.168.1.63:3000');
 
   constructor(
@@ -28,7 +28,7 @@ export class AppComponent implements DoCheck, OnInit {
     private _route: ActivatedRoute,
     private _router: Router,
     private _jwt: JwtHelper
-    
+
   ) {
     this.title = 'app';
     this.resMsg = resMsg;
@@ -39,7 +39,7 @@ export class AppComponent implements DoCheck, OnInit {
 
     if (localStorage.getItem('identity') && data_global.tokenDecode.sub == undefined) {
       try {
-        data_global.tokenDecode = this._jwt.decodeToken(JSON.parse(localStorage.getItem('identity')));    
+        data_global.tokenDecode = this._jwt.decodeToken(JSON.parse(localStorage.getItem('identity')));
       } catch (err) {
 
       }
@@ -50,11 +50,11 @@ export class AppComponent implements DoCheck, OnInit {
     }
 
     console.log('app iniciado')
-    this.socket.emit('myNotification', { option: 'like', message: 'hola'})
-    this.socket.on('myNotification', (data) => {
-      console.log(data)
+    this.socket.emit('-myNotification', { option: 'like', message: 'hola' })
+    this.socket.on('-myNotification', (data) => {
+      console.log(data);      
     });
-    
+
   }
   //para comprobar
   ngDoCheck() {

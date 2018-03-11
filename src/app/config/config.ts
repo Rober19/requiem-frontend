@@ -25,6 +25,7 @@ export var resMsg = {
   save: 'Guardar',
   send: 'Enviar',
   uploads: 'Subidas',
+  upload: 'Subir',
   recent: 'Reciente',
   recents: 'Recientes',
   news_1: 'Nuevas',
