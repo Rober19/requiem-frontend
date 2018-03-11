@@ -40,6 +40,8 @@ export class userService {
     return this._http.post(`${this.url}/login`, model, { headers: headers });
   }
 
+  
+
   getIdent_login() {
     const identity = JSON.parse(localStorage.getItem('identity'));
 
@@ -73,7 +75,9 @@ export class userService {
 
   }
 
-  
+
+
+
 
 
   // getToken_login(){

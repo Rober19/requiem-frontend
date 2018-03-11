@@ -27,6 +27,7 @@ export class LoginComponent implements OnInit {
   //esta variable validara la entrada del usuario
   public valid: boolean;
   public resMsg: any;
+  public resServer: any;
 
 
   constructor(
@@ -60,8 +61,8 @@ export class LoginComponent implements OnInit {
   ngOnInit() {
 
 
-    if (data_global.tokenDecode.sub != undefined || localStorage.getItem('identity')) {      
-      return this._router.navigate(['/home']);      
+    if (data_global.tokenDecode.sub != undefined || localStorage.getItem('identity')) {
+      return this._router.navigate(['/home']);
     }
 
     console.log(`LOGIN ${resMsg.loaded}`);
@@ -74,17 +75,18 @@ export class LoginComponent implements OnInit {
         this.tokenLogin = res.data;
 
         //'secret_token_summertime_sadness' 
-        localStorage.setItem('identity', JSON.stringify(this.tokenLogin));              
+        localStorage.setItem('identity', JSON.stringify(this.tokenLogin));
         this._router.navigate(['/home']);
       },
       err => {
         console.warn(err.error.data);
-        this.valid = true;        
+        this.valid = true;
+        this.resServer = resMsg.userNotFound;
       }
     )
   }
 
-  
+
 
   //aqui recibimos el token del usuario
   // Token(){

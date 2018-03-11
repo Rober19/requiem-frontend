@@ -72,17 +72,7 @@
               Please provide a valid name.
             </div>
           </div>
-          <div class="col-md-3 mb-3">
-            <label for="validationCustom05">image</label>
-            <input type="text" [ngClass]="{'form-control is-valid': image.valid, 'form-control is-invalid': !image.valid && image.touched, 'form-control': 1==1 }"
-              id="validationCustom05" placeholder="image" name="image" #image="ngModel" [(ngModel)]="Model_user.image" required>
-            <div class="valid-feedback">
-              Looks good!
-            </div>
-            <div class="invalid-feedback">
-              Please provide a valid name.
-            </div>
-          </div>
+         
         </div>
         <br>
         <button [ngClass]="{'btn btn-lg btn-primary': true }" type="button" (click)="onSubmit(registerForm)" [disabled]="!registerForm.valid">Sign Up</button>

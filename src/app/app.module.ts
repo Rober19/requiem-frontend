@@ -13,6 +13,7 @@ import { RegisterComponent } from './components/register/register.component';
 import { LoginComponent } from './components/login/login.component';
 import { HomeComponent } from './components/home/home.component';
 import { LobbyComponent } from './components/lobby/lobby.component';
+import { ProfileComponent } from './components/profile/profile.component';
 
 
 
@@ -22,7 +23,8 @@ import { LobbyComponent } from './components/lobby/lobby.component';
     RegisterComponent,
     LoginComponent,
     HomeComponent,
-    LobbyComponent
+    LobbyComponent,
+    ProfileComponent
   ],
   imports: [
     BrowserModule,
