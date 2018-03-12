@@ -20,7 +20,7 @@ export class HomeComponent implements OnInit {
   public Counters: any;
   public resMsg: any;
 
-  socket = io('http://192.168.1.63:3000');
+ // socket = io('http://192.168.1.63:3000');
 
   constructor(
     private _jwt: JwtHelper,
@@ -58,7 +58,7 @@ export class HomeComponent implements OnInit {
       console.log(`HOME ${resMsg.loaded}`)
       //aqui ponemos los datos decodificados del token para pintarlos en la vista
       this.userData = data_global.tokenDecode;
-
+      this.userData.image += '?random+\=' + Math.random();
       if (this.Counters.followers != ''){
 
       } else {
@@ -74,7 +74,7 @@ export class HomeComponent implements OnInit {
   }
 
   testSocket(){
-    this.socket.emit('myNotification', { option: 'like', message: 'hola'})
+    //this.socket.emit('myNotification', { option: 'like', message: 'hola'})
   }
 
   getCounters(id) {
@@ -89,9 +89,7 @@ export class HomeComponent implements OnInit {
   }
   logOut() {
     localStorage.clear();
-    data_global.tokenDecode = {
-      sub: undefined
-    };
+    data_global.tokenDecode.sub = undefined;
     this._router.navigate(['/lobby']);
 
   }

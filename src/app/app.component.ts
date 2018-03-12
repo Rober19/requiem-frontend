@@ -21,7 +21,7 @@ export class AppComponent implements DoCheck, OnInit {
   public ident;
   public resMsg: any;
 
-  socket = io('http://192.168.1.63:3000');
+  //socket = io('http://192.168.1.63:3000');
 
   constructor(
     private _userService: userService,
@@ -38,11 +38,7 @@ export class AppComponent implements DoCheck, OnInit {
   ngOnInit() {
 
     if (localStorage.getItem('identity') && data_global.tokenDecode.sub == undefined) {
-      try {
-        data_global.tokenDecode = this._jwt.decodeToken(JSON.parse(localStorage.getItem('identity')));
-      } catch (err) {
-
-      }
+      this._userService.decodeToken();
 
       //this._jwt.decodeToken(JSON.parse(localStorage.getItem('identity')));
     } else {
@@ -50,10 +46,10 @@ export class AppComponent implements DoCheck, OnInit {
     }
 
     console.log('app iniciado')
-    this.socket.emit('-myNotification', { option: 'like', message: 'hola' })
-    this.socket.on('-myNotification', (data) => {
-      console.log(data);      
-    });
+    // this.socket.emit('-myNotification', { option: 'like', message: 'hola' })
+    // this.socket.on('-myNotification', (data) => {
+    //   console.log(data);      
+    // });
 
   }
   //para comprobar
@@ -64,9 +60,7 @@ export class AppComponent implements DoCheck, OnInit {
   logOut() {
     localStorage.clear();
     this.ident = null;
-    data_global.tokenDecode = {
-      sub: undefined
-    };
+    data_global.tokenDecode.sub = undefined;      
     this._router.navigate(['/lobby']);
   }
 

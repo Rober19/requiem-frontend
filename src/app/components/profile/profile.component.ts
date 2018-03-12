@@ -4,6 +4,7 @@ import { UploadService } from '../../services/upload.service';
 import { userService } from '../../services/user.service';
 import { resMsg } from '../../config/config'
 import * as io from 'socket.io-client';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'Profile',
@@ -16,18 +17,29 @@ export class ProfileComponent implements OnInit {
 
   public userData: any;
   public resMsg: any;
-  socket = io('http://192.168.1.63:3000');
+  public upt_button: boolean;
+  //socket = io('http://192.168.1.63:3000');
   constructor(
     private _UploadService: UploadService,
-    private _userService: userService
+    private _userService: userService,
+    private _router: Router
   ) {
 
   }
 
   ngOnInit() {
-    this.userData = data_global.tokenDecode;
-    this.resMsg = resMsg;
 
+
+    if (!localStorage.getItem('identity')) {
+
+      return this._router.navigate(['/lobby']);
+
+    } else {
+
+      this.userData = data_global.tokenDecode;
+      this.resMsg = resMsg;
+      this.upt_button = false;
+    }
 
 
   }
@@ -38,16 +50,37 @@ export class ProfileComponent implements OnInit {
   }
 
   upt_file() {
+     this.upt_button = true;  
+
     this._UploadService.makeFileRequest(`${data_global.url}/upload-image-user`, [], this.filesToUpload, this._userService.getIdent_login(), 'image').then((res: any) => {
+         
 
-      console.log(res);    
-
-      this.userData.image += '?random+\=' + Math.random();
-
-      if (res.status =! 200) {
+      if (res.status = !200) {
         window.alert(JSON.stringify(res.status));
+      } else {
+        this._userService.getToken(data_global.tokenDecode.sub).subscribe(
+          data => {
+
+
+
+            localStorage.setItem('identity', JSON.stringify(data.data));
+            this._userService.decodeToken();
+
+            let element = document.getElementById("CloseButton") as any;
+            element.click();
+
+            this._router.navigate(['/home']);           
+          },
+          err => {
+            console.log(err);
+          }
+        )
+        //localStorage.setItem('identity', JSON.stringify(newToken));
+
       }
-      
+
+
+
       // this.socket.emit('-myNotification', { option: 'like', message: 'hola' })
       // this.socket.on('-myNotification', (data) => {
       //   console.log(data)        

@@ -4,6 +4,7 @@ import { Observable } from 'rxjs/Observable';
 import { data_global } from './global'
 import { resMsg } from '../config/config'
 import { User } from '../models/user';
+import { JwtHelper } from 'angular2-jwt';
 
 @Injectable()
 export class userService {
@@ -13,7 +14,8 @@ export class userService {
 
 
   constructor(
-    private _http: HttpClient
+    private _http: HttpClient,
+    private _jwt: JwtHelper
   ) {
     this.url = data_global.url;
   }
@@ -28,6 +30,14 @@ export class userService {
     return this._http.post(`${this.url}/register`, model, { headers: headers })
   }
 
+  decodeToken() {
+    try {
+      data_global.tokenDecode = this._jwt.decodeToken(JSON.parse(localStorage.getItem('identity')));
+    } catch (err) {
+
+    }
+  }
+
   login(user: User, tokenget = null): Observable<any> {
 
     if (tokenget != null) {
@@ -40,7 +50,7 @@ export class userService {
     return this._http.post(`${this.url}/login`, model, { headers: headers });
   }
 
-  
+
 
   getIdent_login() {
     const identity = JSON.parse(localStorage.getItem('identity'));
@@ -66,12 +76,23 @@ export class userService {
   }
 
   getCounters(userId): Observable<any> {
-    
+
     let headers = new HttpHeaders()
       .set('Content-Type', 'application/json')
       .set('Authorization', localStorage.getItem('identity'));
 
     return this._http.get(`${this.url}/get-counters/${userId}`, { headers: headers });
+
+  }
+
+  getToken(userId): Observable<any> {
+
+    let headers = new HttpHeaders()
+      .set('Content-Type', 'application/json')
+      .set('Authorization', localStorage.getItem('identity'))
+      .set('admin_secret', data_global.admin_secret);
+
+    return this._http.get(`${this.url}/user/${userId}`, { headers: headers });
 
   }
 
