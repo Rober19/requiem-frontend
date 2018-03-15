@@ -9,6 +9,7 @@ import { ProfileComponent } from './components/profile/profile.component';
 
 const appRoutes: Routes = [
   { path: '', component: LobbyComponent},
+  { path: '*', component: LobbyComponent},
   { path: 'lobby', component: LobbyComponent},
   { path: 'home', component: HomeComponent},
   { path: 'login', component: LoginComponent},

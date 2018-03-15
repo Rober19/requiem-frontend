@@ -5,6 +5,7 @@ import { resMsg } from '../../config/config'
 import { data_global } from '../../services/global'
 import { userService } from '../../services/user.service';
 import * as io from 'socket.io-client';
+import { User } from '../../models/user';
 
 @Component({
   selector: 'Home',
@@ -20,7 +21,7 @@ export class HomeComponent implements OnInit {
   public Counters: any;
   public resMsg: any;
 
- // socket = io('http://192.168.1.63:3000');
+  // socket = io('http://192.168.1.63:3000');
 
   constructor(
     private _jwt: JwtHelper,
@@ -33,6 +34,19 @@ export class HomeComponent implements OnInit {
       following: '',
       publications: ''
     };
+
+    this.userData = new User(
+      '',
+      '',
+      '',
+      '',
+      '',
+      '',
+      '',
+      '',
+      '',
+    )
+    
     this.resMsg = resMsg;
   }
 
@@ -40,7 +54,7 @@ export class HomeComponent implements OnInit {
 
     if (localStorage.getItem('identity') && data_global.tokenDecode.sub == undefined) {
       try {
-        data_global.tokenDecode = this._jwt.decodeToken(JSON.parse(localStorage.getItem('identity')));    
+        data_global.tokenDecode = this._jwt.decodeToken(JSON.parse(localStorage.getItem('identity')));
       } catch (err) {
 
       }
@@ -59,12 +73,12 @@ export class HomeComponent implements OnInit {
       //aqui ponemos los datos decodificados del token para pintarlos en la vista
       this.userData = data_global.tokenDecode;
       this.userData.image += '?random+\=' + Math.random();
-      if (this.Counters.followers != ''){
+      if (this.Counters.followers != '') {
 
       } else {
         this.getCounters(this.userData.sub);
       }
-      
+
 
       ;
     }
@@ -73,7 +87,7 @@ export class HomeComponent implements OnInit {
 
   }
 
-  testSocket(){
+  testSocket() {
     //this.socket.emit('myNotification', { option: 'like', message: 'hola'})
   }
 
