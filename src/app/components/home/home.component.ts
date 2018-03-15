@@ -46,7 +46,7 @@ export class HomeComponent implements OnInit {
       '',
       '',
     )
-    
+
     this.resMsg = resMsg;
   }
 
@@ -55,6 +55,7 @@ export class HomeComponent implements OnInit {
     if (localStorage.getItem('identity') && data_global.tokenDecode.sub == undefined) {
       try {
         data_global.tokenDecode = this._jwt.decodeToken(JSON.parse(localStorage.getItem('identity')));
+        console.warn('$TOKEN DECODE$')
       } catch (err) {
 
       }

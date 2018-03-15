@@ -3,9 +3,7 @@ body {
   overflow-x: hidden; /* Prevent scroll on narrow devices */
 }
 
-body {
- 
-}
+
 
 @media (max-width: 767.98px) {
   .offcanvas-collapse {

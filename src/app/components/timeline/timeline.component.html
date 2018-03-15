@@ -1,0 +1,52 @@
+<body>
+
+  <div class="nav-scroller bg-white box-shadow">
+    <nav class="nav nav-underline">
+      <a class="nav-link active" href="#">{{resMsg.home}}</a>
+      <a class="nav-link" href="#">
+        {{resMsg.chats}}
+        <span class="badge badge-pill bg-light align-text-bottom">
+          <span class="badge badge-danger">9</span>
+        </span>
+
+      </a>
+      <a class="nav-link" href="#">
+        {{resMsg.users}}
+        <span class="badge badge-pill bg-light align-text-bottom"></span>
+      </a>     
+
+    </nav>
+  </div>
+  <main role="main" class="container-x1">           
+    
+          <div class="album py-5 bg-light">
+            <div class="container">
+    
+              <div class="row">
+                
+                <div class="col-md-4" *ngFor="let i1 of palo">
+                  <div class="card mb-4 box-shadow">
+                    <img class="card-img-top" src="https://www.kdnuggets.com/wp-content/uploads/data-science-parts.jpg" alt="Card image cap">
+                    <div class="card-body">
+                      <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+                      <div class="d-flex justify-content-between align-items-center">
+                        <div class="btn-group">
+                          <button type="button" class="btn btn-sm btn-outline-secondary">View</button>
+                          <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>
+                        </div>
+                        <small class="text-muted">9 mins</small>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                
+                
+
+              </div>
+            </div>
+          </div>     
+
+
+  </main>
+
+</body>
