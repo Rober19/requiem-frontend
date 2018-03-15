@@ -14,8 +14,8 @@ const appRoutes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent },
   { path: 'profile', component: ProfileComponent },
-  
-  { path: '**', component: LobbyComponent }
+
+  { path: '**', redirectTo:'lobby' }
 ];
 
 export const appRoutingProviders: any[] = [];
