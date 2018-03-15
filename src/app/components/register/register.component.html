@@ -54,10 +54,10 @@
             <input type="email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" name="email" class="form-control" [ngClass]="{'form-control is-valid': email.valid, 'form-control is-invalid': !email.valid && email.touched, 'form-control': 1==1 }"
               id="validationCustom03" placeholder="email@email.dom" [(ngModel)]="Model_user.email" #email="ngModel" required>
             <div class="valid-feedback">
-              Looks good!
+              {{resMsg.validField_1}}
             </div>
             <div class="invalid-feedback">
-              Please provide a valid email.
+              {{resMsg.invalidField_1}}
             </div>
           </div>
           <div class="col-md-3 mb-3">

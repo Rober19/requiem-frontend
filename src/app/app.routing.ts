@@ -8,13 +8,14 @@ import { LobbyComponent } from './components/lobby/lobby.component';
 import { ProfileComponent } from './components/profile/profile.component';
 
 const appRoutes: Routes = [
-  { path: '', component: LobbyComponent},
-  { path: '*', component: LobbyComponent},
-  { path: 'lobby', component: LobbyComponent},
-  { path: 'home', component: HomeComponent},
-  { path: 'login', component: LoginComponent},
-  { path: 'register', component: RegisterComponent},
-  { path: 'profile', component: ProfileComponent}  
+  { path: '', component: LobbyComponent },  
+  { path: 'lobby', component: LobbyComponent },
+  { path: 'home', component: HomeComponent },
+  { path: 'login', component: LoginComponent },
+  { path: 'register', component: RegisterComponent },
+  { path: 'profile', component: ProfileComponent },
+  
+  { path: '**', component: LobbyComponent }
 ];
 
 export const appRoutingProviders: any[] = [];

@@ -2,6 +2,8 @@ import { Component } from '@angular/core';
 import { Router, ActivatedRoute, Params } from '@angular/router';
 import { User } from '../../models/user';
 import { userService } from '../../services/user.service';
+import {resMsg} from '../../config/config'
+import {data_global} from '../../services/global'
 
 
 @Component({
@@ -15,6 +17,7 @@ export class RegisterComponent {
   public header_p1:string;   
   public Model_user:User;
   public a1:string;
+  public resMsg: any;
   
 
   constructor(
@@ -36,11 +39,18 @@ export class RegisterComponent {
       '',
       '',
     );
+    this.resMsg = resMsg;
   }
 
   
 
   ngOnInit(){
+
+    
+    if (data_global.tokenDecode.sub != undefined || localStorage.getItem('identity')) {
+      return this._router.navigate(['/home']);
+    }
+
     console.log('')
   }
 
