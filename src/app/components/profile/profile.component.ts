@@ -8,7 +8,7 @@ import { Router } from '@angular/router';
 import { User } from '../../models/user';
 
 @Component({
-  selector: 'Profile',
+  selector: 'profile',
   templateUrl: './profile.component.html',
   styleUrls: ['./profile.component.css'],
   providers: [UploadService, userService]

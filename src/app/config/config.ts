@@ -2,7 +2,7 @@
 export var resMsg = {
   found: 'Encontrado',
   file: 'Archivo',
-  please_login: 'Por favor ingrese aquí',
+  please_login: 'Ingrese aquí',
   publications: 'Publicaciones',
   publication: 'Publicacion',
   summary: 'Resumen',
