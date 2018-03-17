@@ -1,5 +1,5 @@
 <body class="">
-  <div class="d-flex justify-content-center" >
+  <div class="d-flex justify-content-center">
     <div class="col-lg-6 text-center " id="formreg">
 
       <form class="needs-validation" name="registerForm" #registerForm="ngForm" novalidate>
@@ -72,13 +72,21 @@
               Please provide a valid name.
             </div>
           </div>
-         
+
         </div>
         <br>
         <button [ngClass]="{'btn btn-lg btn-primary': true }" type="button" (click)="onSubmit(registerForm)" [disabled]="!registerForm.valid">Sign Up</button>
 
         <!-- <button [ngClass]="{'btn btn-lg btn-success': true }" type="button" (click)="onSubmit(registerForm)" >%i'm a test%</button> -->
+
       </form>
+      <br>
+      <div class="alert alert-success" *ngIf="validf" role="alert">
+        {{respMsg.data}}
+      </div>
+      <div class="alert alert-danger" *ngIf="errorf" role="alert">
+        {{respMsg.data}}
+      </div>
     </div>
   </div>
 

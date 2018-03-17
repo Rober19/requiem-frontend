@@ -2,15 +2,15 @@
 
   <div class="nav-scroller bg-white box-shadow">
     <nav class="nav nav-underline">
-      <a class="nav-link active" (click)="tab=lobby" [routerLink]="['/timeline']" [queryParams]="{ tab: 'home' }">{{resMsg.home}}</a>
-      <a class="nav-link" (click)="tab=lobby" [routerLink]="['/timeline']" [queryParams]="{ tab: 'lobby' }">
+      <a class="nav-link active"  [routerLink]="['/timeline']" [queryParams]="{ tab: 'home' }">{{resMsg.home}}</a>
+      <a class="nav-link" [routerLink]="['/timeline']" [queryParams]="{ tab: 'lobby' }">
         {{resMsg.chats}}
         <span class="badge badge-pill bg-light align-text-bottom">
           <span class="badge badge-danger">9</span>
         </span>
 
       </a>
-      <a class="nav-link" (click)="tab=profile" [routerLink]="['/timeline']" [queryParams]="{ tab: 'profile' }">
+      <a class="nav-link"  [routerLink]="['/timeline']" [queryParams]="{ tab: 'profile' }">
         {{resMsg.users}}
         <span class="badge badge-pill bg-light align-text-bottom"></span>
       </a>
@@ -18,9 +18,9 @@
     </nav>
   </div>
   <main role="main" class="container-x1">
-
+<!-- 
     <lobby *ngIf="tab==lobby"></lobby>
-    <profile *ngIf="bool"></profile>
+    <profile *ngIf="bool"></profile> -->
 
     <div class="album py-5 bg-light">
       <div class="container">
