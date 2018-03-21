@@ -18,6 +18,7 @@ export class TimelineComponent implements OnInit {
   public paramsQuery: any;
   public tab: any;
   public bool: boolean;
+  public tabs: Array<boolean>;
 
   constructor(
     private _route: ActivatedRoute,
@@ -25,6 +26,7 @@ export class TimelineComponent implements OnInit {
   ) {
     this.resMsg = resMsg;
     this.palo = [5, 34, 5, 2, 4, 3, 1];
+    this.tabs = [false, false, false, false];
     this.tab = '';
 
 
@@ -36,10 +38,22 @@ export class TimelineComponent implements OnInit {
   }
 
   bool1() {
-    if (this.bool) {
-      this.bool = false
-    } else {
-      this.bool = true;
+    switch (this.tab) {
+      case 'lobby':
+        this.tabs = [false, false, false, false];
+        this.tabs[0] = true;
+        break;
+      case 'home':
+        this.tabs = [false, false, false, false];
+        this.tabs[1] = true;
+        break;
+      case 'profile':
+        this.tabs = [false, false, false, false];
+        this.tabs[2] = true;
+        break;
+
+      default:
+        break;
     }
   }
 
@@ -48,9 +62,28 @@ export class TimelineComponent implements OnInit {
     await this._route.queryParamMap.subscribe(data => {
       this.paramsQuery = data;
       this.tab = this.paramsQuery.params;
+      console.log(this.tab)
+
+      switch (this.tab.tab) {
+        case 'lobby':
+          this.tabs = [false, false, false, false];
+          this.tabs[0] = true;
+          break;
+        case 'home':
+          this.tabs = [false, false, false, false];
+          this.tabs[1] = true;
+          break;
+        case 'profile':
+          this.tabs = [false, false, false, false];
+          this.tabs[2] = true;
+          break;  
+        default:
+        console.log('nada')
+          break;
+      }
     });
 
 
-    
+
   }
 }
