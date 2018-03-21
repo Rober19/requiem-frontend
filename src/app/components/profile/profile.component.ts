@@ -26,6 +26,7 @@ export class ProfileComponent implements OnInit {
     private _userService: userService,
     private _router: Router
   ) {
+    this.resMsg = resMsg;
     this.userData = new User(
       '',
       '',
@@ -48,8 +49,7 @@ export class ProfileComponent implements OnInit {
 
     } else {
 
-      this.userData = data_global.tokenDecode;
-      this.resMsg = resMsg;
+      this.userData = data_global.tokenDecode;      
       this.upt_button = false;
     }
 
