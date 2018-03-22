@@ -15,6 +15,7 @@ import { HomeComponent } from './components/home/home.component';
 import { LobbyComponent } from './components/lobby/lobby.component';
 import { ProfileComponent } from './components/profile/profile.component';
 import { TimelineComponent } from './components/timeline/timeline.component'
+import { ChatComponent } from './components/chats/chat.component'
 
 
 @NgModule({
@@ -25,7 +26,8 @@ import { TimelineComponent } from './components/timeline/timeline.component'
     HomeComponent,
     LobbyComponent,
     ProfileComponent,
-    TimelineComponent
+    TimelineComponent,
+    ChatComponent
   ],
   imports: [
     BrowserModule,
