@@ -11,10 +11,10 @@
             <input type="text" name="name" [ngClass]="{'form-control is-valid': name.valid, 'form-control is-invalid': !name.valid && name.touched, 'form-control': 1==1 }"
               id="validationCustom01" #name="ngModel" [(ngModel)]="Model_user.name" placeholder="First name" required>
             <div class="valid-feedback">
-              Looks good!
+              {{resMsg.validField_1}}
             </div>
             <div class="invalid-feedback">
-              Please provide a valid name.
+              {{resMsg.invalidField_1}}
             </div>
           </div>
 
@@ -23,10 +23,10 @@
             <input type="text" name="lastnm" [ngClass]="{'form-control is-valid': lastnm.valid, 'form-control is-invalid': !lastnm.valid && lastnm.touched, 'form-control': 1==1 }"
               id="validationCustom02" #lastnm="ngModel" [(ngModel)]="Model_user.surname" placeholder="Last name" required>
             <div class="valid-feedback">
-              Looks good!
+              {{resMsg.validField_1}}
             </div>
             <div class="invalid-feedback">
-              Please provide a valid name.
+              {{resMsg.invalidField_1}}
             </div>
           </div>
 
@@ -39,10 +39,10 @@
               <input type="text" name="nicknm" #nicknm="ngModel" [(ngModel)]="Model_user.nick" [ngClass]="{'form-control is-valid': nicknm.valid, 'form-control is-invalid': !nicknm.valid && nicknm.touched, 'form-control': 1==1 }"
                 id="validationServerUsername" placeholder="Username" aria-describedby="inputGroupPrepend3" required>
               <div class="valid-feedback">
-                Looks good!
+                {{resMsg.validField_1}}
               </div>
               <div class="invalid-feedback">
-                Please provide a valid name.
+                {{resMsg.invalidField_1}}
               </div>
             </div>
           </div>
@@ -66,10 +66,10 @@
               id="validationCustom04" placeholder="password" name="passwd" #passwd="ngModel" [(ngModel)]="Model_user.password"
               required>
             <div class="valid-feedback">
-              Looks good!
+              {{resMsg.validField_1}}
             </div>
             <div class="invalid-feedback">
-              Please provide a valid name.
+              {{resMsg.invalidField_1}}
             </div>
           </div>
 
