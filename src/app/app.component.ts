@@ -63,7 +63,7 @@ export class AppComponent implements DoCheck, OnInit {
     localStorage.clear();
     this.ident = null;
     data_global.tokenDecode.sub = undefined;      
-    this._router.navigate(['/lobby']);
+    this._router.navigate(['/login']);
   }
 
 }

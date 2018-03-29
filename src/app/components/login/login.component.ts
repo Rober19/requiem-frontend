@@ -75,6 +75,7 @@ export class LoginComponent implements OnInit {
   }
 
   sendLogin() {
+    this.valid = false;
     this.userService.login(this.login_user, 'true').subscribe(
       res => {
         let element = document.getElementById("CloseButton") as any;
@@ -87,11 +88,16 @@ export class LoginComponent implements OnInit {
         this._router.navigate(['/home']);
       },
       err => {
-        console.warn(err.error.data);
-        this.valid = true;
-        this.resServer = resMsg.userNotFound;
+        this.valid = false;
         let element = document.getElementById("CloseButton") as any;
-        element.click();
+        setTimeout(() => {
+          element.click();
+          this.valid = true;
+        }, 500);        
+        console.warn(err.error.data);    
+        this.resServer = resMsg.userNotFound;
+       
+        
       }
     )
   }
