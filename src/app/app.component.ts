@@ -6,9 +6,7 @@ import { JwtHelper } from 'angular2-jwt';
 import { resMsg } from '../app/config/config'
 
 import * as io from 'socket.io-client';
-
 // Nofitication Push Modules //
-
 
 @Component({
   selector: 'app-root',
@@ -32,11 +30,14 @@ export class AppComponent implements DoCheck, OnInit {
   ) {
     this.title = 'app';
     this.resMsg = resMsg;
-
+    
   }
+
+
+
   //onInit es para cuando se inicia el componente
   ngOnInit() {
-
+    
     if (localStorage.getItem('identity') && data_global.tokenDecode.sub == undefined) {
       this._userService.decodeToken();
 
@@ -52,6 +53,7 @@ export class AppComponent implements DoCheck, OnInit {
     // });
 
   }
+
   //para comprobar
   ngDoCheck() {
     this.ident = this._userService.getIdent_login();
