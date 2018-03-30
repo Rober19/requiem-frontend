@@ -6,8 +6,9 @@
     <h1 class="h3 mb-3 font-weight-normal" id="textdown">{{resMsg.please_login}}</h1>
 
     <label for="inputEmail" class="sr-only">{{resMsg.email_address}}</label>
-    <input type="email" id="inputEmail" [ngClass]="{'form-control is-valid': email.valid, 'form-control is-invalid': !email.valid && email.touched, 'form-control': 1==1 }" name="email" #email="ngModel" [(ngModel)]="login_user.email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$"
-      placeholder="{{resMsg.email_address}}" required autofocus>
+    <input type="email" id="inputEmail" [ngClass]="{'form-control is-valid': email.valid, 'form-control is-invalid': !email.valid && email.touched, 'form-control': 1==1 }"
+      name="email" #email="ngModel" [(ngModel)]="login_user.email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" placeholder="{{resMsg.email_address}}"
+      required autofocus>
 
     <label for="inputPassword" class="sr-only">{{resMsg.password}}</label>
     <input type="password" id="inputPassword" class="form-control" name="passwd" #passwd="ngModel" [(ngModel)]="login_user.password"
@@ -23,7 +24,22 @@
         {{resServer}}
       </div>
     </div>
-    <button class="btn btn-lg btn-primary btn-block" (click)="sendLogin()" type="submit">{{resMsg.login}}</button>
+    <button class="btn btn-lg btn-primary btn-block" (click)="sendLogin()" type="submit" data-toggle="modal" data-target="#Loading">{{resMsg.login}}</button>
+
+    <!-- Modal -->
+    <div class="modal fade" id="Loading" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true" data-keyboard="false" data-backdrop="static">
+      
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content" style="background-color: transparent">
+
+              <div class="modal-body" >
+                <img src="http://v6.player.abacast.net/assets/images/loading.gif" style="height: 50px; widows: 50px;">
+                <button style="display: none" id="CloseButton" type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+              </div>
+              
+            </div>
+          </div>
+    </div>
 
     <p class="mt-5 mb-3 text-muted" id="textdown">&copy; 2017-2018</p>
   </form>

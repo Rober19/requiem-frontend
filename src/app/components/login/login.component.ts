@@ -6,6 +6,7 @@ import { JwtHelper } from 'angular2-jwt'
 import { Router, ActivatedRoute, Params } from '@angular/router';
 import { tokenKey } from '@angular/core/src/view/util';
 import { data_global } from '../../services/global'
+import * as $ from 'jquery';
 
 @Component({
   selector: 'login',
@@ -26,6 +27,7 @@ export class LoginComponent implements OnInit {
   public tokenLogin;
   //esta variable validara la entrada del usuario
   public valid: boolean;
+
   public resMsg: any;
   public resServer: any;
 
@@ -68,9 +70,15 @@ export class LoginComponent implements OnInit {
     console.log(`LOGIN ${resMsg.loaded}`);
   }
 
+  test() {
+
+  }
+
   sendLogin() {
     this.userService.login(this.login_user, 'true').subscribe(
       res => {
+        let element = document.getElementById("CloseButton") as any;
+        element.click();
         //esta variable tendra los datos del usuario obtenido          
         this.tokenLogin = res.data;
 
@@ -82,6 +90,8 @@ export class LoginComponent implements OnInit {
         console.warn(err.error.data);
         this.valid = true;
         this.resServer = resMsg.userNotFound;
+        let element = document.getElementById("CloseButton") as any;
+        element.click();
       }
     )
   }
