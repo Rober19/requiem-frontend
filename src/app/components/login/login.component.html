@@ -3,8 +3,7 @@
   <form class="form-signin" name="loginForm" #loginForm="ngForm" novalidate>
     <img class="mb-4" src="https://image.ibb.co/j3jkdm/afaw.png" alt="" width="100">
 
-    <h1 class="h3 mb-3 font-weight-normal" id="textdown">{{resMsg.please_login}}</h1>
-
+    
     <label for="inputEmail" class="sr-only">{{resMsg.email_address}}</label>
     <input type="email" id="inputEmail" [ngClass]="{'form-control is-valid': email.valid, 'form-control is-invalid': !email.valid && email.touched, 'form-control': 1==1 }"
       name="email" #email="ngModel" [(ngModel)]="login_user.email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" placeholder="{{resMsg.email_address}}"
