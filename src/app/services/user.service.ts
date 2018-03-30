@@ -4,6 +4,7 @@ import { Observable } from 'rxjs/Observable';
 import { data_global } from './global'
 import { resMsg } from '../config/config'
 import { User } from '../models/user';
+import { Publication } from '../models/publication';
 import { JwtHelper } from 'angular2-jwt';
 
 @Injectable()
@@ -48,6 +49,16 @@ export class userService {
     const headers = new HttpHeaders().set('Content-Type', 'application/json');
 
     return this._http.post(`${this.url}/login`, model, { headers: headers });
+  }
+
+  publication(pub: Publication): Observable<any> {
+
+    const model = JSON.stringify(pub);
+    const headers = new HttpHeaders()
+    .set('Authorization', localStorage.getItem('identity'))
+    .set('Content-Type', 'application/json');
+
+    return this._http.post(`${this.url}/publication`, model, {headers: headers});
   }
 
 

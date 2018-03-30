@@ -6,6 +6,7 @@ import { resMsg } from '../../config/config'
 import * as io from 'socket.io-client';
 import { Router } from '@angular/router';
 import { User } from '../../models/user';
+import { Publication } from '../../models/publication';
 
 @Component({
   selector: 'profile',
@@ -17,6 +18,7 @@ import { User } from '../../models/user';
 export class ProfileComponent implements OnInit {
 
   public userData: any;
+  public Publication: any;
   public resMsg: any;
   public upt_button: boolean;
   public filesToUpload: Array<File>;
@@ -38,6 +40,13 @@ export class ProfileComponent implements OnInit {
       '',
       '',
     )
+    this.Publication = new Publication(
+      '',
+      '',
+      '',
+      '',
+      ''
+    );
   }
 
   ngOnInit() {
@@ -112,6 +121,15 @@ export class ProfileComponent implements OnInit {
 
 
 
+  }
+
+  post_Publication(){
+    this._userService.publication(this.Publication).subscribe(
+      data => {
+      console.log(data);
+    }, err => {
+      console.log(err);
+    });
   }
 
 }
