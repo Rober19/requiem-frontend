@@ -55,13 +55,21 @@ export class userService {
 
     const model = JSON.stringify(pub);
     const headers = new HttpHeaders()
-    .set('Authorization', localStorage.getItem('identity'))
-    .set('Content-Type', 'application/json');
+      .set('Authorization', localStorage.getItem('identity'))
+      .set('Content-Type', 'application/json');
 
-    return this._http.post(`${this.url}/publication`, model, {headers: headers});
+    return this._http.post(`${this.url}/publication`, model, { headers: headers });
   }
 
+  getPublications(userId, page) {
+    
+    let headers = new HttpHeaders()
+      .set('Content-Type', 'application/json')
+      .set('Authorization', localStorage.getItem('identity'));
 
+    return this._http.get(`${this.url}/publications?page=${page}`, { headers: headers });
+
+  }
 
   getIdent_login() {
     const identity = JSON.parse(localStorage.getItem('identity'));

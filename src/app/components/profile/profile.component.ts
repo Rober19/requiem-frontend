@@ -58,20 +58,20 @@ export class ProfileComponent implements OnInit {
 
     } else {
 
-      this.userData = data_global.tokenDecode;      
+      this.userData = data_global.tokenDecode;
       this.upt_button = false;
     }
 
 
   }
- 
+
   fileChangeEvent(fileInput: any) {
 
     this.filesToUpload = <Array<File>>fileInput.target.files;
     console.log(this.filesToUpload);
   }
 
-  upt_file() {    
+  upt_file() {
     if (this.filesToUpload == undefined) {
       return window.alert(resMsg.fieldRequired);
     }
@@ -123,9 +123,19 @@ export class ProfileComponent implements OnInit {
 
   }
 
-  post_Publication(){
+  post_Publication() {
     this.Publication.text = 'holaa';
     this._userService.publication(this.Publication).subscribe(
+      data => {
+        console.log(data);
+      }, err => {
+        console.log(err);
+      });
+  }
+
+  get_Publication() {
+    console.log(data_global.tokenDecode.sub)
+    this._userService.getPublications(data_global.tokenDecode.sub, 1).subscribe(
       data => {
       console.log(data);
     }, err => {

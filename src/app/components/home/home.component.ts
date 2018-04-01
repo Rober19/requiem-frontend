@@ -67,7 +67,7 @@ export class HomeComponent implements OnInit {
 
     if (!localStorage.getItem('identity')) {
 
-      return this._router.navigate(['/lobby']);
+      return this._router.navigate(['/login']);
 
     } else {
       console.log(`HOME ${resMsg.loaded}`)
