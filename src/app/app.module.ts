@@ -17,6 +17,10 @@ import { ProfileComponent } from './components/profile/profile.component';
 import { TimelineComponent } from './components/timeline/timeline.component'
 import { ChatComponent } from './components/chats/chat.component'
 
+/* Configuración Moment.js en Angular */
+import { MomentModule } from 'angular2-moment';
+import * as moment from 'moment';
+moment.locale('es');
 
 @NgModule({
   declarations: [
@@ -33,7 +37,8 @@ import { ChatComponent } from './components/chats/chat.component'
     BrowserModule,
     routing,
     FormsModule,
-    HttpClientModule
+    HttpClientModule,
+    MomentModule
   ],
   providers: [
     appRoutingProviders
