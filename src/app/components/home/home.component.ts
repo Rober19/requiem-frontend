@@ -76,7 +76,7 @@ export class HomeComponent implements OnInit {
       console.log(`HOME ${resMsg.loaded}`)
       //aqui ponemos los datos decodificados del token para pintarlos en la vista
       this.userData = data_global.tokenDecode;
-      this.userData.image += '?random+\=' + Math.random();
+      //this.userData.image += '?random+\=' + Math.random();
       if (this.Counters.followers != '') {
 
       } else {
