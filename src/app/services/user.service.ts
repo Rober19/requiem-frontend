@@ -5,7 +5,7 @@ import { data_global } from './global'
 import { resMsg } from '../config/config'
 import { User } from '../models/user';
 import { Publication } from '../models/publication';
-import { JwtHelper } from 'angular2-jwt';
+
 
 @Injectable()
 export class userService {
@@ -15,8 +15,7 @@ export class userService {
 
 
   constructor(
-    private _http: HttpClient,
-    private _jwt: JwtHelper
+    private _http: HttpClient
   ) {
     this.url = data_global.url;
   }
@@ -30,14 +29,7 @@ export class userService {
 
     return this._http.post(`${this.url}/register`, model, { headers: headers })
   }
-
-  decodeToken() {
-    try {
-      data_global.tokenDecode = this._jwt.decodeToken(JSON.parse(localStorage.getItem('identity')));
-    } catch (err) {
-
-    }
-  }
+ 
 
   login(user: User, tokenget = null): Observable<any> {
 
@@ -104,7 +96,7 @@ export class userService {
 
   }
 
-  getToken(userId): Observable<any> {
+  getTokenNoUsar(userId): Observable<any> {
 
     let headers = new HttpHeaders()
       .set('Content-Type', 'application/json')

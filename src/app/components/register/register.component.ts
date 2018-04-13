@@ -51,7 +51,7 @@ export class RegisterComponent {
   ngOnInit() {
 
 
-    if (data_global.tokenDecode.sub != undefined || localStorage.getItem('identity')) {
+    if (data_global.UserData.sub != undefined || localStorage.getItem('user')) {
       return this._router.navigate(['/home']);
     }
 

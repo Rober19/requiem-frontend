@@ -2,7 +2,6 @@ import { Component, DoCheck, OnInit } from '@angular/core';
 import { Router, ActivatedRoute, Params } from '@angular/router'
 import { userService } from './services/user.service';
 import { data_global } from './services/global';
-import { JwtHelper } from 'angular2-jwt';
 import { resMsg } from '../app/config/config'
 
 import * as io from 'socket.io-client';
@@ -12,7 +11,7 @@ import * as io from 'socket.io-client';
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css'],
-  providers: [userService, JwtHelper]
+  providers: [userService]
 })
 export class AppComponent implements DoCheck, OnInit {
   public title: string;
@@ -24,9 +23,7 @@ export class AppComponent implements DoCheck, OnInit {
   constructor(
     private _userService: userService,
     private _route: ActivatedRoute,
-    private _router: Router,
-    private _jwt: JwtHelper
-
+    private _router: Router
   ) {
     this.title = 'app';
     this.resMsg = resMsg;
@@ -38,10 +35,10 @@ export class AppComponent implements DoCheck, OnInit {
   //onInit es para cuando se inicia el componente
   ngOnInit() {
     
-    if (localStorage.getItem('identity') && data_global.tokenDecode.sub == undefined) {
-      this._userService.decodeToken();
-
-      //this._jwt.decodeToken(JSON.parse(localStorage.getItem('identity')));
+    if (localStorage.getItem('identity') && data_global.UserData.sub == undefined) {
+  
+      data_global.UserData = JSON.parse(localStorage.getItem('user'));
+         data_global.UserData.sub = JSON.parse(localStorage.getItem('user'))._id;
     } else {
       console.log('Nadie en Storage')
     }
@@ -62,7 +59,7 @@ export class AppComponent implements DoCheck, OnInit {
   logOut() {
     localStorage.clear();
     this.ident = null;
-    data_global.tokenDecode.sub = undefined;      
+    data_global.UserData.sub = undefined;      
     this._router.navigate(['/login']);
   }
 

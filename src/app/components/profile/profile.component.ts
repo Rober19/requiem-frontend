@@ -58,7 +58,7 @@ export class ProfileComponent implements OnInit {
 
     } else {
 
-      this.userData = data_global.tokenDecode;
+      this.userData = data_global.UserData;
       this.upt_button = false;
     }
 
@@ -85,23 +85,7 @@ export class ProfileComponent implements OnInit {
         if (res.status = !200) {
           window.alert(JSON.stringify(res.status));
         } else {
-          this._userService.getToken(data_global.tokenDecode.sub).subscribe(
-            data => {
-
-
-
-              localStorage.setItem('identity', JSON.stringify(data.data));
-              this._userService.decodeToken();
-
-              let element = document.getElementById("CloseButton") as any;
-              element.click();
-
-              this._router.navigate(['/home']);
-            },
-            err => {
-              console.log(err);
-            }
-          )
+         
           //localStorage.setItem('identity', JSON.stringify(newToken));
 
         }
@@ -134,8 +118,8 @@ export class ProfileComponent implements OnInit {
   }
 
   get_Publication() {
-    console.log(data_global.tokenDecode.sub)
-    this._userService.getPublications(data_global.tokenDecode.sub, 1).subscribe(
+    console.log(data_global.UserData.sub)
+    this._userService.getPublications(data_global.UserData.sub, 1).subscribe(
       data => {
       console.log(data);
     }, err => {

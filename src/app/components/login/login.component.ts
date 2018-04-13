@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { resMsg } from '../../config/config'
 import { User } from '../../models/user';
 import { userService } from '../../services/user.service'
-import { JwtHelper } from 'angular2-jwt'
 import { Router, ActivatedRoute, Params } from '@angular/router';
 import { tokenKey } from '@angular/core/src/view/util';
 import { data_global } from '../../services/global'
@@ -12,7 +11,7 @@ import * as $ from 'jquery';
   selector: 'login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css'],
-  providers: [userService, JwtHelper]
+  providers: [userService]
 })
 
 export class LoginComponent implements OnInit {
@@ -35,9 +34,7 @@ export class LoginComponent implements OnInit {
   constructor(
     private userService: userService,
     private _route: ActivatedRoute,
-    private _router: Router,
-    private jwt: JwtHelper
-
+    private _router: Router
   ) {
     this.title = 'ingrese su indetificacion';
     //esta es la instancia de CONFIG
@@ -63,7 +60,7 @@ export class LoginComponent implements OnInit {
   ngOnInit() {
 
 
-    if (data_global.tokenDecode.sub != undefined || localStorage.getItem('identity')) {
+    if (data_global.UserData.sub != undefined || localStorage.getItem('identity')) {
       return this._router.navigate(['/home']);
     }
 
@@ -76,16 +73,39 @@ export class LoginComponent implements OnInit {
 
   sendLogin() {
     this.valid = false;
-    this.userService.login(this.login_user, 'true').subscribe(
+    this.userService.login(this.login_user).subscribe(
       res => {
-        let element = document.getElementById("CloseButton") as any;
-        element.click();
-        //esta variable tendra los datos del usuario obtenido          
-        this.tokenLogin = res.data;
 
         //'secret_token_summertime_sadness' 
-        localStorage.setItem('identity', JSON.stringify(this.tokenLogin));
-        this._router.navigate(['/home']);
+        localStorage.setItem('user', JSON.stringify(res.data));
+         data_global.UserData = JSON.parse(localStorage.getItem('user'));
+         data_global.UserData.sub = res.data._id;
+
+
+        this.userService.login(this.login_user, 'true').subscribe(
+          res => {
+            let element = document.getElementById("CloseButton") as any;
+            element.click();
+            //esta variable tendra los datos del usuario obtenido          
+            this.tokenLogin = res.data;
+    
+            //'secret_token_summertime_sadness' 
+            localStorage.setItem('identity', JSON.stringify(this.tokenLogin));            
+            this._router.navigate(['/home']);
+          },
+          err => {
+            this.valid = false;
+            let element = document.getElementById("CloseButton") as any;
+            setTimeout(() => {
+              element.click();
+              this.valid = true;
+            }, 500);        
+            console.warn(err.error.data);    
+            this.resServer = resMsg.userNotFound;           
+            
+          }
+        )
+        
       },
       err => {
         this.valid = false;

@@ -69,9 +69,34 @@
 
     <div class="row">
 
-      <div class="col-xs-12	col-sm-12	col-md-5 col-lg-4 col-xl-3">
-        <div class="card md-row mb-4 box-shadow h-md-250" >
-          <img class="card-img-top" src="{{userData.image}}" alt="Card image cap" style="border: 1px solid red">
+      <div class="col-xs-12	col-sm-12	col-md-5 col-lg-4 col-xl-4">
+        <div class="card md-row mb-4 box-shadow h-md-250">
+
+
+          <div class="contain1">
+            <img [src]="userData.image" [ngClass]="
+                  {                  
+                  'image2 card-img-top': loading,
+                  'image1 card-img-top': !loading,
+                  'card-img-top': 1==1
+                  }">
+            <div class="middle1" [ngStyle]="{'opacity': loading ? '1' : '' }">
+              <div style="display: none">>
+                <input class="form-control-file" id="pic" style="display: none" type="file" (change)="onChange($event)" [attr.disabled]="loading ? 'disabled' : null"> 
+              </div>
+              <a class="navbar-brand d-flex align-self-start mr-3" id="item" onclick="document.getElementById('pic').click()" style="font-size: 15px; margin-top: 3px ; color:rgb(255, 255, 255); cursor: pointer">
+                <img *ngIf="loading" src="http://v6.player.abacast.net/assets/images/loading.gif" style="height: 50px; widows: 50px; ">
+                <img *ngIf="!loading" class="d-flex align-self-start mr-3" src="https://image.flaticon.com/icons/svg/685/685686.svg" style="width: 30px;">
+
+                <b *ngIf="!loading" style="margin-left: -10px;text-shadow: 2px 2px 2px rgb(0, 0, 0);">Seleccionar_archivo</b>
+              </a>
+            </div>
+
+
+          </div>
+
+
+
           <div class="card-body d-flex flex-column align-items-start">
             <h5 class="card-title">{{userData.name}} {{userData.surname}}</h5>
             <p class="card-text">@{{userData.nick}}</p>
@@ -85,7 +110,7 @@
         </div>
       </div>
 
-      <div class="col-xs-12 col-sm-12	col-md-7 col-lg-8 col-xl-9">
+      <div class="col-xs-12 col-sm-12	col-md-7 col-lg-8 col-xl-8">
 
         <!-- Start Publication Section-->
 
@@ -104,12 +129,13 @@
                     <img class="d-flex align-self-start mr-3" src="https://image.flaticon.com/icons/svg/148/148945.svg" style="width: 22px;">
                     <b style="margin-left: -10px">Seleccionar archivos</b>
                   </a>
-                  
+
                 </div>
                 <div class="col-xs-6 col-sm-6	col-md-6 col-lg-6 col-xl-6 col-12">
 
                   <div class="text-right">
                     <button class="btn btn-success text-right">Añadir</button>
+                    <button class="btn btn-primary text-right" (click)="testSocket()">socket</button>
                   </div>
 
                 </div>

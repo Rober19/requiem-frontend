@@ -2,8 +2,56 @@ html,
 body {
   overflow-x: hidden; /* Prevent scroll on narrow devices */
 }
+.contain1 {
+  position: relative;
+  width: 100%;
+}
 
+.image1 {
+opacity: 1;
+display: block;
+height: auto;
+transition: .5s ease;
+backface-visibility: hidden;
+}
 
+.image2 {
+  opacity: 0.8;
+  display: block;
+  height: auto;
+  transition: .5s ease;
+  backface-visibility: hidden;
+  }
+
+.middle1 {
+transition: .5s ease;
+opacity: 0;
+position: absolute;
+top: 50%;
+left: 50%;
+transform: translate(-50%, -50%);
+-ms-transform: translate(-50%, -50%);
+text-align: center;
+}
+
+.middle2 {
+  transition: .5s ease;
+  opacity: 1;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  text-align: center;  
+  }
+
+.contain1:hover .image1 {
+  opacity: 0.8;
+}
+
+.contain1:hover .middle1 {
+  opacity: 1;
+  }
 
 @media (max-width: 767.98px) {
   .offcanvas-collapse {

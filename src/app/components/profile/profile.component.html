@@ -24,9 +24,17 @@
             <div class="card text-white bg-dark mb-3">
               <h5 class="card-header">{{resMsg.image_upt}}</h5>
 
+              <!-- <input class="form-control-file" id="pic" style="display: none" type="file" (change)="onChange($event)">
+                  <a class="navbar-brand d-flex align-self-center mr-3" id="item" onclick="document.getElementById('pic').click()" style="font-size: 15px; margin-top: 3px ; color:#EBBA16; cursor: pointer">
+                    <img class="d-flex align-self-start mr-3" src="https://image.flaticon.com/icons/svg/148/148945.svg" style="width: 22px;">
+                    <b style="margin-left: -10px">Seleccionar archivos</b>
+                  </a> -->
+
               <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
                 {{resMsg.upload}}
               </button>
+
+              
 
               <!-- Modal -->
               <div id="myModal" class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -45,7 +53,9 @@
                   </div>
                 </div>
               </div>
+
             </div>
+
             <!-- User Data -->
             <div class="card text-white bg-info mb-3">
               <h5 class="card-header">{{resMsg.data_upt}}</h5>

@@ -80,7 +80,7 @@ export class TimelineComponent implements OnInit {
 
     if (this.DefaultIndex >= 1){
 
-    this._userService.getPublications(data_global.tokenDecode.sub, this.DefaultIndex).subscribe(
+    this._userService.getPublications(data_global.UserData.sub, this.DefaultIndex).subscribe(
       data => {
         
       this.PublicationList = data;
