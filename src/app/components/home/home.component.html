@@ -1,7 +1,5 @@
 <body class="bg-light">
 
-
-
   <div class="nav-scroller bg-white box-shadow">
     <nav class="nav nav-underline">
       <a class="nav-link active" href="#">{{resMsg.summary}}</a>
@@ -74,7 +72,7 @@
 
 
           <div class="contain1">
-            <img [src]="userData.image" [ngClass]="
+            <img id="profileImage" [src]="userData.image" [ngClass]="
                   {                  
                   'image2 card-img-top': loading,
                   'image1 card-img-top': !loading,
@@ -82,7 +80,7 @@
                   }">
             <div class="middle1" [ngStyle]="{'opacity': loading ? '1' : '' }">
               <div style="display: none">>
-                <input class="form-control-file" id="pic" style="display: none" type="file" (change)="onChange($event)" [attr.disabled]="loading ? 'disabled' : null"> 
+                <input class="form-control-file" id="pic" style="display: none" type="file" (change)="onChange($event)" [attr.disabled]="loading ? 'disabled' : null">
               </div>
               <a class="navbar-brand d-flex align-self-start mr-3" id="item" onclick="document.getElementById('pic').click()" style="font-size: 15px; margin-top: 3px ; color:rgb(255, 255, 255); cursor: pointer">
                 <img *ngIf="loading" src="http://v6.player.abacast.net/assets/images/loading.gif" style="height: 50px; widows: 50px; ">
@@ -94,8 +92,6 @@
 
 
           </div>
-
-
 
           <div class="card-body d-flex flex-column align-items-start">
             <h5 class="card-title">{{userData.name}} {{userData.surname}}</h5>
@@ -150,45 +146,22 @@
         <div class="card flex-md-row mb-4 box-shadow h-md-250">
           <div class="card-body d-flex flex-column ">
             <div class="bg-white rounded box-shadow">
-              <h6 class="border-bottom border-gray pb-2 mb-0">{{resMsg.suggestions}}</h6>
+              <h6 class="border-bottom border-gray pb-2 mb-0">{{resMsg.recents}}</h6>
 
-              <div class="media text-muted pt-3">
-                <img data-src="holder.js/32x32?theme=thumb&amp;bg=007bff&amp;fg=007bff&amp;size=1" alt="32x32" class="mr-2 rounded" style="width: 32px; height: 32px;"
-                  src="https://orig00.deviantart.net/ab25/f/2014/330/6/9/pixel_art_raffle_sprite_ezio_from_assassin_s_creed_by_justingamedesign-d87t8nl.png"
-                  data-holder-rendered="true">
-                <div class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
-                  <div class="d-flex justify-content-between align-items-center w-100">
-                    <strong class="text-gray-dark">Full Name</strong>
-                    <a href="#">{{resMsg.follow}}</a>
+              <div *ngFor="let pubs of recentPubs">
+
+                <div class="media text-muted pt-3">
+                  <div class="mr-2 rounded" id="box-mini">
+                    <div class="d-flex justify-content-center">
+                        <img data-src="{{userData.image}}" id="mini-image" >
+                    </div>                    
                   </div>
-                  <span class="d-block">@username</span>
+
+
+                  <p class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
+                    <strong class="d-block text-gray-dark">@{{userData.nick}}</strong>{{pubs.text}}</p>
                 </div>
               </div>
-
-              <div class="media text-muted pt-3">
-                <img data-src="holder.js/32x32?theme=thumb&bg=007bff&fg=007bff&size=1" alt="" class="mr-2 rounded">
-                <div class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
-                  <div class="d-flex justify-content-between align-items-center w-100">
-                    <strong class="text-gray-dark">Full Name</strong>
-                    <a href="#">{{resMsg.follow}}</a>
-                  </div>
-                  <span class="d-block">@username</span>
-                </div>
-              </div>
-
-              <div class="media text-muted pt-3">
-                <img data-src="holder.js/32x32?theme=thumb&bg=007bff&fg=007bff&size=1" alt="" class="mr-2 rounded">
-                <div class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
-                  <div class="d-flex justify-content-between align-items-center w-100">
-                    <strong class="text-gray-dark">Full Name</strong>
-                    <a href="#">{{resMsg.follow}}</a>
-                  </div>
-                  <span class="d-block">@username</span>
-                </div>
-              </div>
-              <small class="d-block text-right mt-3">
-                <a href="#">{{resMsg.moreSuggestions}}</a>
-              </small>
 
 
             </div>

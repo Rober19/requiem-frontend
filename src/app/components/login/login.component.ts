@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { resMsg } from '../../config/config'
+import { resMsg } from 'rober19-config/config';
 import { User } from '../../models/user';
 import { userService } from '../../services/user.service'
 import { Router, ActivatedRoute, Params } from '@angular/router';

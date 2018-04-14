@@ -1,3 +1,18 @@
+#box-mini{
+  width: 200px;
+  height: 200px;
+  display: inline-block;                      
+  position: relative;
+  overflow: hidden;
+}
+
+#mini-image{
+  width: auto;
+  height: 200px;
+  display:block;
+  margin:auto;
+}
+
 :root {
   --jumbotron-padding-y: 3rem;
 }
@@ -14,6 +29,8 @@
     padding-bottom: calc(var(--jumbotron-padding-y) * 2);
   }
 }
+
+
 
 .jumbotron p:last-child {
   margin-bottom: 0;

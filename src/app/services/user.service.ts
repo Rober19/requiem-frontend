@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs/Observable';
 import { data_global } from './global'
-import { resMsg } from '../config/config'
+import { resMsg } from 'rober19-config/config';
 import { User } from '../models/user';
 import { Publication } from '../models/publication';
 
@@ -29,7 +29,7 @@ export class userService {
 
     return this._http.post(`${this.url}/register`, model, { headers: headers })
   }
- 
+
 
   login(user: User, tokenget = null): Observable<any> {
 
@@ -53,8 +53,8 @@ export class userService {
     return this._http.post(`${this.url}/publication`, model, { headers: headers });
   }
 
-  getPublications(userId, page) {
-    
+  getPublications(page) {
+
     let headers = new HttpHeaders()
       .set('Content-Type', 'application/json')
       .set('Authorization', localStorage.getItem('identity'));
@@ -107,9 +107,22 @@ export class userService {
 
   }
 
+  getUsers(page): Observable<any> {
 
+    let headers = new HttpHeaders()
+      .set('Content-Type', 'application/json')
+      .set('Authorization', localStorage.getItem('identity'));
 
+    return this._http.get(`${this.url}/users?page=${page}`, { headers: headers });
+  }
 
+  getUser(id){
+    let headers = new HttpHeaders()
+      .set('Content-Type', 'application/json')
+      .set('Authorization', localStorage.getItem('identity'));
+
+    return this._http.get(`${this.url}/user/${id}`, { headers: headers });
+  }
 
 
   // getToken_login(){

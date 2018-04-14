@@ -2,7 +2,7 @@ import { Component, DoCheck, OnInit } from '@angular/core';
 import { Router, ActivatedRoute, Params } from '@angular/router'
 import { userService } from './services/user.service';
 import { data_global } from './services/global';
-import { resMsg } from '../app/config/config'
+import { resMsg } from 'rober19-config/config';
 
 import * as io from 'socket.io-client';
 // Nofitication Push Modules //

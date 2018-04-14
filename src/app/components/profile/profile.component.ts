@@ -2,9 +2,9 @@ import { Component, OnInit } from '@angular/core'
 import { data_global } from '../../services/global'
 import { UploadService } from '../../services/upload.service';
 import { userService } from '../../services/user.service';
-import { resMsg } from '../../config/config'
+import { resMsg } from 'rober19-config/config';
 import * as io from 'socket.io-client';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { User } from '../../models/user';
 import { Publication } from '../../models/publication';
 
@@ -20,14 +20,35 @@ export class ProfileComponent implements OnInit {
   public userData: any;
   public Publication: any;
   public resMsg: any;
+  public userCounters: any;
   public upt_button: boolean;
   public filesToUpload: Array<File>;
   //socket = io('http://192.168.1.63:3000');
   constructor(
     private _UploadService: UploadService,
     private _userService: userService,
-    private _router: Router
+    private _router: Router,
+    private ActiveRoute: ActivatedRoute
   ) {
+    this.userCounters = {
+      
+    }
+    this.ActiveRoute.params.subscribe(params => {      
+      this._userService.getUser(params.id).subscribe(
+        data1 => {
+          let data : any = data1;        
+          this.userData = data.data.data;
+          this._userService.getCounters(data.data.data._id).subscribe(data => {            
+            this.userCounters = data;
+            console.log(this.userCounters)
+          })
+        },
+        err => {
+          console.log(err.error);
+          console.log('abre el ojo')
+        }
+      )
+    });
     this.resMsg = resMsg;
     this.userData = new User(
       '',
@@ -52,26 +73,28 @@ export class ProfileComponent implements OnInit {
   ngOnInit() {
 
 
+
+
     if (!localStorage.getItem('identity')) {
 
       return this._router.navigate(['/lobby']);
 
     } else {
 
-      this.userData = data_global.UserData;
-      this.upt_button = false;
+      
+
     }
 
 
   }
 
-  fileChangeEvent(fileInput: any) {
+  fileChangeEventNOUSAR(fileInput: any) {
 
     this.filesToUpload = <Array<File>>fileInput.target.files;
     console.log(this.filesToUpload);
   }
 
-  upt_file() {
+  upt_fileNOUSAR() {
     if (this.filesToUpload == undefined) {
       return window.alert(resMsg.fieldRequired);
     }
@@ -85,7 +108,7 @@ export class ProfileComponent implements OnInit {
         if (res.status = !200) {
           window.alert(JSON.stringify(res.status));
         } else {
-         
+
           //localStorage.setItem('identity', JSON.stringify(newToken));
 
         }
@@ -119,12 +142,12 @@ export class ProfileComponent implements OnInit {
 
   get_Publication() {
     console.log(data_global.UserData.sub)
-    this._userService.getPublications(data_global.UserData.sub, 1).subscribe(
+    this._userService.getPublications(1).subscribe(
       data => {
-      console.log(data);
-    }, err => {
-      console.log(err);
-    });
+        console.log(data);
+      }, err => {
+        console.log(err);
+      });
   }
 
 }

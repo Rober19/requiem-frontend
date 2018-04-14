@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { Router, ActivatedRoute, Params } from '@angular/router';
 import { User } from '../../models/user';
 import { userService } from '../../services/user.service';
-import { resMsg } from '../../config/config'
+import { resMsg } from 'rober19-config/config';
 import { data_global } from '../../services/global'
 
 

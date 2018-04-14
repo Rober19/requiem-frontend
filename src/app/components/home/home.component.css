@@ -2,6 +2,22 @@ html,
 body {
   overflow-x: hidden; /* Prevent scroll on narrow devices */
 }
+
+#box-mini{
+  width: 32px;
+  height: 32px;
+  display: inline-block;                      
+  position: relative;
+  overflow: hidden;
+}
+
+#mini-image{
+  width: auto;
+  height: 32px;
+  display:block;
+  margin:auto;
+}
+
 .contain1 {
   position: relative;
   width: 100%;

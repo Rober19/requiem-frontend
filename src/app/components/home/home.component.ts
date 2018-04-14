@@ -1,7 +1,7 @@
 import { Component, OnInit, ChangeDetectorRef } from '@angular/core'
 import { NgForm } from '@angular/forms';
 import { Router } from '@angular/router'
-import { resMsg } from '../../config/config'
+import { resMsg } from 'rober19-config/config';
 import { data_global } from '../../services/global'
 import { userService } from '../../services/user.service';
 import * as io from 'socket.io-client';
@@ -24,6 +24,7 @@ export class HomeComponent implements OnInit {
   public resMsg: any;
   public Publication: Publication;
   public loading: boolean;
+  public recentPubs: Array<any>;
 
   private socket = io('http://192.168.1.63:3000');
 
@@ -51,9 +52,23 @@ export class HomeComponent implements OnInit {
       '',
       '',
     )
-    this.socket.on('message', (data) => {
-      console.log(data)
+    this.get_pubs();
+
+    this.socket.on('message', (data1) => {
+      //console.log(data)
+      let data: any = data1;
+
+      if (data.user_id != this.userData.sub) return;
+
+      if (data.typeEmit == 'changeImage') {
+        var changeData = JSON.parse(localStorage.getItem('user'));
+        changeData.image = data.urlImage;
+        localStorage.setItem('user', JSON.stringify(changeData))
+        this.userData.image = data.urlImage;
+      }
+
     });
+
     this.loading = false;
     this.resMsg = resMsg;
   }
@@ -79,7 +94,21 @@ export class HomeComponent implements OnInit {
         this.getCounters(this.userData.sub);
       }
 
+
+
     }
+  }
+
+  get_pubs(){
+    this._userService.getPublications('1').subscribe(data1 => {
+      let data: any = data1;
+      let arr1 = this._userService.getPublications(data.pages);
+      this.recentPubs = data.data;
+      console.log(this.recentPubs)
+    },
+      err => {
+        console.log(err)
+      })
   }
 
 
@@ -92,40 +121,44 @@ export class HomeComponent implements OnInit {
 
     // Verificar que la publicación no sea solo espacios en blanco ó "undefined"
     if (!(publication.trim("") === "" || publication === undefined)) {
-
       this._userService.publication(this.Publication).subscribe(
         data => {
           console.log(data);
+          this.get_pubs();
           dataForm.reset();
         }, err => {
           console.log(err);
         });
-
     }
-
-
   }
 
   onChange(event) {
-    const files = <Array<File>>event.target.files;    
+    const files = <Array<File>>event.target.files;
     if (files[0].size > (5 * 1024 * 1024)) {
       return window.alert(resMsg.limit_fileSize)
     }
     try {
       this.loading = true;
       this._UploadService.makeFileRequest(`${data_global.url}/upload-image-user`, [], files, this._userService.getIdent_login(), 'image').then((res: any) => {
-        
+
         var changeData = JSON.parse(localStorage.getItem('user'));
         changeData.image = res.data.image;
         localStorage.setItem('user', JSON.stringify(changeData))
         this.userData.image = res.data.image;
+
+        this.socket.emit('imageChange', {
+          urlImage: this.userData.image,
+          typeEmit: 'changeImage',
+          user_id: this.userData.sub
+        });
+
         this.cdRef.detectChanges();
-        
+
         if (res.status != 200) {
           window.alert(JSON.stringify(res.status));
           this.loading = false;
         } else {
-          
+
           this.loading = false;
           //localStorage.setItem('identity', JSON.stringify(newToken));
         }
@@ -133,7 +166,6 @@ export class HomeComponent implements OnInit {
         // this.socket.on('-myNotification', (data) => {
         //   console.log(data)        
         // });
-
       })
 
     } catch (error) {
@@ -146,7 +178,6 @@ export class HomeComponent implements OnInit {
   testSocket() {
 
     this.socket.emit('message', { message: 'frontend' });
-
 
   }
 

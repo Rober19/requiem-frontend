@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { resMsg } from '../../config/config';
+import { resMsg } from 'rober19-config/config';
 import { data_global } from '../../services/global';
 import { UploadService } from '../../services/upload.service';
 import { userService } from '../../services/user.service';
@@ -43,73 +43,54 @@ export class TimelineComponent implements OnInit {
   ngOnInit() {
     this.palos()
     this.get_Publication();
-  }
-
-  bool1() {
-    switch (this.tab) {
-      case 'lobby':
-        this.tabs = [false, false, false, false];
-        this.tabs[0] = true;
-        break;
-      case 'home':
-        this.tabs = [false, false, false, false];
-        this.tabs[1] = true;
-        break;
-      case 'profile':
-        this.tabs = [false, false, false, false];
-        this.tabs[2] = true;
-        break;
-
-      default:
-        break;
-    } 
-  }
+  }  
 
   get_Publication(type?) {
 
-    switch(type){
-      case "Previous" :
-        this.DefaultIndex--;
-        break;
-      case "Next" :
+    switch (type) {
+      case "Previous":
+        if (this.DefaultIndex > 0) {
+          this.DefaultIndex--;
+        } break;
+      case "Next":
         this.DefaultIndex++;
-        break; 
+        break;
     }
 
     console.log(this.DefaultIndex)
 
-    if (this.DefaultIndex >= 1){
+    if (this.DefaultIndex >= 1) {
 
-    this._userService.getPublications(data_global.UserData.sub, this.DefaultIndex).subscribe(
-      data => {
-        
-      this.PublicationList = data;
+      this._userService.getPublications(this.DefaultIndex).subscribe(
+        data => {
 
-        if (this.DefaultIndex > this.PublicationList.pages){
-          this.DefaultIndex = this.PublicationList.pages
-          return;
-        }
+          this.PublicationList = data;
 
-      this.PublicationArray = this.PublicationList.data;
- 
-      /* 
-        La fecha de creación del usuario se encuentra en formato unix 
-          created_at: "1522683294"
-        
-        por lo tanto se debe hacer conversión en un formato de fecha entendible 
-          created_at: "2018-04-02 10:34"      
-      */
+          if (this.DefaultIndex > this.PublicationList.pages) {
+            this.DefaultIndex = this.PublicationList.pages
+            return;
+          }
 
-      this.PublicationArray.map(r => {
-        r.created_at = moment.unix(Number(r.created_at)).format("YYYY-MM-DD HH:mm");
-      })
+          this.PublicationArray = this.PublicationList.data;
 
-      console.log(data)
+          /* 
+            La fecha de creación del usuario se encuentra en formato unix 
+              created_at: "1522683294"
+            
+            por lo tanto se debe hacer conversión en un formato de fecha entendible 
+              created_at: "2018-04-02 10:34"      
+          */
 
-    }, err => {
-      console.log(err);
-    });
-  }
+          this.PublicationArray.map(r => {
+            r.created_at = moment.unix(Number(r.created_at)).format("YYYY-MM-DD HH:mm");
+          })
+
+          console.log(data)
+
+        }, err => {
+          console.log(err);
+        });
+    }
   }
 
   async palos() {
@@ -131,9 +112,13 @@ export class TimelineComponent implements OnInit {
         case 'profile':
           this.tabs = [false, false, false, false];
           this.tabs[2] = true;
-          break;  
+          break;
+        case 'chats':
+          this.tabs = [false, false, false, false];
+          this.tabs[3] = true;
+          break;
         default:
-        console.log('nada')
+          console.log('nada')
           break;
       }
     });

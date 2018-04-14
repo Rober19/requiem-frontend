@@ -1,146 +1,247 @@
-<body>
+<body class="bg-light">
 
-  <div>
-    <div class="card">
-      <div class="card-header">
 
-        <div class="row">
-          <!-- User Image -->
-          <div class="col-sm-12 col-md-6">
-            <div class="card bg-white text-white">
-              <img class="card-img" src="{{userData.image}}" alt="Card image" id="imgid1">
-              <div class="card-img-overlay">
+  <!-- <div class="nav-scroller bg-white box-shadow">
+    <nav class="nav nav-underline">
+      <a class="nav-link active" href="#">{{resMsg.summary}}</a>
+      <a class="nav-link" href="#">
+        {{resMsg.followers}}
+        <span class="badge badge-pill bg-light align-text-bottom">{{Counters.followers}}</span>
+      </a>
+      <a class="nav-link" href="#">
+        {{resMsg.following}}
+        <span class="badge badge-pill bg-light align-text-bottom">{{Counters.following}}</span>
+      </a>
+      <a class="nav-link" href="#">
+        {{resMsg.publications}}
+        <span class="badge badge-pill bg-light align-text-bottom">{{Counters.publications}}</span>
+      </a>
+      <a class="nav-link" href="#">Explore</a>
+
+    </nav>
+  </div> -->
+
+  <main role="main" class="container">
+
+    <br>
+
+    <div class="row mb-2" *ngIf="false">
+
+      <div class="col-md-6">
+        <div class="card flex-md-row mb-4 box-shadow h-md-250">
+          <div class="card-body d-flex flex-column align-items-start">
+            <strong class="d-inline-block mb-2 text-primary">World</strong>
+            <h3 class="mb-0">
+              <a class="text-dark" href="#">Featured post</a>
+            </h3>
+            <div class="mb-1 text-muted">Nov 12</div>
+            <p class="card-text mb-auto">This is a wider card with supporting text below as a natural lead-in to additional content.</p>
+            <a href="#">Continue reading</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-6">
+        <div class="card flex-md-row mb-4 box-shadow h-md-250">
+          <div class="card-body d-flex flex-column align-items-start">
+            <strong class="d-inline-block mb-2 text-success">Design</strong>
+            <h3 class="mb-0">
+              <a class="text-dark" href="#">Post title</a>
+            </h3>
+            <div class="mb-1 text-muted">Nov 11</div>
+            <p class="card-text mb-auto">This is a wider card with supporting text below as a natural lead-in to additional content.</p>
+            <a href="#">Continue reading</a>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+
+
+    <div class="row">
+
+      <div class="col-xs-12	col-sm-12	col-md-5 col-lg-4 col-xl-4">
+        <div class="card md-row mb-4 box-shadow h-md-250">
+
+          <img id="profileImage" [src]="userData.image" class="card-img-top">
+
+          <div class="card-body d-flex flex-column align-items-start">
+            <h5 class="card-title">{{userData.name}} {{userData.surname}}</h5>
+            <p class="card-text">@{{userData.nick}}</p>
+          </div>
+          <ul class="list-group list-group-flush">
+            <li class="list-group-item">{{userData.email}}</li>
+          </ul>
+          <div class="card-body">
+            <div class="text-center">
+              <button class="btn btn-success text-right">{{resMsg.follow}}</button>
+
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-xs-12 col-sm-12	col-md-7 col-lg-8 col-xl-8">
+
+        <!-- Start Publication Section-->
+
+        <div class="card mb-4 box-shadow">
+          <div class="card-body">
+
+            <li class="list-group-item text-center">
+
+              <div class="row">
+
+                <a class="col-xs-12	col-sm-6	col-md-6 col-lg-4 col-xl-4" href="#">
+                  {{resMsg.followers}}
+                  <span class="badge badge-pill bg-light align-text-bottom">{{userCounters.followers}}</span>
+                </a>
+                <a class="col-xs-6	col-sm-6	col-md-6 col-lg-4 col-xl-4" href="#">
+                  {{resMsg.following}}
+                  <span class="badge badge-pill bg-light align-text-bottom">{{userCounters.following}}</span>
+                </a>
+                <a class="col-xs-6	col-sm-12	col-md-12 col-lg-4 col-xl-4" href="#">
+                  {{resMsg.publications}}
+                  <span class="badge badge-pill bg-light align-text-bottom">{{userCounters.publications}}</span>
+                </a>
+
+              </div>
+
+            </li>
+
+            <br>
+            <h6 class="border-bottom border-gray pb-2 mb-0">{{resMsg.recents}}</h6>
+
+
+            
+              <div class="media text-muted pt-3">
+                <img data-src="holder.js/32x32?theme=thumb&bg=007bff&fg=007bff&size=1" alt="" class="mr-2 rounded">
+                <p class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
+                  <strong class="d-block text-gray-dark">@username</strong>
+                  Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh,
+                  ut fermentum massa justo sit amet risus.
+                </p>
+              </div>
+              <div class="media text-muted pt-3">
+                <img data-src="holder.js/32x32?theme=thumb&bg=e83e8c&fg=e83e8c&size=1" alt="" class="mr-2 rounded">
+                <p class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
+                  <strong class="d-block text-gray-dark">@username</strong>
+                  Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh,
+                  ut fermentum massa justo sit amet risus.
+                </p>
+              </div>
+              <div class="media text-muted pt-3">
+                <img data-src="holder.js/32x32?theme=thumb&bg=6f42c1&fg=6f42c1&size=1" alt="" class="mr-2 rounded">
+                <p class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
+                  <strong class="d-block text-gray-dark">@username</strong>
+                  Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh,
+                  ut fermentum massa justo sit amet risus.
+                </p>
+              </div>              
+            
+
+
+            <br>
+            <div class="row">
+
+              <div class="col-xs-6 col-sm-6	col-md-6 col-lg-6 col-xl-6 col-12">
+
+                <input class="form-control-file" id="pic" style="display: none" type="file" (change)="onChange($event)">
+                <a class="navbar-brand d-flex align-self-start mr-3" id="item" onclick="document.getElementById('pic').click()" style="font-size: 15px; margin-top: 3px ; color:#EBBA16; cursor: pointer">
+                  <img class="d-flex align-self-start mr-3" src="https://image.flaticon.com/icons/svg/148/148945.svg" style="width: 22px;">
+                  <b style="margin-left: -10px">Seleccionar archivos</b>
+                </a>
+
+
+
+              </div>
+              <div class="col-xs-6 col-sm-6	col-md-6 col-lg-6 col-xl-6 col-12">
+
+                <div class="text-right">
+                  <button class="btn btn-primary text-right">{{resMsg.chats}}</button>
+                </div>
 
               </div>
             </div>
-            <div class="card border-light mb-3">
-              <h4 class="card-header">@{{userData.nick}}</h4>
-            </div>
 
           </div>
-          <!--  -->
-          <div class="col-sm-12 col-md-3">
-            <!-- Update image -->
-            <div class="card text-white bg-dark mb-3">
-              <h5 class="card-header">{{resMsg.image_upt}}</h5>
 
-              <!-- <input class="form-control-file" id="pic" style="display: none" type="file" (change)="onChange($event)">
-                  <a class="navbar-brand d-flex align-self-center mr-3" id="item" onclick="document.getElementById('pic').click()" style="font-size: 15px; margin-top: 3px ; color:#EBBA16; cursor: pointer">
-                    <img class="d-flex align-self-start mr-3" src="https://image.flaticon.com/icons/svg/148/148945.svg" style="width: 22px;">
-                    <b style="margin-left: -10px">Seleccionar archivos</b>
-                  </a> -->
+        </div>
 
-              <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
-                {{resMsg.upload}}
-              </button>
+        <!-- End Publication Section-->
 
-              
+        <div class="card flex-md-row mb-4 box-shadow h-md-250">
+          <div class="card-body d-flex flex-column ">
+            <div class="bg-white rounded box-shadow">
+              <h6 class="border-bottom border-gray pb-2 mb-0">{{resMsg.suggestions}}</h6>
 
-              <!-- Modal -->
-              <div id="myModal" class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                <div class="modal-dialog" role="document">
-                  <div class="modal-content">
-
-                    <div class="modal-body">
-                      <div>
-                        <input type="file" style="color: black" placeholder="{{resMsg.upload}}" (change)="fileChangeEvent($event)">
-                      </div>
-                    </div>
-                    <div class="modal-footer">
-                      <button [disabled]="upt_button" type="button" class="btn btn-outline-primary" (click)="upt_file()" data-target="#myModal">{{resMsg.upload}}</button>
-                      <button style='display:none;' id="CloseButton" type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                    </div>
+              <div class="media text-muted pt-3">
+                <img data-src="holder.js/32x32?theme=thumb&amp;bg=007bff&amp;fg=007bff&amp;size=1" alt="32x32" class="mr-2 rounded" style="width: 32px; height: 32px;"
+                  src="https://orig00.deviantart.net/ab25/f/2014/330/6/9/pixel_art_raffle_sprite_ezio_from_assassin_s_creed_by_justingamedesign-d87t8nl.png"
+                  data-holder-rendered="true">
+                <div class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
+                  <div class="d-flex justify-content-between align-items-center w-100">
+                    <strong class="text-gray-dark">Full Name</strong>
+                    <a href="#">{{resMsg.follow}}</a>
                   </div>
+                  <span class="d-block">@username</span>
                 </div>
               </div>
 
-            </div>
-
-            <!-- User Data -->
-            <div class="card text-white bg-info mb-3">
-              <h5 class="card-header">{{resMsg.data_upt}}</h5>
-              <div class="card-body">
-                <h5 class="card-title">
-                  
-                  
-                </h5>
-
+              <div class="media text-muted pt-3">
+                <img data-src="holder.js/32x32?theme=thumb&bg=007bff&fg=007bff&size=1" alt="" class="mr-2 rounded">
+                <div class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
+                  <div class="d-flex justify-content-between align-items-center w-100">
+                    <strong class="text-gray-dark">Full Name</strong>
+                    <a href="#">{{resMsg.follow}}</a>
+                  </div>
+                  <span class="d-block">@username</span>
+                </div>
               </div>
-            </div>            
-          </div>
 
-          <div class="col-sm-12 col-md-3">
-            <div class="card text-white bg-primary mb-3">
-              <h5 class="card-header">{{resMsg.profile_work_zone}}</h5>
-              <div class="card-body">
-
+              <div class="media text-muted pt-3">
+                <img data-src="holder.js/32x32?theme=thumb&bg=007bff&fg=007bff&size=1" alt="" class="mr-2 rounded">
+                <div class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
+                  <div class="d-flex justify-content-between align-items-center w-100">
+                    <strong class="text-gray-dark">Full Name</strong>
+                    <a href="#">{{resMsg.follow}}</a>
+                  </div>
+                  <span class="d-block">@username</span>
+                </div>
               </div>
-            </div>
-            <div class="card text-white bg-success mb-3">
-              <h5 class="card-header">{{resMsg.profile_set1}}</h5>
-              <div class="card-body">
+              <small class="d-block text-right mt-3">
+                <a href="#">{{resMsg.moreSuggestions}}</a>
+              </small>
 
-              </div>
+
             </div>
           </div>
-          <!-- Publication -->
-          <div class="col-md-12">
-            <div class="form-group">
-              <label for="exampleFormControlTextarea1">{{resMsg.publication}}</label>
-              <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
-            </div>
-            <button type="button" (click)="post_Publication()" class="btn btn-primary btn-lg btn-block">{{resMsg.post}}</button>
-            <button type="button" (click)="get_Publication()" class="btn btn-primary btn-lg btn-block">{{resMsg.post}}%%</button>
-          </div>
-
-        </div>
-
-        <div class="row">
-
         </div>
 
       </div>
-      <div class="card-body">
 
-        <div class="row mb-2" *ngIf="true">
-
-          <div class="col-md-6">
-            <div class="card flex-md-row mb-4 box-shadow h-md-250">
-              <div class="card-body d-flex flex-column align-items-start">
-                <strong class="d-inline-block mb-2 text-primary">World</strong>
-                <h3 class="mb-0">
-                  <a class="text-dark" href="#">Featured post</a>
-                </h3>
-                <div class="mb-1 text-muted">Nov 12</div>
-                <p class="card-text mb-auto">This is a wider card with supporting text below as a natural lead-in to additional content.</p>
-                <a href="#">Continue reading</a>
-              </div>
-            </div>
-          </div>
-
-          <div class="col-md-6">
-            <div class="card flex-md-row mb-4 box-shadow h-md-250">
-              <div class="card-body d-flex flex-column align-items-start">
-                <strong class="d-inline-block mb-2 text-success">Design</strong>
-                <h3 class="mb-0">
-                  <a class="text-dark" href="#">Post title</a>
-                </h3>
-                <div class="mb-1 text-muted">Nov 11</div>
-                <p class="card-text mb-auto">This is a wider card with supporting text below as a natural lead-in to additional content.</p>
-                <a href="#">Continue reading</a>
-              </div>
-            </div>
-          </div>
-
-        </div>
-
-
-
-      </div>
     </div>
-  </div>
 
 
+
+    <!-- <div class="col-md-6">
+        <div class="card" style="width: 15rem;">
+          <img class="card-img-top" src="{{userData.image}}" alt="Card image cap">
+          <div class="card-body d-flex flex-column align-items-start">
+            <h5 class="card-title">{{userData.name}}</h5>
+            <p class="card-text">@{{userData.nick}}</p>
+          </div>
+          <ul class="list-group list-group-flush">
+            <li class="list-group-item">{{userData.email}}</li>            
+          </ul>
+          <div class="card-body">
+            <button [ngClass]="{'btn btn-outline-danger btn-sm': true }" type="button" (click)="logOut()">{{resMsg.sign_out}}</button>
+          </div>
+        </div>
+      </div> -->
+
+  </main>
 
 
 </body>

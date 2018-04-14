@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { resMsg } from '../config/config';
+import { resMsg } from 'rober19-config/config';
 import { data_global } from './global';
 
 @Injectable()

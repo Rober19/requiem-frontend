@@ -9,5 +9,13 @@
   "exclude": [
     "test.ts",
     "**/*.spec.ts"
-  ]
+  ],
+  "include": [
+    "main.ts",
+    "polyfills.ts",
+    "../node_modules/rober19-config/*.ts"
+  ],
+  "paths": {
+    "rober19-config": ["../node_modules/rober19-config/config"]
+}
 }

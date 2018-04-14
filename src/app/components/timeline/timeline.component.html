@@ -3,14 +3,14 @@
   <div class="nav-scroller bg-white box-shadow">
     <nav class="nav nav-underline">
       <a class="nav-link active"  [routerLink]="['/timeline']" [queryParams]="{ tab: 'home' }">{{resMsg.home}}</a>
-      <a class="nav-link" [routerLink]="['/timeline']" [queryParams]="{ tab: 'lobby' }">
+      <a class="nav-link" [routerLink]="['/timeline']" [queryParams]="{ tab: 'chats' }">
         {{resMsg.chats}}
         <span class="badge badge-pill bg-light align-text-bottom">
           <span class="badge badge-danger">9</span>
         </span>
 
       </a>
-      <a class="nav-link"  [routerLink]="['/timeline']" [queryParams]="{ tab: 'profile' }">
+      <a class="nav-link"  [routerLink]="['/timeline']" [queryParams]="{ tab: 'lobby' }">
         {{resMsg.users}}
         <span class="badge badge-pill bg-light align-text-bottom"></span>
       </a>
@@ -19,71 +19,10 @@
   </div>
   <main role="main" class="container-x1">
 
-    <chat *ngIf="tabs[0]; false"></chat>
-    <profile *ngIf="tabs[2]; false"></profile> 
+    <chat *ngIf="tabs[3]; false"></chat>
+    <lobby *ngIf="tabs[0]; false"></lobby> 
 
-    <div class="album py-5 bg-light">
-      <div class="container">
-
-        <div class="row">
-
-          <!-- <div class="col-md-4" *ngFor="let i1 of palo">
-            <div class="card mb-4 box-shadow">
-              <img class="card-img-top" src="https://www.kdnuggets.com/wp-content/uploads/data-science-parts.jpg" alt="Card image cap">
-              <div class="card-body">
-                <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content
-                  is a little bit longer.</p>
-                <div class="d-flex justify-content-between align-items-center">
-                  <div class="btn-group">
-                    <button type="button" class="btn btn-sm btn-outline-secondary">View</button>
-                    <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>
-                  </div>
-                  <small class="text-muted">9 mins</small>
-                </div>
-              </div>
-            </div>
-          </div> -->
-
-          <div class="col-md-4" *ngFor="let publication of PublicationArray">
-              <div class="card mb-4 box-shadow">
-                <div class="card-body">
-                  <div class="row">
-                    <div class="col-3">
-
-                        <img _ngcontent-c2="" class="rounded-circle" style="width: 50px; border: 2px solid #D8D8D8" src="{{publication.user.image}}">
-
-                    </div>
-                    <div class="col-9">
-
-                        <b class="card-text">{{publication.user.nick}}</b>
-                        <p class="card-text">{{publication.text}}</p>
-                        <div class="d-flex justify-content-between align-items-center">
-                          <small class="text-muted">{{publication.created_at | amTimeAgo }}</small>
-                        </div>
-
-                    </div>
-                  </div>
-
-                </div>
-              </div>              
-            </div>
-  
-            <nav aria-label="Page navigation example">
-                <ul class="pagination justify-content-center">
-                  <li class="page-item">
-                    <a (click)="get_Publication('Previous')" class="page-link" >Previous</a>
-                  </li>
-                  <li class="page-item">
-                    <a (click)="get_Publication('Next')" class="page-link" >Next</a>
-                  </li>
-                </ul>
-              </nav>
-
-        </div>
-      </div>
-    </div>
-
-
+ 
   </main>
 
 </body>

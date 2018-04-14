@@ -14,7 +14,7 @@ const appRoutes: Routes = [
   { path: 'home', component: HomeComponent },
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent },
-  { path: 'profile', component: HomeComponent },
+  { path: 'profile/:id', component: ProfileComponent },
   { path: 'timeline', component: TimelineComponent },
 
   //{ path: '**', redirectTo:'lobby' }

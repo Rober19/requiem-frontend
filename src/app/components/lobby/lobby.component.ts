@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core'
-import { resMsg } from '../../config/config'
+import { resMsg } from 'rober19-config/config';
+import { userService } from '../../services/user.service';
 
 @Component({
   selector: 'lobby',
@@ -10,16 +11,31 @@ import { resMsg } from '../../config/config'
 
 export class LobbyComponent {
 
-  public palo: Array<number>;
+  public palo: any;
   public resMsg: any;
+  public UsersArr: Array<any>;
 
-  constructor() {
+  constructor(    
+    private _userService: userService,   
+    ) {
     this.resMsg = resMsg;
   }
 
   ngOnInit() {
     this.palo = [1, 2, 3, 4];
     console.log(`LOBBY ${resMsg.loaded}`)
+
+    this._userService.getUsers('1').subscribe(data1 => {
+      let data: any = data1;
+
+      console.log(data)
+      this.UsersArr = data.users;
+      
+      
+
+
+
+    })
   }
 
 }
