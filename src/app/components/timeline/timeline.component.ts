@@ -43,6 +43,8 @@ export class TimelineComponent implements OnInit {
   ngOnInit() {
     this.palos()
     this.get_Publication();
+
+    this._router.navigateByUrl('/timeline?tab=lobby');
   }  
 
   get_Publication(type?) {
@@ -61,7 +63,7 @@ export class TimelineComponent implements OnInit {
 
     if (this.DefaultIndex >= 1) {
 
-      this._userService.getPublications(this.DefaultIndex).subscribe(
+      this._userService.getPublications(data_global.UserData.sub, this.DefaultIndex).subscribe(
         data => {
 
           this.PublicationList = data;

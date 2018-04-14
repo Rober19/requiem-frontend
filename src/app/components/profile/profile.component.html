@@ -114,40 +114,26 @@
             <h6 class="border-bottom border-gray pb-2 mb-0">{{resMsg.recents}}</h6>
 
 
-            
-              <div class="media text-muted pt-3">
-                <img data-src="holder.js/32x32?theme=thumb&bg=007bff&fg=007bff&size=1" alt="" class="mr-2 rounded">
-                <p class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
-                  <strong class="d-block text-gray-dark">@username</strong>
-                  Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh,
-                  ut fermentum massa justo sit amet risus.
-                </p>
-              </div>
-              <div class="media text-muted pt-3">
-                <img data-src="holder.js/32x32?theme=thumb&bg=e83e8c&fg=e83e8c&size=1" alt="" class="mr-2 rounded">
-                <p class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
-                  <strong class="d-block text-gray-dark">@username</strong>
-                  Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh,
-                  ut fermentum massa justo sit amet risus.
-                </p>
-              </div>
-              <div class="media text-muted pt-3">
-                <img data-src="holder.js/32x32?theme=thumb&bg=6f42c1&fg=6f42c1&size=1" alt="" class="mr-2 rounded">
-                <p class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
-                  <strong class="d-block text-gray-dark">@username</strong>
-                  Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh,
-                  ut fermentum massa justo sit amet risus.
-                </p>
-              </div>              
-            
+            <div *ngFor="let pubs of recentPubs">
 
+              <div class="media text-muted pt-3">
+                <div class="mr-2 rounded" id="box-mini">
+                  <div class="d-flex justify-content-center">
+                    <img data-src="{{userData.image}}" id="mini-image">
+                  </div>
+                </div>
+
+                <p class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
+                  <strong class="d-block text-gray-dark">@{{userData.nick}}</strong>{{pubs.text}}</p>
+              </div>
+            </div>
 
             <br>
             <div class="row">
 
               <div class="col-xs-6 col-sm-6	col-md-6 col-lg-6 col-xl-6 col-12">
 
-                <input class="form-control-file" id="pic" style="display: none" type="file" (change)="onChange($event)">
+                <input class="form-control-file" id="pic" style="display: none" type="file">
                 <a class="navbar-brand d-flex align-self-start mr-3" id="item" onclick="document.getElementById('pic').click()" style="font-size: 15px; margin-top: 3px ; color:#EBBA16; cursor: pointer">
                   <img class="d-flex align-self-start mr-3" src="https://image.flaticon.com/icons/svg/148/148945.svg" style="width: 22px;">
                   <b style="margin-left: -10px">Seleccionar archivos</b>

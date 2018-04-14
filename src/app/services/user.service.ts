@@ -53,13 +53,13 @@ export class userService {
     return this._http.post(`${this.url}/publication`, model, { headers: headers });
   }
 
-  getPublications(page) {
+  getPublications(userId, page) {
 
     let headers = new HttpHeaders()
       .set('Content-Type', 'application/json')
       .set('Authorization', localStorage.getItem('identity'));
 
-    return this._http.get(`${this.url}/publications?page=${page}`, { headers: headers });
+    return this._http.get(`${this.url}/publications/${userId}?page=${page}`, { headers: headers });
 
   }
 

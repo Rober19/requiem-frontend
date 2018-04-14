@@ -75,15 +75,17 @@ export class HomeComponent implements OnInit {
 
   ngOnInit() {
 
-    if (data_global.UserData.role == 'ADMIN') {
-      console.log('$BIEVENIDO ADMIN')
-    }
 
     if (!localStorage.getItem('identity')) {
 
       return this._router.navigate(['/login']);
 
     } else {
+      
+      if (data_global.UserData.role == 'ADMIN') {
+        console.log('$BIEVENIDO ADMIN')
+      }
+
       console.log(`HOME ${resMsg.loaded}`)
       //aqui ponemos los datos decodificados del token para pintarlos en la vista
       this.userData = data_global.UserData;
@@ -100,9 +102,9 @@ export class HomeComponent implements OnInit {
   }
 
   get_pubs(){
-    this._userService.getPublications('1').subscribe(data1 => {
+    this._userService.getPublications(data_global.UserData.sub ,'1').subscribe(data1 => {
       let data: any = data1;
-      let arr1 = this._userService.getPublications(data.pages);
+      let arr1 = this._userService.getPublications(data_global.UserData.sub, data.pages);
       this.recentPubs = data.data;
       console.log(this.recentPubs)
     },
