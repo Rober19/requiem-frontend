@@ -6,6 +6,7 @@
     "module": "es2015",
     "types": []
   },
+  "allowJs": true,
   "exclude": [
     "test.ts",
     "**/*.spec.ts"
@@ -13,9 +14,10 @@
   "include": [
     "main.ts",
     "polyfills.ts",
-    "../node_modules/rober19-config/*.ts"
+    "../node_modules/rober19-config/*.ts",
+    "../node_modules/rober19-config/config1.js"
   ],
   "paths": {
-    "rober19-config": ["../node_modules/rober19-config/config"]
+    "rober19-config": ["../node_modules/rober19-config/config1.js"]
 }
 }

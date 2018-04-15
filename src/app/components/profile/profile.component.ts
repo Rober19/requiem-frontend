@@ -52,7 +52,7 @@ export class ProfileComponent implements OnInit {
         }
       )
     });
-    this.resMsg = resMsg;
+    this.resMsg = new resMsg;
     this.userData = new User(
       '',
       '',

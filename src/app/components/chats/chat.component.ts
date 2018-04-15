@@ -1,4 +1,5 @@
 import { Component, DoCheck, OnInit } from '@angular/core';
+import { resMsg } from 'rober19-config/config';
 
 @Component({
   selector: 'chat',
@@ -11,7 +12,7 @@ export class ChatComponent implements OnInit{
   public resMsg: any;
 
   constructor () {
-
+    this.resMsg = new resMsg;
   }
 
   ngOnInit(){

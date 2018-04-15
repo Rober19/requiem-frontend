@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { resMsg } from 'rober19-config/config';
+import * as data from 'rober19-config/config';
 import { User } from '../../models/user';
 import { userService } from '../../services/user.service'
 import { Router, ActivatedRoute, Params } from '@angular/router';
@@ -38,7 +38,7 @@ export class LoginComponent implements OnInit {
   ) {
     this.title = 'ingrese su indetificacion';
     //esta es la instancia de CONFIG
-    this.config = resMsg;
+    
     //aqui está el objeto Usuario, del cual solo usaremos su EMAIL y PASSWORD
     this.login_user = new User(
       '',
@@ -53,7 +53,7 @@ export class LoginComponent implements OnInit {
     );
 
     this.valid = false;
-    this.resMsg = resMsg;
+    this.resMsg = data.resMsg;
 
   }
 
@@ -64,7 +64,7 @@ export class LoginComponent implements OnInit {
       return this._router.navigate(['/home']);
     }
 
-    console.log(`LOGIN ${resMsg.loaded}`);
+    console.log(`LOGIN ${this.resMsg.loaded}`);
   }
 
   test() {
@@ -101,7 +101,7 @@ export class LoginComponent implements OnInit {
               this.valid = true;
             }, 500);        
             console.warn(err.error.data);    
-            this.resServer = resMsg.userNotFound;           
+            this.resServer = this.resMsg.userNotFound;           
             
           }
         )
@@ -115,7 +115,7 @@ export class LoginComponent implements OnInit {
           this.valid = true;
         }, 500);        
         console.warn(err.error.data);    
-        this.resServer = resMsg.userNotFound;
+        this.resServer = this.resMsg.userNotFound;
        
         
       }

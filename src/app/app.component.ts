@@ -2,9 +2,9 @@ import { Component, DoCheck, OnInit } from '@angular/core';
 import { Router, ActivatedRoute, Params } from '@angular/router'
 import { userService } from './services/user.service';
 import { data_global } from './services/global';
-import { resMsg } from 'rober19-config/config';
-
+import * as data from 'rober19-config/config';
 import * as io from 'socket.io-client';
+
 // Nofitication Push Modules //
 
 @Component({
@@ -23,18 +23,21 @@ export class AppComponent implements DoCheck, OnInit {
   constructor(
     private _userService: userService,
     private _route: ActivatedRoute,
-    private _router: Router
+    private _router: Router    
   ) {
     this.title = 'app';
-    this.resMsg = resMsg;
-    
+    this.resMsg = data.resMsg;  
+    console.log(this.resMsg) 
   }
-
 
 
   //onInit es para cuando se inicia el componente
   ngOnInit() {
+
     
+    
+
+
     if (localStorage.getItem('identity') && data_global.UserData.sub == undefined) {
   
       data_global.UserData = JSON.parse(localStorage.getItem('user'));

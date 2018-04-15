@@ -1,9 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { resMsg } from 'rober19-config/config';
+import * as data from 'rober19-config/config';
 import { data_global } from '../../services/global';
 import { UploadService } from '../../services/upload.service';
 import { userService } from '../../services/user.service';
-import { } from '';
 import { Router, ActivatedRoute, Params } from '@angular/router'
 
 import * as moment from 'moment';
@@ -33,7 +32,7 @@ export class TimelineComponent implements OnInit {
     private _router: Router,
     private _userService: userService
   ) {
-    this.resMsg = resMsg;
+    this.resMsg = data.resMsg;
     this.palo = [5, 34, 5, 2, 4, 3, 1];
     this.tabs = [false, false, false, false];
     this.tab = '';

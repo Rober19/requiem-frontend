@@ -1,7 +1,7 @@
 import { Component, OnInit, ChangeDetectorRef } from '@angular/core'
 import { NgForm } from '@angular/forms';
 import { Router } from '@angular/router'
-import { resMsg } from 'rober19-config/config';
+import * as rober19_config from 'rober19-config/config';
 import { data_global } from '../../services/global'
 import { userService } from '../../services/user.service';
 import * as io from 'socket.io-client';
@@ -26,7 +26,7 @@ export class HomeComponent implements OnInit {
   public loading: boolean;
   public recentPubs: Array<any>;
 
-  private socket = io('http://192.168.1.63:3000');
+  private socket = io(data_global.socket);
 
   constructor(
     private _userService: userService,
@@ -70,7 +70,7 @@ export class HomeComponent implements OnInit {
     });
 
     this.loading = false;
-    this.resMsg = resMsg;
+    this.resMsg = rober19_config.resMsg;
   }
 
   ngOnInit() {
@@ -86,7 +86,7 @@ export class HomeComponent implements OnInit {
         console.log('$BIEVENIDO ADMIN')
       }
 
-      console.log(`HOME ${resMsg.loaded}`)
+      console.log(`HOME ${this.resMsg.loaded}`)
       //aqui ponemos los datos decodificados del token para pintarlos en la vista
       this.userData = data_global.UserData;
       //this.userData.image += '?random+\=' + Math.random();
@@ -137,7 +137,7 @@ export class HomeComponent implements OnInit {
   onChange(event) {
     const files = <Array<File>>event.target.files;
     if (files[0].size > (5 * 1024 * 1024)) {
-      return window.alert(resMsg.limit_fileSize)
+      return window.alert(this.resMsg.limit_fileSize)
     }
     try {
       this.loading = true;

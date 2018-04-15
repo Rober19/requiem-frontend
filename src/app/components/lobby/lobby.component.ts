@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core'
-import { resMsg } from 'rober19-config/config';
+import * as rober19_config from 'rober19-config/config';
 import { userService } from '../../services/user.service';
 
 @Component({
@@ -18,12 +18,12 @@ export class LobbyComponent {
   constructor(    
     private _userService: userService,   
     ) {
-    this.resMsg = resMsg;
+    this.resMsg = rober19_config.resMsg;
   }
 
   ngOnInit() {
     this.palo = [1, 2, 3, 4];
-    console.log(`LOBBY ${resMsg.loaded}`)
+    console.log(`LOBBY ${this.resMsg.loaded}`)
 
     this._userService.getUsers('1').subscribe(data1 => {
       let data: any = data1;
