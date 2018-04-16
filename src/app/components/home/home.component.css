@@ -11,9 +11,10 @@ body {
   overflow: hidden;
 }
 
+
 #mini-image{
-  width: auto;
-  height: 32px;
+  width: auto;  
+  height:32px;
   display:block;
   margin:auto;
 }

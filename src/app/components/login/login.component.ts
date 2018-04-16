@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import * as data from 'rober19-config/config';
+import * as rober19_config from 'rober19-config/config';
 import { User } from '../../models/user';
 import { userService } from '../../services/user.service'
 import { Router, ActivatedRoute, Params } from '@angular/router';
@@ -53,7 +53,7 @@ export class LoginComponent implements OnInit {
     );
 
     this.valid = false;
-    this.resMsg = data.resMsg;
+    this.resMsg = rober19_config.resMsg;
 
   }
 

@@ -27,7 +27,7 @@ export class AppComponent implements DoCheck, OnInit {
   ) {
     this.title = 'app';
     this.resMsg = data.resMsg;  
-    console.log(this.resMsg) 
+    
   }
 
 

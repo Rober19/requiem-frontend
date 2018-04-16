@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import * as data from 'rober19-config/config';
+import * as rober19_config from 'rober19-config/config';
 import { data_global } from '../../services/global';
 import { UploadService } from '../../services/upload.service';
 import { userService } from '../../services/user.service';
@@ -32,7 +32,7 @@ export class TimelineComponent implements OnInit {
     private _router: Router,
     private _userService: userService
   ) {
-    this.resMsg = data.resMsg;
+    this.resMsg = rober19_config.resMsg;
     this.palo = [5, 34, 5, 2, 4, 3, 1];
     this.tabs = [false, false, false, false];
     this.tab = '';

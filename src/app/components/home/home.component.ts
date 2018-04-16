@@ -52,22 +52,9 @@ export class HomeComponent implements OnInit {
       '',
       '',
     )
-    this.get_pubs();
+    
 
-    this.socket.on('message', (data1) => {
-      //console.log(data)
-      let data: any = data1;
-
-      if (data.user_id != this.userData.sub) return;
-
-      if (data.typeEmit == 'changeImage') {
-        var changeData = JSON.parse(localStorage.getItem('user'));
-        changeData.image = data.urlImage;
-        localStorage.setItem('user', JSON.stringify(changeData))
-        this.userData.image = data.urlImage;
-      }
-
-    });
+    
 
     this.loading = false;
     this.resMsg = rober19_config.resMsg;
@@ -81,6 +68,24 @@ export class HomeComponent implements OnInit {
       return this._router.navigate(['/login']);
 
     } else {
+      this.userData = data_global.UserData;
+
+      this.get_pubs();
+
+      this.socket.on('message', (data1) => {
+        //console.log(data)
+        let data: any = data1;
+  
+        if (data.user_id != this.userData.sub) return;
+  
+        if (data.typeEmit == 'changeImage') {
+          var changeData = JSON.parse(localStorage.getItem('user'));
+          changeData.image = data.urlImage;
+          localStorage.setItem('user', JSON.stringify(changeData))
+          this.userData.image = data.urlImage;
+        }
+  
+      });
       
       if (data_global.UserData.role == 'ADMIN') {
         console.log('$BIEVENIDO ADMIN')
@@ -88,7 +93,7 @@ export class HomeComponent implements OnInit {
 
       console.log(`HOME ${this.resMsg.loaded}`)
       //aqui ponemos los datos decodificados del token para pintarlos en la vista
-      this.userData = data_global.UserData;
+      
       //this.userData.image += '?random+\=' + Math.random();
       if (this.Counters.followers != '') {
 
@@ -106,7 +111,7 @@ export class HomeComponent implements OnInit {
       let data: any = data1;
       let arr1 = this._userService.getPublications(data_global.UserData.sub, data.pages);
       this.recentPubs = data.data;
-      console.log(this.recentPubs)
+      
     },
       err => {
         console.log(err)

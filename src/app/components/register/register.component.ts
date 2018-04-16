@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { Router, ActivatedRoute, Params } from '@angular/router';
 import { User } from '../../models/user';
 import { userService } from '../../services/user.service';
-import * as data from 'rober19-config/config';
+import * as rober19_config from 'rober19-config/config';
 import { data_global } from '../../services/global'
 
 
@@ -41,7 +41,7 @@ export class RegisterComponent {
       '',
       '',
     );
-    this.resMsg = data.resMsg;
+    this.resMsg = rober19_config.resMsg;
     this.validf = false;
     this.errorf = false;
   }
