@@ -29,6 +29,7 @@ export class LoginComponent implements OnInit {
 
   public resMsg: any;
   public resServer: any;
+  public gif_url_image: String;
 
 
   constructor(
@@ -38,7 +39,7 @@ export class LoginComponent implements OnInit {
   ) {
     this.title = 'ingrese su indetificacion';
     //esta es la instancia de CONFIG
-    
+    this.gif_url_image = data_global.loading_animation;
     //aqui está el objeto Usuario, del cual solo usaremos su EMAIL y PASSWORD
     this.login_user = new User(
       '',

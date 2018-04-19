@@ -23,7 +23,7 @@
   <main role="main" class="container">
 
     <div class="d-flex align-items-center p-3 my-3 text-white-50 rounded bg-danger box-shadow">
-      <img class="mr-3" src="https://orig00.deviantart.net/01ff/f/2015/186/c/1/tiny_african_wild_dog_copyx2_by_e_pona-d9022vd.png"
+      <img class="mr-3" [src]="icons.logo_dog"
         alt="" width="50" height="50">
       <div class="lh-100">
         <h6 class="mb-0 text-white lh-100">Requiem</h6>
@@ -83,7 +83,7 @@
                 <input class="form-control-file" id="pic" style="display: none" type="file" (change)="onChange($event)" [attr.disabled]="loading ? 'disabled' : null">
               </div>
               <a class="navbar-brand d-flex align-self-start mr-3" id="item" onclick="document.getElementById('pic').click()" style="font-size: 15px; margin-top: 3px ; color:rgb(255, 255, 255); cursor: pointer">
-                <img *ngIf="loading" src="http://v6.player.abacast.net/assets/images/loading.gif" style="height: 50px; widows: 50px; ">
+                <img *ngIf="loading" [src]="gif_url_image" style="height: 50px; widows: 50px; ">
                 <img *ngIf="!loading" class="d-flex align-self-start mr-3" src="https://image.flaticon.com/icons/svg/685/685686.svg" style="width: 30px;">
 
                 <b *ngIf="!loading" style="margin-left: -10px;text-shadow: 2px 2px 2px rgb(0, 0, 0);">Seleccionar_archivo</b>
@@ -122,7 +122,7 @@
 
                   <input class="form-control-file" id="pic" style="display: none" type="file" (change)="onChange($event)">
                   <a class="navbar-brand d-flex align-self-start mr-3" id="item" onclick="document.getElementById('pic').click()" style="font-size: 15px; margin-top: 3px ; color:#EBBA16; cursor: pointer">
-                    <img class="d-flex align-self-start mr-3" src="https://image.flaticon.com/icons/svg/148/148945.svg" style="width: 22px;">
+                    <img class="d-flex align-self-start mr-3" [src]="icons.folder" style="width: 22px;">
                     <b style="margin-left: -10px">Seleccionar archivos</b>
                   </a>
 

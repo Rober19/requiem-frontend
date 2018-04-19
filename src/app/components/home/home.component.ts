@@ -25,6 +25,9 @@ export class HomeComponent implements OnInit {
   public Publication: Publication;
   public loading: boolean;
   public recentPubs: Array<any>;
+  public gif_url_image: String;
+  public icons: any;
+  
 
   private socket = io(data_global.socket);
 
@@ -34,7 +37,10 @@ export class HomeComponent implements OnInit {
     private _router: Router,
     private cdRef: ChangeDetectorRef
   ) {
+    
     this.title = 'Hub de USUARIO';
+    this.gif_url_image = data_global.loading_animation;
+    this.icons = data_global.icons;
     this.Counters = {
       followers: '',
       following: '',
