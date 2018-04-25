@@ -2,7 +2,7 @@
 
   <div class="nav-scroller bg-white box-shadow">
     <nav class="nav nav-underline">
-      <a class="nav-link active"  [routerLink]="['/timeline']" [queryParams]="{ tab: 'lobby' }">{{resMsg.home}}</a>
+      <a class="nav-link active"  [routerLink]="['/timeline']" [queryParams]="{ tab: 'lobby', pag: 1 }">{{resMsg.home}}</a>
       <a class="nav-link" [routerLink]="['/timeline']" [queryParams]="{ tab: 'chats' }">
         {{resMsg.chats}}
         <span class="badge badge-pill bg-light align-text-bottom">
@@ -10,7 +10,7 @@
         </span>
 
       </a>
-      <a class="nav-link"  [routerLink]="['/timeline']" [queryParams]="{ tab: 'lobby' }">
+      <a class="nav-link"  [routerLink]="['/timeline']" [queryParams]="{ tab: 'lobby', pag: 1 }">
         {{resMsg.users}}
         <span class="badge badge-pill bg-light align-text-bottom"></span>
       </a>

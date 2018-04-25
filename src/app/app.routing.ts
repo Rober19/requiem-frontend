@@ -17,7 +17,7 @@ const appRoutes: Routes = [
   { path: 'profile/:id', component: ProfileComponent },
   { path: 'timeline', component: TimelineComponent },
 
-  //{ path: '**', redirectTo:'lobby' }
+  { path: '**', redirectTo:'home' }
 ];
 
 export const appRoutingProviders: any[] = [];

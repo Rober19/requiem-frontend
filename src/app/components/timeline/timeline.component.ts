@@ -41,12 +41,12 @@ export class TimelineComponent implements OnInit {
 
   ngOnInit() {
     this.palos()
-    this.get_Publication();
+    //this.get_Publication();
 
-    this._router.navigateByUrl('/timeline?tab=lobby');
+    //this._router.navigateByUrl('/timeline?tab=lobby&pag=1');
   }  
 
-  get_Publication(type?) {
+  get_PublicationNOAUN(type?) {
 
     switch (type) {
       case "Previous":
@@ -98,8 +98,7 @@ export class TimelineComponent implements OnInit {
 
     await this._route.queryParamMap.subscribe(data => {
       this.paramsQuery = data;
-      this.tab = this.paramsQuery.params;
-      console.log(this.tab)
+      this.tab = this.paramsQuery.params;      
 
       switch (this.tab.tab) {
         case 'lobby':

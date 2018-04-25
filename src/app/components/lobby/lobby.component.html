@@ -18,20 +18,22 @@
     </section>
 
     <div class="container">
-        <div class="row text-center">
+      <div class="row text-center">
 
-            <div class="col-lg-4" *ngFor="let i2 of UsersArr">
-                <div class="rounded-circle" id="box-mini">
-                    <div class="d-flex justify-content-center">
-                        <img data-src="{{i2.image}}" id="mini-image" >
-                    </div>                    
-                  </div>
-              <h2 [routerLink]="['/profile/',i2._id]" href="">{{i2.nick}}</h2>
-              <p>{{i2.name}} {{i2.surname}}</p>
-              <p><a class="btn btn-secondary" [routerLink]="['/profile/',i2._id]" role="button">{{resMsg.profile}} »</a></p>
+        <div class="col-lg-4" *ngFor="let i2 of UsersArr">
+          <div class="rounded-circle" id="box-mini">
+            <div class="d-flex justify-content-center">
+              <img data-src="{{i2.image}}" id="mini-image">
             </div>
-            
           </div>
+          <h2 [routerLink]="['/profile/',i2._id]" href="">{{i2.nick}}</h2>
+          <p>{{i2.name}} {{i2.surname}}</p>
+          <p>
+            <a class="btn btn-secondary" [routerLink]="['/profile/',i2._id]" role="button">{{resMsg.profile}} »</a>
+          </p>
+        </div>
+
+      </div>
     </div>
 
     <div class="album py-5 bg-light" *ngIf="false">
@@ -60,7 +62,39 @@
 
 
         </div>
+
       </div>
+    </div>
+
+    <div class="d-flex justify-content-center">
+      <ul class="pagination">
+
+        <li [ngClass]="
+        {                  
+        'page-item': UserPag>1,
+        'page-item disabled': UserPag==1
+        }">
+          <span class="page-link" [routerLink]="['/timeline']" [queryParams]="{ tab: 'lobby', pag: (UserPag-1) }">Previous</span>
+        </li>
+
+        <li [ngClass]="
+        {                  
+        'page-item': UserPag>1,
+        'page-item active': UserPag==i1
+        }" *ngFor="let i1 of UserPages; let con = index;">
+          <a class="page-link" [routerLink]="['/timeline']" [queryParams]="{ tab: 'lobby', pag: (con+1) }">{{con+1}}</a>
+        </li>        
+
+      
+        <li [ngClass]="
+        {                  
+        'page-item': UserPages.length>1,
+        'page-item disabled': UserPag==UserPages.length
+        }">
+          <a class="page-link" [routerLink]="['/timeline']" [queryParams]="{ tab: 'lobby', pag: (UserPag+1) }">Next</a>
+        </li>
+
+      </ul>
     </div>
 
   </main>
