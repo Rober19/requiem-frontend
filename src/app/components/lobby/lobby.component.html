@@ -72,26 +72,29 @@
         <li [ngClass]="
         {                  
         'page-item': UserPag>1,
-        'page-item disabled': UserPag==1
+        'page-item disabled': current==5
         }">
-          <span class="page-link" [routerLink]="['/timeline']" [queryParams]="{ tab: 'lobby', pag: (UserPag-1) }">Previous</span>
+          <a class="page-link" (click)="prev5()">{{resMsg.paginate_prev}}</a>
         </li>
 
         <li [ngClass]="
         {                  
         'page-item': UserPag>1,
         'page-item active': UserPag==i1
-        }" *ngFor="let i1 of UserPages; let con = index;">
-          <a class="page-link" [routerLink]="['/timeline']" [queryParams]="{ tab: 'lobby', pag: (con+1) }">{{con+1}}</a>
-        </li>        
+        }" *ngFor="let i1 of UserPages; let con = index; let ind = index">
+          <div *ngIf="con < current && con >= initial">
+            <a class="page-link" [routerLink]="['/timeline']" [queryParams]="{ tab: 'lobby', pag: (con+1) }">{{con+1}}</a>
 
-      
+          </div>
+        </li>
+
+
         <li [ngClass]="
         {                  
-        'page-item': UserPages.length>1,
+        'page-item': UserPages.length <= current,
         'page-item disabled': UserPag==UserPages.length
         }">
-          <a class="page-link" [routerLink]="['/timeline']" [queryParams]="{ tab: 'lobby', pag: (UserPag+1) }">Next</a>
+          <a class="page-link" (click)="current5()" >{{resMsg.paginate_next}}</a>
         </li>
 
       </ul>
