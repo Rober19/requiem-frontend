@@ -4,7 +4,6 @@
 
 <script>try { Typekit.load({ async: true }); } catch (e) { }</script>
 
-
 <body class="bg-light">
 
   <div id="frame">
@@ -12,8 +11,8 @@
     <div id="sidepanel">
       <div id="profile">
         <div class="wrap">
-          <img id="profile-img" src="https://image.flaticon.com/icons/svg/122/122454.svg" class="online" alt="" />
-          <p>Mike Ross</p>
+          <img id="profile-img" src="{{user.image}}" class="online" alt="" style="height: 55px; width: 55px" />
+          <p>{{user.nick}}</p>
           <i class="fa fa-chevron-down expand-button" aria-hidden="true"></i>
           <div id="status-options">
             <ul>
@@ -59,24 +58,21 @@
       </div>
       <div id="contacts">
         <ul>
-          <li class="contact">
+          <li class="contact" *ngFor="let f of followings" (click)="LoadChatbyUser(f)">
             <div class="wrap">
               <span class="contact-status online"></span>
-              <img src="https://image.flaticon.com/icons/svg/236/236831.svg" alt="" />
+              <img src="{{f.followed.image}}" alt="" style="height: 45px; width: 45px" />
               <div class="meta">
-                <p class="name">Louis Litt</p>
-                <p class="preview">You just got LITT up, Mike.</p>
+                <p class="name">{{f.followed.nick}}</p>
               </div>
             </div>
           </li>
-          <li class="contact active">
+          <!-- <li class="contact active">
             <div class="wrap">
               <span class="contact-status busy"></span>
               <img src="https://image.flaticon.com/icons/svg/236/236822.svg" alt="" />
               <div class="meta">
                 <p class="name">Harvey Specter</p>
-                <p class="preview">Wrong. You take the gun, or you pull out a bigger one. Or, you call their bluff. Or, you do any one of a
-                  hundred and forty six other things.</p>
               </div>
             </div>
           </li>
@@ -86,7 +82,6 @@
               <img src="https://image.flaticon.com/icons/svg/167/167750.svg" alt="" />
               <div class="meta">
                 <p class="name">Rachel Zane</p>
-                <p class="preview">I was thinking that we could have chicken tonight, sounds good?</p>
               </div>
             </div>
           </li>
@@ -96,7 +91,6 @@
               <img src="https://image.flaticon.com/icons/svg/145/145867.svg" alt="" />
               <div class="meta">
                 <p class="name">Donna Paulsen</p>
-                <p class="preview">Mike, I know everything! I'm Donna..</p>
               </div>
             </div>
           </li>
@@ -106,7 +100,6 @@
               <img src="https://image.flaticon.com/icons/svg/236/236832.svg" alt="" />
               <div class="meta">
                 <p class="name">Jessica Pearson</p>
-                <p class="preview">Have you finished the draft on the Hinsenburg deal?</p>
               </div>
             </div>
           </li>
@@ -116,7 +109,6 @@
               <img src="https://image.flaticon.com/icons/svg/265/265666.svg" alt="" />
               <div class="meta">
                 <p class="name">Harold Gunderson</p>
-                <p class="preview">Thanks Mike! :)</p>
               </div>
             </div>
           </li>
@@ -126,7 +118,6 @@
               <img src="https://image.flaticon.com/icons/svg/236/236842.svg" alt="" />
               <div class="meta">
                 <p class="name">Daniel Hardman</p>
-                <p class="preview">We'll meet again, Mike. Tell Jessica I said 'Hi'.</p>
               </div>
             </div>
           </li>
@@ -136,7 +127,6 @@
               <img src="https://image.flaticon.com/icons/svg/265/265674.svg" alt="" />
               <div class="meta">
                 <p class="name">Katrina Bennett</p>
-                <p class="preview">I've sent you the files for the Garrett trial.</p>
               </div>
             </div>
           </li>
@@ -146,7 +136,6 @@
               <img src="https://image.flaticon.com/icons/svg/201/201557.svg" alt="" />
               <div class="meta">
                 <p class="name">Charles Forstman</p>
-                <p class="preview">Mike, this isn't over.</p>
               </div>
             </div>
           </li>
@@ -157,85 +146,49 @@
               <div class="meta">
                 <p class="name">Jonathan Sidwell</p>
                 <p class="preview">
-                  <span>You:</span> That's bullshit. This deal is solid.</p>
               </div>
             </div>
-          </li>
+          </li> -->
         </ul>
-      </div>
-      <div id="bottom-bar">
-        <button id="addcontact">
-          <i c aria-hidden="true"></i>
-          <span>text002</span>
-        </button>
-        <button id="settings">
-          <i aria-hidden="true"></i>
-          <span>text003</span>
-        </button>
       </div>
     </div>
 
     <div class="content">
 
       <div class="contact-profile">
-        <img src="https://image.flaticon.com/icons/svg/417/417746.svg" alt="" />
-        <p>Harvey Specter</p>
+        <img src="{{userClick.image}}" alt="" style="height: 45px; width: 45px" />
+        <p>{{userClick.nick}}</p>
         <div class="social-media">
 
           <a class="container">
-            text001
+            CHAT
           </a>
 
         </div>
       </div>
 
       <div class="messages container">
+
+        <p *ngIf="userClickChat?.message.length == 0" >Aún no tienes conversaciones con <b>{{userClick.nick}}</b></p>
+
         <ul>
-          <li class="sent">
-            <img src="https://image.flaticon.com/icons/svg/122/122454.svg" alt="" />
-            <p>How the hell am I supposed to get a jury to believe you when I am not even sure that I do?!</p>
-          </li>
-          <li class="replies">
-            <img src="https://image.flaticon.com/icons/svg/417/417746.svg" alt="" />
-            <p>When you're backed against the wall, break the god damn thing down.</p>
-          </li>
-          <li class="replies">
-            <img src="https://image.flaticon.com/icons/svg/417/417746.svg" alt="" />
-            <p>Excuses don't win championships.</p>
-          </li>
-          <li class="sent">
-            <img src="https://image.flaticon.com/icons/svg/122/122454.svg" alt="" />
-            <p>Oh yeah, did Michael Jordan tell you that?</p>
-          </li>
-          <li class="replies">
-            <img src="https://image.flaticon.com/icons/svg/417/417746.svg" alt="" />
-            <p>No, I told him that.</p>
-          </li>
-          <li class="replies">
-            <img src="https://image.flaticon.com/icons/svg/417/417746.svg" alt="" />
-            <p>What are your choices when someone puts a gun to your head?</p>
-          </li>
-          <li class="sent">
-            <img src="https://image.flaticon.com/icons/svg/122/122454.svg" alt="" />
-            <p>What are you talking about? You do what they say or they shoot you.</p>
-          </li>
-          <li class="replies">
-            <img src="https://image.flaticon.com/icons/svg/417/417746.svg" alt="" />
-            <p>Wrong. You take the gun, or you pull out a bigger one. Or, you call their bluff. Or, you do any one of a hundred
-              and forty six other things.</p>
+          <li class="{{ (user?._id == m.emitter?._id) ? 'replies' : 'sent'}}" *ngFor="let m of userClickChat?.message">
+            <img src="{{m.emitter.image}}" alt="" style="height: 30px; width: 30px" />
+            <p>{{m.text}}</p>
           </li>
         </ul>
+
       </div>
 
       <div class="message-input">
         <div class="wrap">
 
-          <input type="text" placeholder="Write your message..." />
+          <input type="text" [(ngModel)]="text" #t="ngModel" id="t" placeholder="Write your message..." />
           <i class="fa fa-paperclip attachment" aria-hidden="true"></i>
-          <button class="submit">
+          <button class="submit" (click)="createMessage()">
             <i class="fa fa-paper-plane" aria-hidden="true"></i>
           </button>
-          
+
         </div>
       </div>
 
