@@ -1,8 +1,8 @@
 export var data_global = {
-  url: 'http://192.168.1.67:3000/app',
-  url2: 'https://backend-mean5-project.herokuapp.com/app',
+  url1: 'http://192.168.1.63:3000/app',
+  url: 'https://backend-mean5-project.herokuapp.com/app',
   socket: "https://backend-mean5-project.herokuapp.com",
-  url1: "http://192.168.1.63:3000/app",
+  url2: "http://192.168.1.63:3000/app",
   socket1: "http://192.168.1.63:3000", 
   loading_animation1: 'https://firebasestorage.googleapis.com/v0/b/rober-firebase.appspot.com/o/Requiem-project%2FServer_data%2Floading1.gif?alt=media&token=0e52e825-6109-46ad-a8cf-aee6a4a53bf7',
   loading_animation: 'https://firebasestorage.googleapis.com/v0/b/rober-firebase.appspot.com/o/Requiem-project%2FServer_data%2Floading.gif?alt=media&token=d38ae349-7842-4dd6-972c-119380050d92',
