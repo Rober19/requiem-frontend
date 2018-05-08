@@ -1,5 +1,6 @@
 export var data_global = {
-  url: 'https://backend-mean5-project.herokuapp.com/app',
+  url: 'http://192.168.1.67:3000/app',
+  url2: 'https://backend-mean5-project.herokuapp.com/app',
   socket: "https://backend-mean5-project.herokuapp.com",
   url1: "http://192.168.1.63:3000/app",
   socket1: "http://192.168.1.63:3000", 

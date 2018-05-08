@@ -116,7 +116,7 @@ export class userService {
     return this._http.get(`${this.url}/users?page=${page}`, { headers: headers });
   }
 
-  getUser(id){
+  getUser(id) {
     let headers = new HttpHeaders()
       .set('Content-Type', 'application/json')
       .set('Authorization', localStorage.getItem('identity'));
@@ -124,6 +124,36 @@ export class userService {
     return this._http.get(`${this.url}/user/${id}`, { headers: headers });
   }
 
+  // TODO: Separar la lógica correspondiente a [follow] a otro servicio.
+
+  public follow(data): Observable<any> {
+    const headers = new HttpHeaders()
+      .set('Content-Type', 'application/json')
+      .set('Authorization', localStorage.getItem('identity'));
+    return this._http.post(`${this.url}/follow`, data, { headers: headers });
+  }
+
+  public unfollow(data): Observable<any> {
+    const headers = new HttpHeaders()
+      .set('Content-Type', 'application/json')
+      .set('Authorization', localStorage.getItem('identity'));
+    return this._http.post(`${this.url}/unfollow`, data, { headers: headers });
+  }
+
+  public isFollow(id) {
+    let headers = new HttpHeaders()
+      .set('Content-Type', 'application/json')
+      .set('Authorization', localStorage.getItem('identity'));
+
+    return this._http.get(`${this.url}/follow/${id}`, { headers: headers });
+  }
+
+  public following(id): Observable<any> {
+    const headers = new HttpHeaders()
+      .set('Content-Type', 'application/json')
+      .set('Authorization', localStorage.getItem('identity'));
+    return this._http.get(`${this.url}/following/${id}`, { headers: headers });
+  }
 
   // getToken_login(){
   //   const token = JSON.parse(localStorage.getItem('token'));
@@ -134,5 +164,22 @@ export class userService {
   //     this.token_login = null;
   //   }
   // }
+
+
+  // TODO: Separar la lógica correspondiente a [chat] a otro servicio.
+
+  public createMessage(data) {
+    const headers = new HttpHeaders()
+      .set('Content-Type', 'application/json')
+      .set('Authorization', localStorage.getItem('identity'));
+    return this._http.post(`${this.url}/message`, data, { headers: headers });
+  }
+
+  public GetMessage(data) {
+    const headers = new HttpHeaders()
+      .set('Content-Type', 'application/json')
+      .set('Authorization', localStorage.getItem('identity'));
+    return this._http.post(`${this.url}/messages`, data , { headers: headers });
+  }
 
 }
