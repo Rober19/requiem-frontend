@@ -179,7 +179,7 @@ export class userService {
     const headers = new HttpHeaders()
       .set('Content-Type', 'application/json')
       .set('Authorization', localStorage.getItem('identity'));
-    return this._http.post(`${this.url}/messages`, data , { headers: headers });
+    return this._http.get(`${this.url}/messages`, { headers: headers });
   }
 
 }

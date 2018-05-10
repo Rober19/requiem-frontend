@@ -11,7 +11,7 @@
     <div id="sidepanel">
       <div id="profile">
         <div class="wrap">
-          <img id="profile-img" src="{{user.image}}" class="online" alt="" style="height: 55px; width: 55px" />
+          <img id="profile-img" [src]="user.image" class="online" alt="" style="height: 55px; width: 55px" />
           <p>{{user.nick}}</p>
           <i class="fa fa-chevron-down expand-button" aria-hidden="true"></i>
           <div id="status-options">
@@ -156,8 +156,8 @@
     <div class="content">
 
       <div class="contact-profile">
-        <img src="{{userClick.image}}" alt="" style="height: 45px; width: 45px" />
-        <p>{{userClick.nick}}</p>
+        <img [src]="userClick.image" alt="" style="height: 45px; width: 45px" />        
+         <p>{{userClick.nick}}</p>
         <div class="social-media">
 
           <a class="container">
@@ -172,8 +172,14 @@
         <p *ngIf="userClickChat?.message.length == 0" >Aún no tienes conversaciones con <b>{{userClick.nick}}</b></p>
 
         <ul>
-          <li class="{{ (user?._id == m.emitter?._id) ? 'replies' : 'sent'}}" *ngFor="let m of userClickChat?.message">
-            <img src="{{m.emitter.image}}" alt="" style="height: 30px; width: 30px" />
+          <li 
+          [ngClass]="
+          {                  
+          'replies': m.emitter._id == user._id,
+          'sent': m.emitter._id != user._id
+          }"
+          *ngFor="let m of userClickChat?.message">
+            <img [src]="m.emitter.image" alt="" style="height: 30px; width: 30px" />
             <p>{{m.text}}</p>
           </li>
         </ul>
