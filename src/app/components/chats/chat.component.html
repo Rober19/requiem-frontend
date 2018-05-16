@@ -56,12 +56,13 @@
         </label>
         <input type="text" placeholder="Search contacts..." />
       </div>
+
       <div id="contacts">
         <ul>
           <li class="contact" *ngFor="let f of followings" (click)="LoadChatbyUser(f)">
             <div class="wrap">
               <span class="contact-status online"></span>
-              <img src="{{f.followed.image}}" alt="" style="height: 45px; width: 45px" />
+              <img [src]="f.followed.image" alt="" style="height: 45px; width: 45px" />
               <div class="meta">
                 <p class="name">{{f.followed.nick}}</p>
               </div>
@@ -151,13 +152,14 @@
           </li> -->
         </ul>
       </div>
+
     </div>
 
     <div class="content">
 
       <div class="contact-profile">
-        <img [src]="userClick.image" alt="" style="height: 45px; width: 45px" />        
-         <p>{{userClick.nick}}</p>
+        <img [src]="userClick.image" alt="" style="height: 45px; width: 45px" />
+        <p>{{userClick.nick}}</p>
         <div class="social-media">
 
           <a class="container">
@@ -169,16 +171,12 @@
 
       <div class="messages container">
 
-        <p *ngIf="userClickChat?.message.length == 0" >Aún no tienes conversaciones con <b>{{userClick.nick}}</b></p>
+        <p *ngIf="userClickChat?.message.length == 0">Aún no tienes conversaciones con
+          <b>{{userClick.nick}}</b>
+        </p>
 
         <ul>
-          <li 
-          [ngClass]="
-          {                  
-          'replies': m.emitter._id == user._id,
-          'sent': m.emitter._id != user._id
-          }"
-          *ngFor="let m of userClickChat?.message">
+          <li class="{{ (user?._id == m.emitter?._id) ? 'replies' : 'sent'}}" *ngFor="let m of userClickChat?.message">
             <img [src]="m.emitter.image" alt="" style="height: 30px; width: 30px" />
             <p>{{m.text}}</p>
           </li>

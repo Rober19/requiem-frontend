@@ -11,40 +11,40 @@ import { User } from '../../models/user';
   styleUrls: ['./chat.component.css']
 })
 
-export class ChatComponent implements OnInit{
+export class ChatComponent implements OnInit {
 
   public resMsg: any;
   public user: any;
   public followings: Array<any>;
-  public Chatpack: any;
+  public Chatpack: Array<any>;
+  public receiveArr: Array<any>;
 
   public text: any;
 
   public userClick: any;
   public userClickChat: any;
 
-  constructor (private _userService: userService) {
-    this.resMsg = data.resMsg;  
+  constructor(private _userService: userService) {
+    this.resMsg = data.resMsg;
 
     this.user = data_global.UserData;
     this.userClick = {};
-    
+
   }
 
-  ngOnInit(){
+  ngOnInit() {
     this.followingList()
 
-    
 
   }
 
-  public followingList(){
+  public followingList() {
 
     this._userService.following(this.user._id).subscribe(res1 => {
-      let res :any = res1;
+      let res: any = res1;
       this.followings = res.users
       this.userClick = res.users[0].followed
-      this.GetMessage();
+      // this.GetMessage();
 
     }, err => {
       console.log(err)
@@ -52,12 +52,12 @@ export class ChatComponent implements OnInit{
 
   }
 
-  public LoadChatbyUser(user){
+  public LoadChatbyUser(user) {
     this.userClick = user.followed
-    this.GetMessage() 
+    this.GetMessage()
   }
 
-  public createMessage(){
+  public createMessage() {
 
     const data = {
       emitter: this.user._id,
@@ -65,30 +65,25 @@ export class ChatComponent implements OnInit{
       text: this.text
     }
 
-    this._userService.createMessage(data).subscribe(res1 => {
-      let res :any = res1;
+    this._userService.createMessage(data).subscribe(res => {
       console.log(res)
       this.text = null
-     // this.GetMessage()
+      this.GetMessage()
     }, err => {
       console.log(err)
     })
   }
 
-  public GetMessage22(){
-
+  public GetMessage() {
     const data = {
       emitter: this.user._id,
       receiver: this.userClick._id,
     }
-
-    this._userService.GetMessage(data).subscribe(res1 => {
-      let res :any = res1;
-      console.log(res)
+    this._userService.GetMessage(data).subscribe(res => {
       this.userClickChat = res
     }, err => {
       console.log(err)
-    })
-  }
+    }
+    )}
 
 }
