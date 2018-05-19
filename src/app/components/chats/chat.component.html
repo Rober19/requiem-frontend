@@ -11,6 +11,7 @@
     <div id="sidepanel">
       <div id="profile">
         <div class="wrap">
+
           <img id="profile-img" [src]="user.image" class="online" alt="" style="height: 55px; width: 55px" />
           <p>{{user.nick}}</p>
           <i class="fa fa-chevron-down expand-button" aria-hidden="true"></i>
@@ -58,13 +59,24 @@
       </div>
 
       <div id="contacts">
-        <ul>
+
+        <ul >
           <li class="contact" *ngFor="let f of followings" (click)="LoadChatbyUser(f)">
             <div class="wrap">
-              <span class="contact-status online"></span>
-              <img [src]="f.followed.image" alt="" style="height: 45px; width: 45px" />
-              <div class="meta">
-                <p class="name">{{f.followed.nick}}</p>
+              <div class="row">
+                <div class="col-md-3">
+                  <span class="contact-status online"></span>
+                  <div class="rounded-circle" id="box-mini">
+                    <div class="d-flex justify-content-center">
+                      <img [src]="f.followed.image" id="mini-image">
+                    </div>
+                  </div>
+                </div>
+                <div class="col">
+                  <div class="meta ">
+                    <p class="name">{{f.followed.nick}}</p>
+                  </div>
+                </div>
               </div>
             </div>
           </li>
@@ -151,6 +163,7 @@
             </div>
           </li> -->
         </ul>
+
       </div>
 
     </div>
