@@ -12,43 +12,19 @@
       <div id="profile">
         <div class="wrap">
 
-          <img id="profile-img" [src]="user.image" class="online" alt="" style="height: 55px; width: 55px" />
-          <p>{{user.nick}}</p>
-          <i class="fa fa-chevron-down expand-button" aria-hidden="true"></i>
-          <div id="status-options">
-            <ul>
-              <li id="status-online" class="active">
-                <span class="status-circle"></span>
-                <p>Online</p>
-              </li>
-              <li id="status-away">
-                <span class="status-circle"></span>
-                <p>Away</p>
-              </li>
-              <li id="status-busy">
-                <span class="status-circle"></span>
-                <p>Busy</p>
-              </li>
-              <li id="status-offline">
-                <span class="status-circle"></span>
-                <p>Offline</p>
-              </li>
-            </ul>
+          <div class="row">
+            <div class="col-md-2">
+              <div class="rounded-circle" id="box-mini" style="margin-left: 4px">
+                <div class="d-flex justify-content-center">
+                  <img id="profile-img" [src]="user.image" id="mini-image" />
+                </div>
+              </div>
+            </div>
+            <div class="col">
+              <p>{{user.nick}}</p>
+            </div>
           </div>
-          <div id="expanded">
-            <label for="twitter">
-              <i class="fa fa-facebook fa-fw" aria-hidden="true"></i>
-            </label>
-            <input name="twitter" type="text" value="mikeross" />
-            <label for="twitter">
-              <i class="fa fa-twitter fa-fw" aria-hidden="true"></i>
-            </label>
-            <input name="twitter" type="text" value="ross81" />
-            <label for="twitter">
-              <i class="fa fa-instagram fa-fw" aria-hidden="true"></i>
-            </label>
-            <input name="twitter" type="text" value="mike.ross" />
-          </div>
+
         </div>
       </div>
       <div id="search">
@@ -60,108 +36,32 @@
 
       <div id="contacts">
 
-        <ul >
+        <ul>
           <li class="contact" *ngFor="let f of followings" (click)="LoadChatbyUser(f)">
             <div class="wrap">
+
               <div class="row">
-                <div class="col-md-3">
-                  <span class="contact-status online"></span>
+
+                <div class="col-sm-1 col-md-3">
+
                   <div class="rounded-circle" id="box-mini">
                     <div class="d-flex justify-content-center">
                       <img [src]="f.followed.image" id="mini-image">
                     </div>
                   </div>
+
                 </div>
+
                 <div class="col">
                   <div class="meta ">
                     <p class="name">{{f.followed.nick}}</p>
                   </div>
                 </div>
+
               </div>
+
             </div>
           </li>
-          <!-- <li class="contact active">
-            <div class="wrap">
-              <span class="contact-status busy"></span>
-              <img src="https://image.flaticon.com/icons/svg/236/236822.svg" alt="" />
-              <div class="meta">
-                <p class="name">Harvey Specter</p>
-              </div>
-            </div>
-          </li>
-          <li class="contact">
-            <div class="wrap">
-              <span class="contact-status away"></span>
-              <img src="https://image.flaticon.com/icons/svg/167/167750.svg" alt="" />
-              <div class="meta">
-                <p class="name">Rachel Zane</p>
-              </div>
-            </div>
-          </li>
-          <li class="contact">
-            <div class="wrap">
-              <span class="contact-status online"></span>
-              <img src="https://image.flaticon.com/icons/svg/145/145867.svg" alt="" />
-              <div class="meta">
-                <p class="name">Donna Paulsen</p>
-              </div>
-            </div>
-          </li>
-          <li class="contact">
-            <div class="wrap">
-              <span class="contact-status busy"></span>
-              <img src="https://image.flaticon.com/icons/svg/236/236832.svg" alt="" />
-              <div class="meta">
-                <p class="name">Jessica Pearson</p>
-              </div>
-            </div>
-          </li>
-          <li class="contact">
-            <div class="wrap">
-              <span class="contact-status"></span>
-              <img src="https://image.flaticon.com/icons/svg/265/265666.svg" alt="" />
-              <div class="meta">
-                <p class="name">Harold Gunderson</p>
-              </div>
-            </div>
-          </li>
-          <li class="contact">
-            <div class="wrap">
-              <span class="contact-status"></span>
-              <img src="https://image.flaticon.com/icons/svg/236/236842.svg" alt="" />
-              <div class="meta">
-                <p class="name">Daniel Hardman</p>
-              </div>
-            </div>
-          </li>
-          <li class="contact">
-            <div class="wrap">
-              <span class="contact-status busy"></span>
-              <img src="https://image.flaticon.com/icons/svg/265/265674.svg" alt="" />
-              <div class="meta">
-                <p class="name">Katrina Bennett</p>
-              </div>
-            </div>
-          </li>
-          <li class="contact">
-            <div class="wrap">
-              <span class="contact-status"></span>
-              <img src="https://image.flaticon.com/icons/svg/201/201557.svg" alt="" />
-              <div class="meta">
-                <p class="name">Charles Forstman</p>
-              </div>
-            </div>
-          </li>
-          <li class="contact">
-            <div class="wrap">
-              <span class="contact-status"></span>
-              <img src="https://image.flaticon.com/icons/svg/145/145864.svg" alt="" />
-              <div class="meta">
-                <p class="name">Jonathan Sidwell</p>
-                <p class="preview">
-              </div>
-            </div>
-          </li> -->
         </ul>
 
       </div>
@@ -171,11 +71,21 @@
     <div class="content">
 
       <div class="contact-profile">
-        <img [src]="userClick.image" alt="" style="height: 45px; width: 45px" />
-        <p>{{userClick.nick}}</p>
+        <div class="rounded-circle" style="width: 45px;
+        height: 45px;
+        display: inline-block;             
+        margin: 10px;
+        overflow: hidden;
+        ">
+          <div class="d-flex justify-content-center">
+            <img [src]="userClick.image" alt="" id="mini-image" style="height: 45px;" />
+          </div>
+        </div>
+
         <div class="social-media">
 
           <a class="container">
+            <p>{{userClick.nick}}</p>
             CHAT
           </a>
 
@@ -190,7 +100,18 @@
 
         <ul>
           <li class="{{ (user?._id == m.emitter?._id) ? 'replies' : 'sent'}}" *ngFor="let m of userClickChat?.message">
-            <img [src]="m.emitter.image" alt="" style="height: 30px; width: 30px" />
+
+            <div style="height: 30px; width: 30px;display: inline-block;                      
+            position: relative;
+            overflow: hidden; ">
+              <span class="d-flex justify-content-center">
+                <img [src]="m.emitter.image" style="width: auto;
+                height: 30px;
+                display:block;
+                margin:auto;
+                float: left;" /> </span>
+
+            </div>
             <p>{{m.text}}</p>
           </li>
         </ul>
