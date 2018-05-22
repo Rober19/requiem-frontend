@@ -1,6 +1,6 @@
-import { Component, DoCheck, OnInit } from '@angular/core';
+import { Component, DoCheck, OnInit, ChangeDetectorRef } from '@angular/core';
 import * as data from 'rober19-config/config';
-
+import * as io from 'socket.io-client';
 import { userService } from '../../services/user.service';
 import { data_global } from '../../services/global';
 import { User } from '../../models/user';
@@ -20,21 +20,34 @@ export class ChatComponent implements OnInit {
   public receiveArr: Array<any>;
 
   public text: any;
-
+  private socket = io(data_global.socket);
   public userClick: any;
   public userClickChat: any;
 
-  constructor(private _userService: userService) {
+  constructor(
+    private _userService: userService,
+    private cdRef: ChangeDetectorRef
+  ) {
     this.resMsg = data.resMsg;
 
     this.user = data_global.UserData;
     this.userClick = {};
-
+    this.socket.on('chaton', data => {
+      if (data.receiver == this.user._id) {
+        this.GetMessage();
+        var objDiv = document.getElementById("chateo1");
+        objDiv.scrollTop = objDiv.scrollHeight;
+      }
+    });
   }
 
   ngOnInit() {
     this.followingList()
 
+
+  }
+
+  onChange() {
 
   }
 
@@ -55,6 +68,8 @@ export class ChatComponent implements OnInit {
   public LoadChatbyUser(user) {
     this.userClick = user.followed
     this.GetMessage()
+    var objDiv = document.getElementById("chateo1");
+    objDiv.scrollTop = objDiv.scrollHeight;
   }
 
   public createMessage() {
@@ -68,22 +83,33 @@ export class ChatComponent implements OnInit {
     this._userService.createMessage(data).subscribe(res => {
       console.log(res)
       this.text = null
+      this.socket.emit('chaton', data)
       this.GetMessage()
     }, err => {
       console.log(err)
     })
+    var objDiv = document.getElementById("chateo1");
+    objDiv.scrollTop = objDiv.scrollHeight;
   }
 
-  public GetMessage() {
+  async GetMessage() {
     const data = {
       emitter: this.user._id,
       receiver: this.userClick._id,
     }
-    this._userService.GetMessage(data).subscribe(res => {
+
+
+    await this._userService.GetMessage(data).subscribe(res => {
       this.userClickChat = res
+
     }, err => {
       console.log(err)
     }
-    )}
+    )
+    var objDiv = document.getElementById("chateo1");
+    objDiv.scrollTop = objDiv.scrollHeight;
+  }
+
+
 
 }

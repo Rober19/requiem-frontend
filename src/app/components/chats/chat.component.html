@@ -92,14 +92,14 @@
         </div>
       </div>
 
-      <div class="messages container">
+      <div class="messages container" id="chateo1" style="overflow :auto;">
 
         <p *ngIf="userClickChat?.message.length == 0">Aún no tienes conversaciones con
           <b>{{userClick.nick}}</b>
         </p>
 
         <ul>
-          <li class="{{ (user?._id == m.emitter?._id) ? 'replies' : 'sent'}}" *ngFor="let m of userClickChat?.message">
+          <li class="{{ (user?._id == m.emitter?._id) ? 'replies' : 'sent'}}" *ngFor="let m of userClickChat?.message; ">
 
             <div style="height: 30px; width: 30px;display: inline-block;                      
             position: relative;

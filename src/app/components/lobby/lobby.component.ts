@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core'
 import * as rober19_config from 'rober19-config/config';
+import * as io from 'socket.io-client';
 import { userService } from '../../services/user.service';
+import { data_global } from '../../services/global';
 import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
@@ -19,7 +21,7 @@ export class LobbyComponent {
   public UserPag: number;
   public current: number;
   public initial: number;
-  
+   private socket = io(data_global.socket);
 
   constructor(
     private _userService: userService,
@@ -29,6 +31,7 @@ export class LobbyComponent {
     this.resMsg = rober19_config.resMsg;
     this.initial = 0;
     this.current = 5;
+    
   }
 
   ngOnInit() {
@@ -42,6 +45,7 @@ export class LobbyComponent {
       this.user_Pages(params.pag)
     })
 
+  
 
   }
 
