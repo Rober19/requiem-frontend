@@ -29,7 +29,7 @@ export class HomeComponent implements OnInit {
   public icons: any;
   
 
-  private socket = io(data_global.socket);
+  private socket = io(data_global.url);
 
   constructor(
     private _userService: userService,

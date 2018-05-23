@@ -5,7 +5,7 @@
 <script>try { Typekit.load({ async: true }); } catch (e) { }</script>
 
 <body class="bg-light">
-
+ 
   <div id="frame">
 
     <div id="sidepanel">
@@ -100,7 +100,7 @@
 
         <ul>
           <li class="{{ (user?._id == m.emitter?._id) ? 'replies' : 'sent'}}" *ngFor="let m of userClickChat?.message; ">
-
+            
             <div style="height: 30px; width: 30px;display: inline-block;                      
             position: relative;
             overflow: hidden; ">
@@ -113,7 +113,10 @@
 
             </div>
             <p>{{m.text}}</p>
+           
           </li>
+         
+          {{mess()}}
         </ul>
 
       </div>

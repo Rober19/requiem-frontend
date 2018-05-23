@@ -20,7 +20,7 @@ export class ChatComponent implements OnInit {
   public receiveArr: Array<any>;
 
   public text: any;
-  private socket = io(data_global.socket);
+  private socket = io(data_global.url);
   public userClick: any;
   public userClickChat: any;
 
@@ -34,9 +34,7 @@ export class ChatComponent implements OnInit {
     this.userClick = {};
     this.socket.on('chaton', data => {
       if (data.receiver == this.user._id) {
-        this.GetMessage();
-        var objDiv = document.getElementById("chateo1");
-        objDiv.scrollTop = objDiv.scrollHeight;
+        this.GetMessage();        
       }
     });
   }
@@ -57,7 +55,7 @@ export class ChatComponent implements OnInit {
       let res: any = res1;
       this.followings = res.users
       this.userClick = res.users[0].followed
-      // this.GetMessage();
+      this.GetMessage();
 
     }, err => {
       console.log(err)
@@ -68,8 +66,7 @@ export class ChatComponent implements OnInit {
   public LoadChatbyUser(user) {
     this.userClick = user.followed
     this.GetMessage()
-    var objDiv = document.getElementById("chateo1");
-    objDiv.scrollTop = objDiv.scrollHeight;
+    
   }
 
   public createMessage() {
@@ -88,8 +85,7 @@ export class ChatComponent implements OnInit {
     }, err => {
       console.log(err)
     })
-    var objDiv = document.getElementById("chateo1");
-    objDiv.scrollTop = objDiv.scrollHeight;
+    
   }
 
   async GetMessage() {
@@ -106,10 +102,12 @@ export class ChatComponent implements OnInit {
       console.log(err)
     }
     )
+    
+  }
+
+  mess(){
     var objDiv = document.getElementById("chateo1");
     objDiv.scrollTop = objDiv.scrollHeight;
   }
-
-
 
 }
