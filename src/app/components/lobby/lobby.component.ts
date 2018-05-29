@@ -21,7 +21,7 @@ export class LobbyComponent {
   public UserPag: number;
   public current: number;
   public initial: number;
-   private socket = io(data_global.url);
+   private socket = io(data_global.url_socket);
 
   constructor(
     private _userService: userService,

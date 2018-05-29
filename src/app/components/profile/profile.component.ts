@@ -25,7 +25,7 @@ export class ProfileComponent implements OnInit {
   public filesToUpload: Array<File>;
   public recentPubs: Array<any>;
 
-  //socket = io('http://192.168.1.63:3000');
+  //private socket = io(data_global.url_socket);
   constructor(
     private _UploadService: UploadService,
     private _userService: userService,

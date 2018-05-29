@@ -1,7 +1,12 @@
+
+let urls = {
+  url1: 'http://192.168.1.63:3000',
+  url: 'https://backend-mean5-project.herokuapp.com',    
+};
+
 export var data_global = {
-  url1: 'http://192.168.1.63:3000/app',
-  url: 'https://backend-mean5-project.herokuapp.com/app',  
-  url2: "http://192.168.1.63:3000/app",  
+  url: `${urls.url}/app`,
+  url_socket: urls.url,
   loading_animation1: 'https://firebasestorage.googleapis.com/v0/b/rober-firebase.appspot.com/o/Requiem-project%2FServer_data%2Floading1.gif?alt=media&token=0e52e825-6109-46ad-a8cf-aee6a4a53bf7',
   loading_animation: 'https://firebasestorage.googleapis.com/v0/b/rober-firebase.appspot.com/o/Requiem-project%2FServer_data%2Floading.gif?alt=media&token=d38ae349-7842-4dd6-972c-119380050d92',
   admin_secret: 'givemethetoken',
@@ -16,3 +21,4 @@ export var data_global = {
   
   }
 }
+

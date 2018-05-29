@@ -21,7 +21,7 @@ export class ChatComponent implements OnInit {
   public input: any;
 
   public text: any;
-  private socket = io(data_global.url);
+  private socket = io(data_global.url_socket);
   public userClick: any;
   public userClickChat: any;
 
@@ -33,9 +33,9 @@ export class ChatComponent implements OnInit {
 
     this.user = data_global.UserData;
     this.userClick = {};
-    this.socket.on('chaton', data => {
+    this.socket.on('chaton', data => {      
       if (data.receiver == this.user._id) {
-        this.GetMessage();
+        this.GetMessage();        
       }
     });
   }
