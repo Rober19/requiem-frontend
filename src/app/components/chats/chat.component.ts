@@ -18,6 +18,7 @@ export class ChatComponent implements OnInit {
   public followings: Array<any>;
   public Chatpack: Array<any>;
   public receiveArr: Array<any>;
+  public input: any;
 
   public text: any;
   private socket = io(data_global.url);
@@ -34,19 +35,13 @@ export class ChatComponent implements OnInit {
     this.userClick = {};
     this.socket.on('chaton', data => {
       if (data.receiver == this.user._id) {
-        this.GetMessage();        
+        this.GetMessage();
       }
     });
   }
 
   ngOnInit() {
     this.followingList()
-
-
-  }
-
-  onChange() {
-
   }
 
   public followingList() {
@@ -55,7 +50,7 @@ export class ChatComponent implements OnInit {
       let res: any = res1;
       this.followings = res.users
       this.userClick = res.users[0].followed
-      this.GetMessage();
+      //this.GetMessage();
 
     }, err => {
       console.log(err)
@@ -66,7 +61,7 @@ export class ChatComponent implements OnInit {
   public LoadChatbyUser(user) {
     this.userClick = user.followed
     this.GetMessage()
-    
+
   }
 
   public createMessage() {
@@ -85,29 +80,26 @@ export class ChatComponent implements OnInit {
     }, err => {
       console.log(err)
     })
-    
+
   }
 
-  async GetMessage() {
+  GetMessage() {
     const data = {
       emitter: this.user._id,
       receiver: this.userClick._id,
     }
-
-
-    await this._userService.GetMessage(data).subscribe(res => {
+    this._userService.GetMessage(data).subscribe(res => {
       this.userClickChat = res
-
     }, err => {
       console.log(err)
     }
     )
-    
   }
 
-  mess(){
+  mess() {
     var objDiv = document.getElementById("chateo1");
     objDiv.scrollTop = objDiv.scrollHeight;
   }
+
 
 }
