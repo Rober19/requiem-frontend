@@ -19,7 +19,7 @@ export class ChatComponent implements OnInit {
   public Chatpack: Array<any>;
   public receiveArr: Array<any>;
   public input: any;
-
+ 
   public text: any;
   private socket = io(data_global.url_socket);
   public userClick: any;
