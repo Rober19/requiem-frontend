@@ -1,5 +1,4 @@
 import { Component, OnInit, ChangeDetectorRef } from '@angular/core'
-import { NgForm } from '@angular/forms';
 import { Router } from '@angular/router'
 import * as rober19_config from 'rober19-config/config';
 import { data_global } from '../../services/global'
@@ -8,6 +7,7 @@ import * as io from 'socket.io-client';
 import { User } from '../../models/user';
 import { Publication } from '../../models/publication';
 import { UploadService } from '../../services/upload.service';
+import * as sweetAlert from 'sweetalert';
 
 @Component({
   selector: 'Home',
@@ -115,9 +115,8 @@ export class HomeComponent implements OnInit {
   get_pubs(){
     this._userService.getPublications(data_global.UserData.sub ,'1').subscribe(data1 => {
       let data: any = data1;
-      let arr1 = this._userService.getPublications(data_global.UserData.sub, data.pages);
-      this.recentPubs = data.data;
-      
+      // let arr1 = this._userService.getPublications(data_global.UserData.sub, data.pages);
+      this.recentPubs = data.data;      
     },
       err => {
         console.log(err)
@@ -148,7 +147,9 @@ export class HomeComponent implements OnInit {
   onChange(event) {
     const files = <Array<File>>event.target.files;
     if (files[0].size > (5 * 1024 * 1024)) {
-      return window.alert(this.resMsg.limit_fileSize)
+      let size = Math.round((files[0].size/1024)/1024);
+      return swal(this.resMsg.limit_fileSize, `${size}MB <v> 5MB`, "error");
+      
     }
     try {
       this.loading = true;
@@ -168,7 +169,7 @@ export class HomeComponent implements OnInit {
         this.cdRef.detectChanges();
 
         if (res.status != 200) {
-          window.alert(JSON.stringify(res.status));
+          swal(JSON.stringify(res.status), "", "error");
           this.loading = false;
         } else {
 

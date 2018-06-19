@@ -1,6 +1,8 @@
 <body class="bg-light">
 
-  <div class="nav-scroller bg-white box-shadow">
+  
+
+  <div class="nav-scroller bg-white box-shadow bounceInLeft animated">
     <nav class="nav nav-underline">
       <a class="nav-link active" href="#">{{resMsg.summary}}</a>
       <a class="nav-link" href="#">
@@ -20,7 +22,7 @@
     </nav>
   </div>
 
-  <main role="main" class="container">
+  <main role="main" class="container bounceInRight animated">
 
     <div class="d-flex align-items-center p-3 my-3 text-white-50 rounded bg-danger box-shadow">
       <img class="mr-3" [src]="icons.logo_dog"
@@ -66,24 +68,25 @@
 
 
     <div class="row">
-
+      
       <div class="col-xs-12	col-sm-12	col-md-5 col-lg-4 col-xl-4">
         <div class="card md-row mb-4 box-shadow h-md-250">
 
 
           <div class="contain1">
-            <img id="profileImage" [src]="userData.image" [ngClass]="
+            <img id="profileImage"   [src]="userData.image" [ngClass]="
                   {                  
-                  'image2 card-img-top': loading,
-                  'image1 card-img-top': !loading,
-                  'card-img-top': 1==1
+                  'image2 card-img-top flash animated': loading,
+                  'image1 card-img-top flash animated': !loading,
+                  'flash animated card-img-top': 1==1
                   }">
             <div class="middle1" [ngStyle]="{'opacity': loading ? '1' : '' }">
               <div style="display: none">>
                 <input class="form-control-file" id="pic" style="display: none" type="file" (change)="onChange($event)" [attr.disabled]="loading ? 'disabled' : null">
               </div>
               <a class="navbar-brand d-flex align-self-start mr-3" id="item" onclick="document.getElementById('pic').click()" style="font-size: 15px; margin-top: 3px ; color:rgb(255, 255, 255); cursor: pointer">
-                <img *ngIf="loading" [src]="gif_url_image" style="height: 50px; widows: 50px; ">
+                <!-- <img *ngIf="loading" [src]="gif_url_image" style="height: 50px; widows: 50px; "> -->
+                <div class="cp-spinner cp-round" *ngIf="loading"></div>
                 <img *ngIf="!loading" class="d-flex align-self-start mr-3" src="https://image.flaticon.com/icons/svg/685/685686.svg" style="width: 30px;">
 
                 <b *ngIf="!loading" style="margin-left: -10px;text-shadow: 2px 2px 2px rgb(0, 0, 0);">Seleccionar_archivo</b>
@@ -150,10 +153,10 @@
 
               <div *ngFor="let pubs of recentPubs">
 
-                <div class="media text-muted pt-3">
+                <div class="media text-muted pt-3 ">
                   <div class="mr-2 rounded " id="box-mini">
-                    <div class="d-flex justify-content-center">
-                        <img data-src="{{userData.image}}"  id="mini-image" >
+                    <div class="d-flex justify-content-center flash animated">
+                        <img data-src="{{userData.image}}"   id="mini-image" >
                     </div>                    
                   </div>
 

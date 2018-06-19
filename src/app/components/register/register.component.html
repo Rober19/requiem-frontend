@@ -1,43 +1,80 @@
-<body class="">
-  <div class="d-flex justify-content-center">
-    <div class="col-lg-6 text-center " id="formreg">
+<body>
 
-      <form class="needs-validation" name="registerForm" #registerForm="ngForm" novalidate>
 
-        <div class="form-row">
 
-          <div class="col-md-4 mb-3">
-            <label for="validationCustom01">First name</label>
-            <input type="text" name="name" [ngClass]="{'form-control is-valid': name.valid, 'form-control is-invalid': !name.valid && name.touched, 'form-control': 1==1 }"
-              id="validationCustom01" #name="ngModel" [(ngModel)]="Model_user.name" placeholder="First name" required>
-            <div class="valid-feedback">
-              {{resMsg.validField_1}}
+
+  <div class="container bounceInLeft animated">
+    <div class="py-5 text-center">
+      <img class="d-block mx-auto mb-4" src="https://firebasestorage.googleapis.com/v0/b/rober-firebase.appspot.com/o/Requiem-project%2FServer_data%2Ftiny_african_wild_dog_copyx2_by_e_pona-d9022vd.png?alt=media&token=5f683513-41dd-46a4-a515-72b8d5bc92d8"
+        alt="" width="72" height="72">
+      <h2>{{resMsg.register}}</h2>
+      <p class="lead">{{resMsg.register_text1}}</p>
+    </div>
+
+    <div class="row">
+      <div class="col-md-4 order-md-2 mb-4">
+        <h4 class="d-flex justify-content-between align-items-center mb-3">
+          <span style="color: white">{{resMsg.cart_1}}</span>
+          <span class="badge badge-secondary badge-pill">{{resMsg.price}}</span>
+        </h4>
+        <ul class="list-group mb-3">
+          <li class="list-group-item d-flex justify-content-between lh-condensed">
+            <div>
+              <h6 class="my-0" style="color: black">Product name</h6>
+              <small class="text-muted">Brief description</small>
             </div>
-            <div class="invalid-feedback">
-              {{resMsg.invalidField_1}}
+            <span class="text-success">$free</span>
+          </li>
+          <li class="list-group-item d-flex justify-content-between lh-condensed">
+            <div>
+              <h6 class="my-0" style="color: black">Второй продукт</h6>
+              <small class="text-muted">Краткое описание
+              </small>
             </div>
-          </div>
+            <span class="text-success">$free</span>
+          </li>
+          <li class="list-group-item d-flex justify-content-between lh-condensed">
+            <div>
+              <h6 class="my-0" style="color: black">番目の項目</h6>
+              <small class="text-muted">簡単な説明
+              </small>
+            </div>
+            <span class="text-success">$free</span>
+          </li>
+          <li class="list-group-item d-flex justify-content-between bg-light">
+            <div class="text-success">
+              <h6 class="my-0" style="color: black">Promo code</h6>
+              <small>EXAMPLECODE</small>
+            </div>
+            <span class="text-success">$free</span>
+          </li>
+          <li style="color: black" class="list-group-item d-flex justify-content-between">
+            <span>Total (USD)</span>
+            <strong class="text-success">$0</strong>
+          </li>
+        </ul>
 
-          <div class="col-md-4 mb-3">
-            <label for="validationCustom02">Last name</label>
-            <input type="text" name="lastnm" [ngClass]="{'form-control is-valid': lastnm.valid, 'form-control is-invalid': !lastnm.valid && lastnm.touched, 'form-control': 1==1 }"
-              id="validationCustom02" #lastnm="ngModel" [(ngModel)]="Model_user.surname" placeholder="Last name" required>
-            <div class="valid-feedback">
-              {{resMsg.validField_1}}
-            </div>
-            <div class="invalid-feedback">
-              {{resMsg.invalidField_1}}
-            </div>
-          </div>
 
-          <div class="col-md-4 mb-3">
-            <label for="validationCustomUsername">Character</label>
-            <div class="input-group">
-              <div class="input-group-prepend">
-                <span class="input-group-text" id="inputGroupPrepend3">@</span>
+      </div>
+      <div class="col-md-8 order-md-1">
+        <form class="needs-validation" name="registerForm" #registerForm="ngForm" novalidate>
+
+          <div class="row">
+            <div class="col-md-6 mb-3">
+              <label for="validationCustom01">{{resMsg.name_1}}</label>
+              <input type="text" name="name" [ngClass]="{'form-control is-valid': name.valid, 'form-control is-invalid': !name.valid && name.touched, 'form-control': 1==1 }"
+                id="validationCustom01" #name="ngModel" [(ngModel)]="Model_user.name" placeholder="Jack" required>
+              <div class="valid-feedback">
+                {{resMsg.validField_1}}
               </div>
-              <input type="text" name="nicknm" #nicknm="ngModel" [(ngModel)]="Model_user.nick" [ngClass]="{'form-control is-valid': nicknm.valid, 'form-control is-invalid': !nicknm.valid && nicknm.touched, 'form-control': 1==1 }"
-                id="validationServerUsername" placeholder="Username" aria-describedby="inputGroupPrepend3" required>
+              <div class="invalid-feedback">
+                {{resMsg.invalidField_1}}
+              </div>
+            </div>
+            <div class="col-md-6 mb-3">
+              <label for="validationCustom02">{{resMsg.surname_1}}</label>
+              <input type="text" name="lastnm" [ngClass]="{'form-control is-valid': lastnm.valid, 'form-control is-invalid': !lastnm.valid && lastnm.touched, 'form-control': 1==1 }"
+                id="validationCustom02" #lastnm="ngModel" [(ngModel)]="Model_user.surname" placeholder="Frost" required>
               <div class="valid-feedback">
                 {{resMsg.validField_1}}
               </div>
@@ -47,12 +84,27 @@
             </div>
           </div>
 
-        </div>
-        <div class="form-row">
-          <div class="col-md-6 mb-3">
-            <label for="validationCustom03">Email</label>
+          <div class="mb-3">
+            <label for="validationCustomUsername">{{resMsg.username_1}}</label>
+            <div class="input-group">
+              <div class="input-group-prepend">
+                <span class="input-group-text" id="inputGroupPrepend3">@</span>
+              </div>
+              <input type="text" name="nicknm" #nicknm="ngModel" [(ngModel)]="Model_user.nick" [ngClass]="{'form-control is-valid': nicknm.valid, 'form-control is-invalid': !nicknm.valid && nicknm.touched, 'form-control': 1==1 }"
+                id="validationServerUsername" placeholder="@Der12Dutty" aria-describedby="inputGroupPrepend3" required>
+              <div class="valid-feedback">
+                {{resMsg.validField_1}}
+              </div>
+              <div class="invalid-feedback">
+                {{resMsg.invalidField_1}}
+              </div>
+            </div>
+          </div>
+
+          <div class="mb-3">
+            <label for="validationCustom03">{{resMsg.email_address_1}}</label>
             <input type="email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" name="email" class="form-control" [ngClass]="{'form-control is-valid': email.valid, 'form-control is-invalid': !email.valid && email.touched, 'form-control': 1==1 }"
-              id="validationCustom03" placeholder="email@email.dom" [(ngModel)]="Model_user.email" #email="ngModel" required>
+              id="validationCustom03" placeholder="email@dom.inic" [(ngModel)]="Model_user.email" #email="ngModel" required>
             <div class="valid-feedback">
               {{resMsg.validField_1}}
             </div>
@@ -60,37 +112,49 @@
               {{resMsg.invalidField_1}}
             </div>
           </div>
-          <div class="col-md-3 mb-3">
-            <label for="validationCustom04">Password</label>
+
+
+          <div class="mb-3">
+            <label for="validationCustom04">{{resMsg.password_1}}</label>
             <input type="password" [ngClass]="{'form-control is-valid': passwd.valid, 'form-control is-invalid': !passwd.valid && passwd.touched, 'form-control': 1==1 }"
-              id="validationCustom04" placeholder="password" name="passwd" #passwd="ngModel" [(ngModel)]="Model_user.password"
+              id="validationCustom04" placeholder="*********" name="passwd" #passwd="ngModel" [(ngModel)]="Model_user.password"
               required>
-            <div class="valid-feedback">
-              {{resMsg.validField_1}}
-            </div>
-            <div class="invalid-feedback">
-              {{resMsg.invalidField_1}}
-            </div>
+
+
           </div>
 
+
+          <hr class="mb-4">
+          <button [ngClass]="{'btn btn-primary btn-lg btn-block' : true }" type="button" (click)="onSubmit(registerForm)" [disabled]="!registerForm.valid">{{resMsg.register}}</button>
+
+        </form>
+
+        <div class="alert alert-success" *ngIf="validf" role="alert">
+          {{respMsg.data}}
         </div>
-        <br>
-        <button [ngClass]="{'btn btn-lg btn-primary': true }" type="button" (click)="onSubmit(registerForm)" [disabled]="!registerForm.valid">Sign Up</button>
+        <div class="alert alert-danger" *ngIf="errorf" role="alert">
+          {{respMsg.data}}
+        </div>
 
-        <!-- <button [ngClass]="{'btn btn-lg btn-success': true }" type="button" (click)="onSubmit(registerForm)" >%i'm a test%</button> -->
-
-      </form>
-      <br>
-      <div class="alert alert-success" *ngIf="validf" role="alert">
-        {{respMsg.data}}
-      </div>
-      <div class="alert alert-danger" *ngIf="errorf" role="alert">
-        {{respMsg.data}}
       </div>
     </div>
+
+    <footer class="my-5 pt-5 text-muted text-center text-small">
+      <p class="mb-1" style="color: white">&copy; 2017-2018 Requiem</p>
+      <ul class="list-inline">
+        <li class="list-inline-item">
+          <a href="/#">Privacy</a>
+        </li>
+        <li class="list-inline-item">
+          <a href="/#">Terms</a>
+        </li>
+        <li class="list-inline-item">
+          <a href="/#">Support</a>
+        </li>
+      </ul>
+    </footer>
   </div>
-
-
+  <br>
 
 
 

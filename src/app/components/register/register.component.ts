@@ -4,7 +4,7 @@ import { User } from '../../models/user';
 import { userService } from '../../services/user.service';
 import * as rober19_config from 'rober19-config/config';
 import { data_global } from '../../services/global'
-
+import * as sweetalert from 'sweetalert'
 
 @Component({
   selector: 'register',
@@ -63,16 +63,12 @@ export class RegisterComponent {
     this.errorf = false;
     //console.log(this.Model_user);
     this._userService.register(this.Model_user).subscribe(
-      res => {
-        //console.log(res);
-        this.respMsg = res;
+      res => {   
         form.reset();
-        this.validf = true;
+        swal(`${this.resMsg.RegisterOK}`, "", "success");
       },
-      err => {
-        // console.warn(err.error);
-        this.respMsg = err.error;
-        this.errorf = true;
+      err => {         
+        swal(`${this.resMsg.RegisterErr}`, "", "error");
       }
     );
   }

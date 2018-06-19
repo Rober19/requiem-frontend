@@ -6,6 +6,7 @@ import { Router, ActivatedRoute, Params } from '@angular/router';
 import { tokenKey } from '@angular/core/src/view/util';
 import { data_global } from '../../services/global'
 import * as $ from 'jquery';
+import * as sweetAlert from 'sweetalert';
 
 @Component({
   selector: 'login',
@@ -73,14 +74,14 @@ export class LoginComponent implements OnInit {
   }
 
   sendLogin() {
-    this.valid = false;
+
     this.userService.login(this.login_user).subscribe(
       res => {
 
         //'secret_token_summertime_sadness' 
         localStorage.setItem('user', JSON.stringify(res.data));
-         data_global.UserData = JSON.parse(localStorage.getItem('user'));
-         data_global.UserData.sub = res.data._id;
+        data_global.UserData = JSON.parse(localStorage.getItem('user'));
+        data_global.UserData.sub = res.data._id;
 
 
         this.userService.login(this.login_user, 'true').subscribe(
@@ -89,9 +90,9 @@ export class LoginComponent implements OnInit {
             element.click();
             //esta variable tendra los datos del usuario obtenido          
             this.tokenLogin = res.data;
-    
+
             //'secret_token_summertime_sadness' 
-            localStorage.setItem('identity', JSON.stringify(this.tokenLogin));            
+            localStorage.setItem('identity', JSON.stringify(this.tokenLogin));
             this._router.navigate(['/home']);
           },
           err => {
@@ -100,50 +101,34 @@ export class LoginComponent implements OnInit {
             setTimeout(() => {
               element.click();
               this.valid = true;
-            }, 500);        
-            console.warn(err.error.data);    
-            this.resServer = this.resMsg.userNotFound;           
-            
+            }, 500);
+            this.resServer = this.resMsg.userNotFound;
+            swal(this.resMsg.userNotFound, err.error.data, "error");
+          
           }
         )
-        
+
       },
       err => {
         this.valid = false;
         let element = document.getElementById("CloseButton") as any;
         setTimeout(() => {
           element.click();
+          this.resServer = this.resMsg.userNotFound;
           this.valid = true;
-        }, 500);        
-        console.warn(err.error.data);    
-        this.resServer = this.resMsg.userNotFound;
-       
+          if (err.error.data == null || undefined) { err.error.data = this.resMsg.serverErr }
+          swal(this.resMsg.userNotFound, err.error.data, "error");
+        }, 500);
+
         
+
+
       }
     )
   }
 
 
 
-  //aqui recibimos el token del usuario
-  // Token(){
-  //   this.userService.login(this.login_user, 'true').subscribe(
-  //     res => {
 
-  //       this.tokenLogin = res.data;
-
-  //       console.log(res);
-  //       //'secret_token_summertime_sadness'        
-  //       console.log(this.jwt.decodeToken(res.data));
-
-  //       localStorage.setItem('identity', JSON.stringify(this.tokenLogin));
-
-
-  //     },
-  //     err => {
-  //       console.warn(err.error.data);
-  //     }
-  //   )
-  // }
 
 }

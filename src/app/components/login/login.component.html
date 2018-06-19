@@ -1,17 +1,19 @@
-<body class="text-center">
+<body class="text-center container">
 
-  <form class="form-signin" name="loginForm" #loginForm="ngForm" novalidate>
+  <div class="auroral-northern"></div>
+
+  <form class="form-signin bounceInDown animated" name="loginForm" #loginForm="ngForm" novalidate>
     <img class="mb-4" src="https://image.ibb.co/j3jkdm/afaw.png" alt="" width="100">
 
-    
-    <label for="inputEmail" class="sr-only">{{resMsg.email_address}}</label>
+
+    <label for="inputEmail" class="sr-only">{{resMsg.email_address1}}</label>
     <input type="email" id="inputEmail" [ngClass]="{'form-control is-valid': email.valid, 'form-control is-invalid': !email.valid && email.touched, 'form-control': 1==1 }"
-      name="email" #email="ngModel" [(ngModel)]="login_user.email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" placeholder="{{resMsg.email_address}}"
+      name="email" #email="ngModel" [(ngModel)]="login_user.email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" placeholder="{{resMsg.email_address_1}}"
       required autofocus>
 
-    <label for="inputPassword" class="sr-only">{{resMsg.password}}</label>
+    <label for="inputPassword" class="sr-only">{{resMsg.password_1}}</label>
     <input type="password" id="inputPassword" class="form-control" name="passwd" #passwd="ngModel" [(ngModel)]="login_user.password"
-      placeholder="{{resMsg.password}}" required>
+      placeholder="{{resMsg.password_1}}" required>
 
     <div class="checkbox mb-3">
       <label id="textdown">
@@ -19,30 +21,45 @@
       </label>
     </div>
     <div class="">
-      <div *ngIf="valid" class="alert alert-danger" role="alert">
+      <div *ngIf="valid" class="alert alert-danger bounce animated" role="alert">
         {{resServer}}
       </div>
     </div>
     <button class="btn btn-lg btn-primary btn-block" (click)="sendLogin()" type="submit" data-toggle="modal" data-target="#Loading">{{resMsg.login}}</button>
 
-    <!-- Modal -->
-    <div class="modal fade" id="Loading" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true" data-keyboard="false" data-backdrop="static">
-      
-        <div class="modal-dialog modal-dialog-centered" role="document">
-            
 
-              <div class="modal-body" >
-                
-                <img src="{{gif_url_image}}" style="height: 50px; widows: 50px; ">
-                <button style="display: none" id="CloseButton" type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-            
-              </div>
-              
-            
-          </div>
-    </div>
+    <!-- Modal -->
 
     <p class="mt-5 mb-3 text-muted" id="textdown">&copy; 2017-2018</p>
+
   </form>
+
+  <div class="modal fade" id="Loading" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true"
+    data-keyboard="false" data-backdrop="static">
+
+    <div class="modal-dialog modal-dialog-centered" role="document">
+
+
+      <div class="modal-body">
+
+        <div class="spinner">
+          <div class="cube1"></div>
+          <div class="cube2"></div>
+        </div>
+
+        <button style="display: none" id="CloseButton" type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+
+      </div>
+
+
+    </div>
+  </div>
+
+
+  <br>
+
+
+
+
 
 </body>

@@ -40,10 +40,10 @@ export class TimelineComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.palos()
+    this.lobby_tabs()
     //this.get_Publication();
 
-    //this._router.navigateByUrl('/timeline?tab=lobby&pag=1');
+    this._router.navigateByUrl('/timeline?tab=lobby&pag=1');
   }  
 
   get_PublicationNOAUN(type?) {
@@ -94,7 +94,7 @@ export class TimelineComponent implements OnInit {
     }
   }
 
-  async palos() {
+  async lobby_tabs() {
 
     await this._route.queryParamMap.subscribe(data => {
       this.paramsQuery = data;

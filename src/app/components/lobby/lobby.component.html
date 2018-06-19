@@ -18,12 +18,12 @@
     </section>
 
     <div class="container">
-      <div class="row text-center">
+      <div class="row text-center ">
 
         <div class="col-lg-4" *ngFor="let i2 of UsersArr">
-          <div class="rounded-circle" id="box-mini">
-            <div class="d-flex justify-content-center">
-              <img data-src="{{i2.image}}" id="mini-image">
+          <div class="rounded-circle bounceInRight animated" id="box-mini">
+            <div class="d-flex justify-content-center flash animated">
+              <img  data-src="{{i2.image}}" id="mini-image">
             </div>
           </div>
           <h2 [routerLink]="['/profile/',i2._id]" href="">{{i2.nick}}</h2>

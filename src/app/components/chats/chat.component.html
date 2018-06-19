@@ -9,13 +9,13 @@
   <div id="frame">
 
     <div id="sidepanel">
-      <div id="profile">
+      <div id="profile" class="flash animated">
         <div class="wrap">
 
           <div class="row">
             <div class="col-md-2">
               <div class="rounded-circle" id="box-mini" style="margin-left: 4px">
-                <div class="d-flex justify-content-center">
+                <div class="d-flex justify-content-center ">
                   <img id="profile-img" [src]="user.image" id="mini-image" />
                 </div>
               </div>
@@ -37,7 +37,7 @@
       <div id="contacts">
 
         <ul>
-          <li class="contact" *ngFor="let f of followings" (click)="LoadChatbyUser(f)">
+          <li class="contact bounceInRight animated" *ngFor="let f of followings" (click)="LoadChatbyUser(f)">
             <div class="wrap">
 
               <div class="row">
@@ -45,8 +45,10 @@
                 <div class="col-sm-1 col-md-3">
 
                   <div class="rounded-circle" id="box-mini">
-                    <div class="d-flex justify-content-center">
-                      <img [src]="f.followed.image" id="mini-image">
+                    <div class="d-flex justify-content-center flash animated">
+                      <img
+                      src="{{f.followed.image}}"
+                      id="mini-image">
                     </div>
                   </div>
 
@@ -70,14 +72,14 @@
 
     <div class="content">
 
-      <div class="contact-profile">
-        <div class="rounded-circle" style="width: 45px;
+      <div class="contact-profile ">
+        <div class="rounded-circle flash animated" style="width: 45px;
         height: 45px;
         display: inline-block;             
         margin: 10px;
         overflow: hidden;
         ">
-          <div class="d-flex justify-content-center">
+          <div class="d-flex justify-content-center" >
             <img [src]="userClick.image" alt="" id="mini-image" style="height: 45px;" />
           </div>
         </div>
@@ -92,16 +94,16 @@
         </div>
       </div>
 
-      <div class="messages container" id="chateo1" style="overflow :auto;">
+      <div class="messages container " id="chateo1" style="overflow :auto;">
 
         <p *ngIf="userClickChat?.message.length == 0">Aún no tienes conversaciones con
           <b>{{userClick.nick}}</b>
         </p>
 
-        <ul>
-          <li class="{{ (user?._id == m.emitter?._id) ? 'replies' : 'sent'}}" *ngFor="let m of userClickChat?.message; ">
+        <ul class="">
+          <li class="{{ (user?._id == m.emitter?._id) ? 'replies bounceInRight animated' : 'sent bounceInRight animated'}}" *ngFor="let m of userClickChat?.message; ">
 
-            <div style="height: 30px; width: 30px;display: inline-block;                      
+            <div class="bounceInRight animated" style="height: 30px; width: 30px;display: inline-block;                      
             position: relative;
             overflow: hidden; ">
               <span class="d-flex justify-content-center">
@@ -124,13 +126,14 @@
       <div class="message-input">
         <div class="wrap">
 
-          <input type="text" [(ngModel)]="text" #t="ngModel" id="t" (keyup.enter)="createMessage()" placeholder="Write your message..." />
+          <input type="text" [(ngModel)]="text" #t="ngModel" id="t" (keyup.enter)="createMessage()" placeholder="Write your message..."
+          />
           <i class="fa fa-paperclip attachment" aria-hidden="true"></i>
-          <button  class="submit" (click)="createMessage()" >
+          <button class="submit" (click)="createMessage()">
             <i class="fa fa-paper-plane" aria-hidden="true"></i>
           </button>
 
-      
+
         </div>
       </div>
 
