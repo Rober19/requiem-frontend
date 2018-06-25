@@ -78,7 +78,7 @@ export class LoginComponent implements OnInit {
     this.userService.login(this.login_user).subscribe(
       res => {
 
-        //'secret_token_summertime_sadness' 
+        //'secret_token_summertime_sadness'         
         localStorage.setItem('user', JSON.stringify(res.data));
         data_global.UserData = JSON.parse(localStorage.getItem('user'));
         data_global.UserData.sub = res.data._id;
@@ -92,7 +92,7 @@ export class LoginComponent implements OnInit {
             this.tokenLogin = res.data;
 
             //'secret_token_summertime_sadness' 
-            localStorage.setItem('identity', JSON.stringify(this.tokenLogin));
+            localStorage.setItem('identity', JSON.stringify(this.tokenLogin));            
             this._router.navigate(['/home']);
           },
           err => {

@@ -8,6 +8,8 @@ import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http'
 import { AppComponent } from './app.component';
 
+import { Ng2IziToastModule } from 'ng2-izitoast';
+import { SweetAlert2Module } from '@toverux/ngx-sweetalert2';
 
 import { RegisterComponent } from './components/register/register.component';
 import { LoginComponent } from './components/login/login.component';
@@ -31,14 +33,16 @@ moment.locale('es');
     LobbyComponent,
     ProfileComponent,
     TimelineComponent,
-    ChatComponent
+    ChatComponent    
   ],
   imports: [
     BrowserModule,
     routing,
     FormsModule,
     HttpClientModule,
-    MomentModule
+    MomentModule,
+    Ng2IziToastModule,        
+    SweetAlert2Module.forRoot({})     
   ],
   providers: [
     appRoutingProviders

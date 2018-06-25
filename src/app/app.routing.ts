@@ -8,6 +8,7 @@ import { LobbyComponent } from './components/lobby/lobby.component';
 import { ProfileComponent } from './components/profile/profile.component';
 import { TimelineComponent } from './components/timeline/timeline.component';
 
+
 const appRoutes: Routes = [
   { path: '', component: LoginComponent },  
   { path: 'lobby', component: LobbyComponent },

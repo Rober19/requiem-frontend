@@ -1,29 +1,14 @@
-<body>
+<body class="bg-light">
 
-  <main role="main">
-
-    <section class="jumbotron text-center">
-      <div class="container">
-        <br>
-        <h1 class="jumbotron-heading"></h1>
-        <p class="lead text-muted">
-          <!-- aqui podria ir un texto -->
-
-        </p>
-        <p>
-
-        </p>
-
-      </div>
-    </section>
+ <br>  
 
     <div class="container">
       <div class="row text-center ">
 
         <div class="col-lg-4" *ngFor="let i2 of UsersArr">
-          <div class="rounded-circle bounceInRight animated" id="box-mini">
+          <div style="background-color: white"class="rounded-circle bounceInRight animated" id="box-mini">
             <div class="d-flex justify-content-center flash animated">
-              <img  data-src="{{i2.image}}" id="mini-image">
+              <img  data-src="{{i2.image}}" id="mini-image" >
             </div>
           </div>
           <h2 [routerLink]="['/profile/',i2._id]" href="">{{i2.nick}}</h2>
@@ -36,35 +21,7 @@
       </div>
     </div>
 
-    <div class="album py-5 bg-light" *ngIf="false">
-      <div class="container">
 
-        <div class="row">
-
-
-          <div class="col-md-4" *ngFor="let i1 of palo">
-
-            <div class="card mb-4 box-shadow">
-              <img class="card-img-top" src="http://blog.siliconstraits.vn/wp-content/uploads/2015/05/Internship-hiring-03.png" alt="Card image cap">
-              <div class="card-body">
-                <p class="card-text">Build, Build, Build, Build, Build</p>
-                <div class="d-flex justify-content-between align-items-center">
-                  <div class="btn-group">
-                    <button type="button" class="btn btn-sm btn-outline-secondary">View</button>
-                    <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>
-                  </div>
-                  <small class="text-muted">9 mins</small>
-                </div>
-              </div>
-            </div>
-
-          </div>
-
-
-        </div>
-
-      </div>
-    </div>
 
     <div class="d-flex justify-content-center">
       <ul class="pagination">
@@ -74,13 +31,13 @@
         'page-item': UserPag>1,
         'page-item disabled': current==5
         }">
-          <a class="page-link" (click)="prev5()">{{resMsg.paginate_prev}}</a>
+          <a class="page-link" (click)="prev5()" id="arrow"><</a>
         </li>
 
         <li [ngClass]="
         {                  
-        'page-item': UserPag>1,
-        'page-item active': UserPag==i1
+        'page-item': UserPag > 1,
+        'page-item active': UserPag == i1
         }" *ngFor="let i1 of UserPages; let con = index; let ind = index">
           <div *ngIf="con < current && con >= initial">
             <a class="page-link" [routerLink]="['/timeline']" [queryParams]="{ tab: 'lobby', pag: (con+1) }">{{con+1}}</a>
@@ -92,15 +49,15 @@
         <li [ngClass]="
         {                  
         'page-item': UserPages.length <= current,
-        'page-item disabled': UserPag==UserPages.length
+        'page-item disabled': contentCurrent == contentPage
         }">
-          <a class="page-link" (click)="current5()" >{{resMsg.paginate_next}}</a>
+          <a class="page-link" (click)="current5()"id="arrow" >></a>
         </li>
 
       </ul>
     </div>
 
-  </main>
+
 
   <footer class="text-muted">
     <div class="container">

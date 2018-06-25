@@ -4,6 +4,7 @@ import * as io from 'socket.io-client';
 import { userService } from '../../services/user.service';
 import { data_global } from '../../services/global';
 import { User } from '../../models/user';
+import { Ng2IzitoastService } from 'ng2-izitoast';
 
 @Component({
   selector: 'chat',
@@ -27,7 +28,8 @@ export class ChatComponent implements OnInit {
 
   constructor(
     private _userService: userService,
-    private cdRef: ChangeDetectorRef
+    private cdRef: ChangeDetectorRef,
+    private iziToast: Ng2IzitoastService
   ) {
     this.resMsg = data.resMsg;
 
@@ -53,7 +55,10 @@ export class ChatComponent implements OnInit {
       //this.GetMessage();
 
     }, err => {
-      console.log(err)
+      this.iziToast.error({
+        title: 'Error',
+        message: `${this.resMsg.serverErr}\n${err}`,
+      });
     })
 
   }
@@ -78,7 +83,10 @@ export class ChatComponent implements OnInit {
       this.socket.emit('chaton', data)
       this.GetMessage()
     }, err => {
-      console.log(err)
+      this.iziToast.error({
+        title: 'Error',
+        message: `${this.resMsg.serverErr}\n${err}`,
+      });
     })
 
   }
@@ -91,7 +99,10 @@ export class ChatComponent implements OnInit {
     this._userService.GetMessage(data).subscribe(res => {
       this.userClickChat = res
     }, err => {
-      console.log(err)
+      this.iziToast.error({
+        title: 'Error',
+        message: `${this.resMsg.serverErr}\n${err}`,
+      });
     }
     )
   }

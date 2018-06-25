@@ -46,9 +46,7 @@
 
                   <div class="rounded-circle" id="box-mini">
                     <div class="d-flex justify-content-center flash animated">
-                      <img
-                      src="{{f.followed.image}}"
-                      id="mini-image">
+                      <img src="{{f.followed.image}}" id="mini-image">
                     </div>
                   </div>
 
@@ -70,7 +68,7 @@
 
     </div>
 
-    <div class="content">
+    <div class="bd-highlight content">
 
       <div class="contact-profile ">
         <div class="rounded-circle flash animated" style="width: 45px;
@@ -79,12 +77,12 @@
         margin: 10px;
         overflow: hidden;
         ">
-          <div class="d-flex justify-content-center" >
+          <div class="d-flex justify-content-center">
             <img [src]="userClick.image" alt="" id="mini-image" style="height: 45px;" />
           </div>
         </div>
 
-        <div class="social-media">
+        <div class="social-media" style="margin-top: 30px;">
 
           <a class="container">
             <p>{{userClick.nick}}</p>
@@ -94,14 +92,15 @@
         </div>
       </div>
 
-      <div class="messages container " id="chateo1" style="overflow :auto;">
+      <div class="messages bounceInRight animated" id="chateo1">
+        <div style="margin: 10px">
+          <p *ngIf="userClickChat?.message.length == 0">
+            <b><> {{userClick.nick}} <></b>
+          </p>
+        </div>
 
-        <p *ngIf="userClickChat?.message.length == 0">Aún no tienes conversaciones con
-          <b>{{userClick.nick}}</b>
-        </p>
-
-        <ul class="">
-          <li class="{{ (user?._id == m.emitter?._id) ? 'replies bounceInRight animated' : 'sent bounceInRight animated'}}" *ngFor="let m of userClickChat?.message; ">
+        <ul>
+          <li class="{{ (user?._id == m.emitter?._id) ? 'replies' : 'sent'}}" *ngFor="let m of userClickChat?.message; ">
 
             <div class="bounceInRight animated" style="height: 30px; width: 30px;display: inline-block;                      
             position: relative;
@@ -114,7 +113,8 @@
                 float: left;" /> </span>
 
             </div>
-            <p>{{m.text}}</p>
+            <p>{{m.text}}
+              <br> </p>
 
           </li>
 

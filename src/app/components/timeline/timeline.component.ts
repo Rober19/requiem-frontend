@@ -6,6 +6,7 @@ import { userService } from '../../services/user.service';
 import { Router, ActivatedRoute, Params } from '@angular/router'
 
 import * as moment from 'moment';
+import { Ng2IzitoastService } from 'ng2-izitoast';
 
 @Component({
   selector: 'timeline',
@@ -30,7 +31,8 @@ export class TimelineComponent implements OnInit {
   constructor(
     private _route: ActivatedRoute,
     private _router: Router,
-    private _userService: userService
+    private _userService: userService,
+    private iziToast: Ng2IzitoastService
   ) {
     this.resMsg = rober19_config.resMsg;
     this.palo = [5, 34, 5, 2, 4, 3, 1];
@@ -44,6 +46,7 @@ export class TimelineComponent implements OnInit {
     //this.get_Publication();
 
     this._router.navigateByUrl('/timeline?tab=lobby&pag=1');
+    //this._router.navigateByUrl('/timeline?tab=chats');
   }  
 
   get_PublicationNOAUN(type?) {
@@ -89,7 +92,10 @@ export class TimelineComponent implements OnInit {
           console.log(data)
 
         }, err => {
-          console.log(err);
+          this.iziToast.error({
+            title: 'Error',
+            message: `${this.resMsg.serverErr}\n${err}`,
+          });
         });
     }
   }

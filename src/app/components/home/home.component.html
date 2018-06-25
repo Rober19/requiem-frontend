@@ -1,23 +1,23 @@
 <body class="bg-light">
 
-  
+
 
   <div class="nav-scroller bg-white box-shadow bounceInLeft animated">
     <nav class="nav nav-underline">
-      <a class="nav-link active" href="#">{{resMsg.summary}}</a>
-      <a class="nav-link" href="#">
+      <a class="nav-link active" href="/#">{{resMsg.summary}}</a>
+      <a class="nav-link" href="/#">
         {{resMsg.followers}}
         <span class="badge badge-pill bg-light align-text-bottom">{{Counters.followers}}</span>
       </a>
-      <a class="nav-link" href="#">
+      <a class="nav-link" href="/#">
         {{resMsg.following}}
         <span class="badge badge-pill bg-light align-text-bottom">{{Counters.following}}</span>
       </a>
-      <a class="nav-link" href="#">
+      <a class="nav-link" href="/#">
         {{resMsg.publications}}
         <span class="badge badge-pill bg-light align-text-bottom">{{Counters.publications}}</span>
       </a>
-      <a class="nav-link" href="#">Explore</a>
+      <a class="nav-link" href="/#">Explore</a>
 
     </nav>
   </div>
@@ -25,8 +25,7 @@
   <main role="main" class="container bounceInRight animated">
 
     <div class="d-flex align-items-center p-3 my-3 text-white-50 rounded bg-danger box-shadow">
-      <img class="mr-3" [src]="icons.logo_dog"
-        alt="" width="50" height="50">
+      <img class="mr-3" [src]="icons.logo_dog" alt="" width="50" height="50">
       <div class="lh-100">
         <h6 class="mb-0 text-white lh-100">Requiem</h6>
         <small>Since 2018</small>
@@ -67,14 +66,16 @@
 
 
 
+
     <div class="row">
-      
+   
+
       <div class="col-xs-12	col-sm-12	col-md-5 col-lg-4 col-xl-4">
         <div class="card md-row mb-4 box-shadow h-md-250">
 
 
           <div class="contain1">
-            <img id="profileImage"   [src]="userData.image" [ngClass]="
+            <img id="profileImage" [src]="userData.image" [ngClass]="
                   {                  
                   'image2 card-img-top flash animated': loading,
                   'image1 card-img-top flash animated': !loading,
@@ -86,7 +87,13 @@
               </div>
               <a class="navbar-brand d-flex align-self-start mr-3" id="item" onclick="document.getElementById('pic').click()" style="font-size: 15px; margin-top: 3px ; color:rgb(255, 255, 255); cursor: pointer">
                 <!-- <img *ngIf="loading" [src]="gif_url_image" style="height: 50px; widows: 50px; "> -->
-                <div class="cp-spinner cp-round" *ngIf="loading"></div>
+                <div style="margin-left: 20px" aling="center">
+                  <div class="d-flex justify-content-center spinner" *ngIf="loading">
+                    <div class="double-bounce1"></div>
+                    <div class="double-bounce2"></div>
+                  </div>
+                </div>
+
                 <img *ngIf="!loading" class="d-flex align-self-start mr-3" src="https://image.flaticon.com/icons/svg/685/685686.svg" style="width: 30px;">
 
                 <b *ngIf="!loading" style="margin-left: -10px;text-shadow: 2px 2px 2px rgb(0, 0, 0);">Seleccionar_archivo</b>
@@ -148,26 +155,26 @@
 
         <div class="card flex-md-row mb-4 box-shadow h-md-250">
           <div class="card-body d-flex flex-column ">
-           
-              <h6 class="border-bottom border-gray pb-2 mb-0">{{resMsg.recents}}</h6>
 
-              <div *ngFor="let pubs of recentPubs">
+            <h6 class="border-bottom border-gray pb-2 mb-0">{{resMsg.recents}}</h6>
 
-                <div class="media text-muted pt-3 ">
-                  <div class="mr-2 rounded " id="box-mini">
-                    <div class="d-flex justify-content-center flash animated">
-                        <img data-src="{{userData.image}}"   id="mini-image" >
-                    </div>                    
+            <div *ngFor="let pubs of recentPubs">
+
+              <div class="media text-muted pt-3 ">
+                <div class="mr-2 rounded " id="box-mini">
+                  <div class="d-flex justify-content-center flash animated">
+                    <img data-src="{{userData.image}}" id="mini-image">
                   </div>
-
-
-                  <p class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
-                    <strong class="d-block text-gray-dark">@{{userData.nick}}</strong>{{pubs.text}}</p>
                 </div>
+
+
+                <p class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
+                  <strong class="d-block text-gray-dark">@{{userData.nick}}</strong>{{pubs.text}}</p>
               </div>
+            </div>
 
 
-            
+
           </div>
         </div>
 

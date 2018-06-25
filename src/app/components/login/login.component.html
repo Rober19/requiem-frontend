@@ -15,11 +15,11 @@
     <input type="password" id="inputPassword" class="form-control" name="passwd" #passwd="ngModel" [(ngModel)]="login_user.password"
       placeholder="{{resMsg.password_1}}" required>
 
-    <div class="checkbox mb-3">
+    <!-- <div class="checkbox mb-3">
       <label id="textdown">
         <input type="checkbox" value="remember-me"> {{resMsg.remember}}
       </label>
-    </div>
+    </div> -->
     <div class="">
       <div *ngIf="valid" class="alert alert-danger bounce animated" role="alert">
         {{resServer}}
@@ -46,7 +46,7 @@
           <div class="cube1"></div>
           <div class="cube2"></div>
         </div>
-
+  
         <button style="display: none" id="CloseButton" type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
 
       </div>

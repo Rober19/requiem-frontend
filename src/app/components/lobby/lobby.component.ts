@@ -4,6 +4,9 @@ import * as io from 'socket.io-client';
 import { userService } from '../../services/user.service';
 import { data_global } from '../../services/global';
 import { ActivatedRoute, Router } from '@angular/router';
+import { Ng2IzitoastService } from 'ng2-izitoast';
+import { NUMBER_TYPE } from '@angular/compiler/src/output/output_ast';
+import { NumberValueAccessor } from '@angular/forms/src/directives';
 
 @Component({
   selector: 'lobby',
@@ -14,38 +17,46 @@ import { ActivatedRoute, Router } from '@angular/router';
 
 export class LobbyComponent {
 
-  public palo: any;
   public resMsg: any;
   public UsersArr: Array<any>;
   public UserPages: Array<any>;
   public UserPag: number;
+  public contentPage: number;
+  public contentCurrent: number = 1;
   public current: number;
   public initial: number;
-   private socket = io(data_global.url_socket);
+  private socket = io(data_global.url_socket);
 
   constructor(
     private _userService: userService,
     private _route: ActivatedRoute,
     private _router: Router,
+    private iziToast: Ng2IzitoastService
   ) {
     this.resMsg = rober19_config.resMsg;
     this.initial = 0;
     this.current = 5;
-    
+
   }
 
-  ngOnInit() {
-    this.palo = [1, 2, 3, 4];
+  ngOnInit() {   
     this.UserPages = [];
 
     console.log(`LOBBY ${this.resMsg.loaded}`)
 
     this._route.queryParams.subscribe(params => {
       this.UserPag = parseInt(params.pag);
+      console.log(params)
       this.user_Pages(params.pag)
-    })
+    },
+  err => {
+    this.iziToast.error({
+      title: 'Error',
+      message: `${this.resMsg.serverErr}\n${err}`,
+    });
+  })
 
-  
+
 
   }
 
@@ -53,25 +64,37 @@ export class LobbyComponent {
     this._userService.getUsers(page).subscribe(data1 => {
       let data: any = data1;
       console.log(data)
-      if (page > data.pages) return this._router.navigateByUrl('/timeline?tab=lobby&pag=1');;
+      if (page > data.pages) return this._router.navigateByUrl('/timeline?tab=lobby&pag=1');
       this.UserPages.length = data.pages;
       this.UsersArr = data.users;
-    })
+    },
+      err => {
+        this.iziToast.error({
+          title: 'Error',
+          message: `${this.resMsg.serverErr}\n${err}`,
+        });
+      })
   }
 
   current5() {
     if (this.UserPages.length >= this.current) {
       this.initial += 5;
       this.current += 5;
-      console.log(this.current)
+      this.contentCurrent++;
+      this.contentPage = this.UserPages.length / 5;
+      if (this.contentPage > (this.contentPage | 0)) {
+        this.contentPage++;
+      }
+
+      console.log(this.current, ` ${this.UserPages.length}`)
     }
   }
 
   prev5() {
-    if (this.current>=5) {
+    if (this.current >= 5) {
       this.initial -= 5;
       this.current -= 5;
-      console.log(this.current)
+      this.contentCurrent--; 
     }
   }
 

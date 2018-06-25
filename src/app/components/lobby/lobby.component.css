@@ -1,9 +1,22 @@
+body{
+  min-height: 100vh;  
+  min-width: 100%;
+  height: auto; 
+  margin: 0;
+}
+
+#arrow{
+  font-weight: 1000;
+  color:rgb(15, 87, 155)
+}
+
 #box-mini{
   width: 200px;
   height: 200px;
   display: inline-block;                      
   position: relative;
   overflow: hidden;
+  background-color: white
 }
 
 #mini-image{

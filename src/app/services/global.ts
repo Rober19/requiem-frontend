@@ -1,7 +1,7 @@
 
 let urls = {
   url1: 'http://192.168.1.63:3000',
-  url: 'https://backend-mean5-project.herokuapp.com',    
+  url: 'https://backend-mean5-project.herokuapp.com',
 };
 
 export var data_global = {
@@ -18,7 +18,7 @@ export var data_global = {
   icons: {
     folder: 'https://firebasestorage.googleapis.com/v0/b/rober-firebase.appspot.com/o/Requiem-project%2FServer_data%2F148945.svg?alt=media&token=3b38cab1-ef90-45e4-827a-7b42c150b8ed',
     logo_dog: 'https://firebasestorage.googleapis.com/v0/b/rober-firebase.appspot.com/o/Requiem-project%2FServer_data%2Ftiny_african_wild_dog_copyx2_by_e_pona-d9022vd.png?alt=media&token=5f683513-41dd-46a4-a515-72b8d5bc92d8'
-  
+
   }
 }
 

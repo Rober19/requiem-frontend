@@ -23,25 +23,21 @@ export class AppComponent implements DoCheck, OnInit {
   constructor(
     private _userService: userService,
     private _route: ActivatedRoute,
-    private _router: Router    
+    private _router: Router
   ) {
     this.title = 'app';
-    this.resMsg = data.resMsg;  
-    
+    this.resMsg = data.resMsg;
+
   }
 
 
   //onInit es para cuando se inicia el componente
   ngOnInit() {
-
-    
-    
-
-
     if (localStorage.getItem('identity') && data_global.UserData.sub == undefined) {
-  
-      data_global.UserData = JSON.parse(localStorage.getItem('user'));
-         data_global.UserData.sub = JSON.parse(localStorage.getItem('user'))._id;
+      let parseJ = JSON.parse(localStorage.getItem('user'));
+      data_global.UserData = parseJ;
+      data_global.UserData.sub = parseJ._id;      
+      ;
     } else {
       console.log('Nadie en Storage')
     }
@@ -62,7 +58,7 @@ export class AppComponent implements DoCheck, OnInit {
   logOut() {
     localStorage.clear();
     this.ident = null;
-    data_global.UserData.sub = undefined;      
+    data_global.UserData.sub = undefined;
     this._router.navigate(['/login']);
   }
 
