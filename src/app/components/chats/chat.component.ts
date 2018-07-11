@@ -20,7 +20,7 @@ export class ChatComponent implements OnInit {
   public Chatpack: Array<any>;
   public receiveArr: Array<any>;
   public input: any;
- 
+
   public text: any;
   private socket = io(data_global.url_socket);
   public userClick: any;
@@ -35,9 +35,9 @@ export class ChatComponent implements OnInit {
 
     this.user = data_global.UserData;
     this.userClick = {};
-    this.socket.on('chaton', data => {      
+    this.socket.on('chaton', data => {
       if (data.receiver == this.user._id) {
-        this.GetMessage();        
+        this.GetMessage();
       }
     });
   }
@@ -71,23 +71,27 @@ export class ChatComponent implements OnInit {
 
   public createMessage() {
 
-    const data = {
-      emitter: this.user._id,
-      receiver: this.userClick._id,
-      text: this.text
-    }
+    if (this.text == undefined) return null;
+      const data = {
+        emitter: this.user._id,
+        receiver: this.userClick._id,
+        text: this.text
+      }
 
-    this._userService.createMessage(data).subscribe(res => {
-      console.log(res)
-      this.text = null
-      this.socket.emit('chaton', data)
-      this.GetMessage()
-    }, err => {
-      this.iziToast.error({
-        title: 'Error',
-        message: `${this.resMsg.serverErr}\n${err}`,
-      });
-    })
+      this._userService.createMessage(data).subscribe(res => {
+        console.log(res)
+        this.text = null
+        this.socket.emit('chaton', data)
+        this.GetMessage()
+      }, err => {
+        this.iziToast.error({
+          title: 'Error',
+          message: `${this.resMsg.serverErr}\n${err}`,
+        });
+      })
+    
+
+
 
   }
 
