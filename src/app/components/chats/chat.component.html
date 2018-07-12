@@ -95,14 +95,20 @@
       <div class="messages bounceInRight animated" id="chateo1">
         <div style="margin: 10px">
           <p *ngIf="userClickChat?.message.length == 0">
-            <b><> {{userClick.nick}} <></b>
+            <b>
+              <> {{userClick.nick}}
+                <>
+            </b>
           </p>
         </div>
 
-        <ul>
+        <ul class="bounceInRight animated">
           <li class="{{ (user?._id == m.emitter?._id) ? 'replies' : 'sent'}}" *ngFor="let m of userClickChat?.message; ">
 
-            <div class="bounceInRight animated" style="height: 30px; width: 30px;display: inline-block;                      
+            <div style="
+            height: 30px;
+            width: 30px;
+            display: inline-block;
             position: relative;
             overflow: hidden; ">
               <span class="d-flex justify-content-center">
