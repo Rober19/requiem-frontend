@@ -20,7 +20,7 @@ export class ProfileComponent implements OnInit {
   public userData: any;
   public Publication: any;
   public resMsg: any;
-  public userCounters: any;
+  public userCounters: Array<any>;
   public upt_button: boolean;
   public filesToUpload: Array<File>;
   public recentPubs: Array<any>;
@@ -32,9 +32,35 @@ export class ProfileComponent implements OnInit {
     private _router: Router,
     private ActiveRoute: ActivatedRoute
   ) {
-    this.userCounters = {
 
+    this.resMsg = rober19_config.resMsg;
+    this.userData = new User(
+      '',
+      '',
+      '',
+      '',
+      '',
+      '',
+      '',
+      '',
+      '',
+    )
+    this.Publication = new Publication(
+      '',
+      '',
+      '',
+      '',
+      ''
+    );
+
+  }
+
+  ngOnInit() {
+
+    if (!localStorage.getItem('identity')) {
+      return this._router.navigate(['/login']);
     }
+
     this.ActiveRoute.params.subscribe(params => {
       this._userService.getUser(params.id).subscribe(
         data1 => {
@@ -42,7 +68,7 @@ export class ProfileComponent implements OnInit {
           this.userData = data.data.data;
 
           // Un usuario no se puede seguir así mismo, por lo tanto se válida eso.
-          if ( !(this.userData._id == JSON.parse(localStorage.getItem('user'))._id) ) {
+          if (!(this.userData._id == JSON.parse(localStorage.getItem('user'))._id)) {
 
             // Saber si el usuario en sesión sigue al usuario del perfil abierto
             this._userService.isFollow(this.userData._id).subscribe(res => {
@@ -72,39 +98,6 @@ export class ProfileComponent implements OnInit {
         }
       )
     });
-    this.resMsg = rober19_config.resMsg;
-    this.userData = new User(
-      '',
-      '',
-      '',
-      '',
-      '',
-      '',
-      '',
-      '',
-      '',
-    )
-    this.Publication = new Publication(
-      '',
-      '',
-      '',
-      '',
-      ''
-    );
-
-  }
-
-  ngOnInit() {
-
-    if (!localStorage.getItem('identity')) {
-
-      return this._router.navigate(['/lobby']);
-
-    } else {
-
-
-
-    }
 
 
   }
