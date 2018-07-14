@@ -110,7 +110,7 @@ export class ProfileComponent implements OnInit {
 
 
   post_Publication() {
-    this.Publication.text = 'holaa';
+    //this.Publication.text = 'holaa';
     this._userService.publication(this.Publication).subscribe(
       data => {
         console.log(data);
