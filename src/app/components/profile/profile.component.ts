@@ -102,11 +102,11 @@ export class ProfileComponent implements OnInit {
 
   }
 
-  fileChangeEventNOUSAR(fileInput: any) {
+  // fileChangeEventNOUSAR(fileInput: any) {
 
-    this.filesToUpload = <Array<File>>fileInput.target.files;
-    console.log(this.filesToUpload);
-  }
+  //   this.filesToUpload = <Array<File>>fileInput.target.files;
+  //   console.log(this.filesToUpload);
+  // }
 
 
   post_Publication() {
