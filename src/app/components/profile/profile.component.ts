@@ -61,43 +61,6 @@ export class ProfileComponent implements OnInit {
       return this._router.navigate(['/login']);
     }
 
-    this.ActiveRoute.params.subscribe(params => {
-      this._userService.getUser(params.id).subscribe(
-        data1 => {
-          let data: any = data1;
-          this.userData = data.data.data;
-
-          // Un usuario no se puede seguir así mismo, por lo tanto se válida eso.
-          if (!(this.userData._id == JSON.parse(localStorage.getItem('user'))._id)) {
-
-            // Saber si el usuario en sesión sigue al usuario del perfil abierto
-            this._userService.isFollow(this.userData._id).subscribe(res => {
-
-              const btnFollow = document.getElementById('btnFollow')
-              btnFollow.innerHTML = '<button class="btn btn-danger text-right" (click)="UnFollow()" >Dejar de seguir</button>'
-              btnFollow.addEventListener('click', this.UnFollow.bind(this));
-
-            }, err => {
-              const btnUnFollow = document.getElementById('btnFollow')
-              btnUnFollow.innerHTML = '<button class="btn btn-success text-right" (click)="Follow()" >Seguir</button>'
-              btnUnFollow.addEventListener('click', this.Follow.bind(this));
-            })
-
-          }
-
-
-          this.get_pubs(data.data.data._id);
-          this._userService.getCounters(data.data.data._id).subscribe(data => {
-            this.userCounters = data;
-            console.log(this.userCounters)
-          })
-        },
-        err => {
-          console.log(err.error);
-          console.log('abre el ojo')
-        }
-      )
-    });
 
 
   }
@@ -173,6 +136,47 @@ export class ProfileComponent implements OnInit {
     }, err => {
       console.log(err)
     })
+  }
+
+  validButtonFollow() {
+    this.ActiveRoute.params.subscribe(params => {
+      this._userService.getUser(params.id).subscribe(
+        data1 => {
+          let data: any = data1;
+          this.userData = data.data.data;
+
+          // Un usuario no se puede seguir así mismo, por lo tanto se válida eso.
+          if (!(this.userData._id == JSON.parse(localStorage.getItem('user'))._id)) {
+
+            // Saber si el usuario en sesión sigue al usuario del perfil abierto
+            this._userService.isFollow(this.userData._id).subscribe(res => {
+
+              const btnFollow = document.getElementById('btnFollow')
+              btnFollow.innerHTML = '<button class="btn btn-danger text-right" (click)="UnFollow()" >Dejar de seguir</button>'
+              btnFollow.addEventListener('click', this.UnFollow.bind(this));
+
+            }, err => {
+              const btnUnFollow = document.getElementById('btnFollow')
+              btnUnFollow.innerHTML = '<button class="btn btn-success text-right" (click)="Follow()" >Seguir</button>'
+              btnUnFollow.addEventListener('click', this.Follow.bind(this));
+            })
+
+          }
+
+
+          this.get_pubs(data.data.data._id);
+          this._userService.getCounters(data.data.data._id).subscribe(data => {
+            this.userCounters = data;
+            console.log(this.userCounters)
+          })
+        },
+        err => {
+          console.log(err.error);
+          console.log('abre el ojo')
+        }
+      )
+    });
+
   }
 
 }
