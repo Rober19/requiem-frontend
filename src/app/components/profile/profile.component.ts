@@ -33,6 +33,10 @@ export class ProfileComponent implements OnInit {
     private ActiveRoute: ActivatedRoute
   ) {
 
+    if (localStorage.getItem('identity')) {
+     this.validButtonFollow();
+    }
+
     this.resMsg = rober19_config.resMsg;
     this.userData = new User(
       '',
