@@ -19,7 +19,7 @@ export class ProfileComponent implements OnInit {
 
   public userData: any;
   public Publication: any;
-  public resMsg: any;
+  public resMsg: Array<any>;
   public userCounters: Array<any>;
   public upt_button: boolean;
   public filesToUpload: Array<File>;
@@ -32,10 +32,6 @@ export class ProfileComponent implements OnInit {
     private _router: Router,
     private ActiveRoute: ActivatedRoute
   ) {
-
-    if (localStorage.getItem('identity')) {
-     this.validButtonFollow();
-    }
 
     this.resMsg = rober19_config.resMsg;
     this.userData = new User(
@@ -56,7 +52,11 @@ export class ProfileComponent implements OnInit {
       '',
       ''
     );
-
+    
+    if (localStorage.getItem('identity')) {
+      this.validButtonFollow();
+     }
+ 
   }
 
   ngOnInit() {
