@@ -39,7 +39,7 @@
     "ng2-izitoast": "^2.0.0",
     "npm": "^5.8.0",
     "popper.js": "^1.12.9",
-    "rober19-config": "^1.2.4",
+    "rober19-config": "^1.2.5",
     "rxjs": "^5.5.6",
     "socket.io-client": "^2.0.4",
     "spin": "0.0.1",

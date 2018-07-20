@@ -19,8 +19,8 @@ export class ProfileComponent implements OnInit {
 
   public userData: any;
   public Publication: any;
-  public resMsg: Array<any>;
-  public userCounters: Array<any>;
+  public resMsg: any;
+  public userCounters: any;
   public upt_button: boolean;
   public filesToUpload: Array<File>;
   public recentPubs: Array<any>;
@@ -33,7 +33,6 @@ export class ProfileComponent implements OnInit {
     private ActiveRoute: ActivatedRoute
   ) {
 
-    this.resMsg = rober19_config.resMsg;
     this.userData = new User(
       '',
       '',
@@ -52,11 +51,16 @@ export class ProfileComponent implements OnInit {
       '',
       ''
     );
-    
+    this.resMsg = rober19_config.resMsg;
+    this.userCounters = {};
+
+    console.log(this.userData)
+    console.log(this.resMsg)
+
     if (localStorage.getItem('identity')) {
       this.validButtonFollow();
-     }
- 
+    }
+
   }
 
   ngOnInit() {
@@ -145,8 +149,8 @@ export class ProfileComponent implements OnInit {
   validButtonFollow() {
     this.ActiveRoute.params.subscribe(params => {
       this._userService.getUser(params.id).subscribe(
-        data1 => {
-          let data: any = data1;
+        async data1 => {
+          let data: any = await data1;
           this.userData = data.data.data;
 
           // Un usuario no se puede seguir así mismo, por lo tanto se válida eso.
@@ -169,8 +173,8 @@ export class ProfileComponent implements OnInit {
 
 
           this.get_pubs(data.data.data._id);
-          this._userService.getCounters(data.data.data._id).subscribe(data => {
-            this.userCounters = data;
+          this._userService.getCounters(data.data.data._id).subscribe(async data => {
+            this.userCounters = await data;
             console.log(this.userCounters)
           })
         },
