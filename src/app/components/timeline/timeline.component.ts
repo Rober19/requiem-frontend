@@ -42,6 +42,10 @@ export class TimelineComponent implements OnInit {
   }
 
   ngOnInit() {
+    if (!localStorage.getItem('identity')) {
+      return this._router.navigate(['/login']);
+    }
+    
     this.lobby_tabs()
     //this.get_Publication();
 
