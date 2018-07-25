@@ -46,9 +46,7 @@ export class TimelineComponent implements OnInit {
       return this._router.navigate(['/login']);
     
     }
-
     this.lobby_tabs()
-    //this.get_Publication();
 
     this._router.navigateByUrl('/timeline?tab=lobby&pag=1');
     //this._router.navigateByUrl('/timeline?tab=chats');
