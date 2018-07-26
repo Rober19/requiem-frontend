@@ -54,9 +54,6 @@ export class ProfileComponent implements OnInit {
     this.resMsg = rober19_config.resMsg;
     this.userCounters = {};
 
-    console.log(this.userData)
-    console.log(this.resMsg)
-
     if (localStorage.getItem('identity')) {
       this.validButtonFollow();
     }
@@ -68,9 +65,6 @@ export class ProfileComponent implements OnInit {
     if (!localStorage.getItem('identity')) {
       return this._router.navigate(['/login']);
     }
-
-
-
   }
 
   // fileChangeEventNOUSAR(fileInput: any) {
