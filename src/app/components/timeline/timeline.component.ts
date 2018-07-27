@@ -64,7 +64,7 @@ export class TimelineComponent implements OnInit {
         break;
     }
 
-    console.log(this.DefaultIndex)
+    //console.log(this.DefaultIndex)
 
     if (this.DefaultIndex >= 1) {
 
@@ -92,7 +92,7 @@ export class TimelineComponent implements OnInit {
             r.created_at = moment.unix(Number(r.created_at)).format("YYYY-MM-DD HH:mm");
           })
 
-          console.log(data)
+          //console.log(data)
 
         }, err => {
           this.iziToast.error({

@@ -79,7 +79,7 @@ export class ChatComponent implements OnInit {
       }
 
       this._userService.createMessage(data).subscribe(res => {
-        console.log(res)
+        //console.log(res)
         this.text = null
         this.socket.emit('chaton', data)
         this.GetMessage()
