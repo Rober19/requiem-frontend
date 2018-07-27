@@ -94,7 +94,7 @@ export class ProfileComponent implements OnInit {
       });
   }
 
-  get_pubs(userId, ) {
+  get_pubs(userId) {
     this._userService.getPublications(userId, '1').subscribe(data1 => {
       let data: any = data1;
       let arr1 = this._userService.getPublications(userId, data.pages);
