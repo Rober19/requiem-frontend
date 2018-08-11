@@ -16,8 +16,8 @@ import * as io from 'socket.io-client';
 export class AppComponent implements DoCheck, OnInit {
   public title: string;
   public ident;
-  public resMsg: any;
-
+  public resMsg: any; 
+  private socket = io(data_global.url_socket);
   //socket = io('http://192.168.1.63:3000');
 
   constructor(
@@ -27,7 +27,7 @@ export class AppComponent implements DoCheck, OnInit {
   ) {
     this.title = 'app';
     this.resMsg = data.resMsg;
-
+    
   }
 
 
@@ -37,7 +37,13 @@ export class AppComponent implements DoCheck, OnInit {
       let parseJ = JSON.parse(localStorage.getItem('user'));
       data_global.UserData = parseJ;
       data_global.UserData.sub = parseJ._id;      
-      ;
+      this.socket.on('chaton', data => {
+        if (data.receiver == data_global.UserData.sub) {
+          window.alert('llegó un mensaje')
+          console.log('habla')
+        }
+      });
+
     } else {
       console.log('Nadie en Storage')
     }
