@@ -4,6 +4,7 @@ import { userService } from './services/user.service';
 import { data_global } from './services/global';
 import * as data from 'rober19-config/config';
 import * as io from 'socket.io-client';
+import { Ng2IzitoastService } from 'ng2-izitoast';
 
 // Nofitication Push Modules //
 
@@ -23,7 +24,8 @@ export class AppComponent implements DoCheck, OnInit {
   constructor(
     private _userService: userService,
     private _route: ActivatedRoute,
-    private _router: Router
+    private _router: Router,
+    private iziToast: Ng2IzitoastService
   ) {
     this.title = 'app';
     this.resMsg = data.resMsg;
@@ -39,8 +41,29 @@ export class AppComponent implements DoCheck, OnInit {
       data_global.UserData.sub = parseJ._id;      
       this.socket.on('chaton', data => {
         if (data.receiver == data_global.UserData.sub) {
-          window.alert('llegó un mensaje')
-          console.log('habla')
+   
+          console.log(data)          
+          this.iziToast.show({
+            id: 'haduken',
+            theme: 'dark',
+            icon: 'icon-contacts',
+            title: `Message`,
+            message: 'Ha Llegado un mensaje',
+            position: 'bottomCenter',
+            transitionIn: 'flipInX',
+            transitionOut: 'flipOutX',
+            progressBarColor: 'rgb(0, 255, 184)',
+            image: data_global.UserData.image,
+            imageWidth: 70,
+            layout: 2,
+            onClosing: function () {
+              console.info('onClosing');
+            },
+            onClosed: function (instance, toast, closedBy) {
+              console.info('Closed | closedBy: ' + closedBy);
+            },
+            iconColor: 'rgb(0, 255, 184)'
+          });
         }
       });
 
