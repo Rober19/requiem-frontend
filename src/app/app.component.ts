@@ -57,10 +57,10 @@ export class AppComponent implements DoCheck, OnInit {
             imageWidth: 70,
             layout: 2,
             onClosing: function () {
-              console.info('onClosing');
+              //console.info('onClosing');
             },
             onClosed: function (instance, toast, closedBy) {
-              console.info('Closed | closedBy: ' + closedBy);
+              //console.info('Closed | closedBy: ' + closedBy);
             },
             iconColor: 'rgb(0, 255, 184)'
           });
