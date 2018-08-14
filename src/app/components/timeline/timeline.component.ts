@@ -48,8 +48,8 @@ export class TimelineComponent implements OnInit {
     }
     this.lobby_tabs()
 
-    this._router.navigateByUrl('/timeline?tab=lobby&pag=1');
-    //this._router.navigateByUrl('/timeline?tab=chats');
+    //this._router.navigateByUrl('/timeline?tab=lobby&pag=1');
+    this._router.navigateByUrl('/timeline?tab=chats');
   }  
 
   get_PublicationNOAUN(type?) {

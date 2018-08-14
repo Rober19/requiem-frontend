@@ -36,7 +36,7 @@ export class ChatComponent implements OnInit {
     this.user = data_global.UserData;
     this.userClick = {};
     this.socket.on('chaton', data => {
-      if (data.receiver == this.user._id) {
+      if (data.receiver == this.user._id) {      
         this.GetMessage();
       }
     });
