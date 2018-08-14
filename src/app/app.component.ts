@@ -53,19 +53,20 @@ export class AppComponent implements DoCheck, OnInit, AfterViewInit {
       data_global.UserData = parseJ;
       data_global.UserData.sub = parseJ._id;
 
-      let params: any;
-      this._route.queryParams
-        .subscribe(async res => {
-          params = await res;
-        })
+      // let params: any;
+      // this._route.queryParams
+      //   .subscribe(async res => {
+      //     params = await res;
+      //   })
              
       this.socket.on('chaton', data => {
         if (data.receiver == data_global.UserData.sub) {
           console.log(data)
-          console.log(params)
-          if (params.tab != 'chats') {
+          /*Probar en incognito esta funcion cuando se vaya a validar, no funcionó la ultima vez*/
+          //console.log(params)
+          //if (params.tab != 'chats') {
             this.notificationMsg(data);
-          }
+          //}
         }
       });
 
