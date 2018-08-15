@@ -4,6 +4,7 @@ import { userService } from './services/user.service';
 import { data_global } from './services/global';
 import * as data from 'rober19-config/config';
 import * as io from 'socket.io-client';
+import * as iziToast from 'izitoast';
 import { Ng2IzitoastService } from 'ng2-izitoast';
 
 // Nofitication Push Modules //
@@ -18,6 +19,7 @@ export class AppComponent implements DoCheck, OnInit, AfterViewInit {
   public title: string;
   public ident;
   public resMsg: any;
+  private izi: any = iziToast
   private socket = io(data_global.url_socket);
   //socket = io('http://192.168.1.63:3000');
 
@@ -25,11 +27,10 @@ export class AppComponent implements DoCheck, OnInit, AfterViewInit {
     private _userService: userService,
     private _route: ActivatedRoute,
     private _router: Router,
-    private iziToast: Ng2IzitoastService
   ) {
     this.title = 'app';
     this.resMsg = data.resMsg;
-
+    //this.izi = iziToast.default;
   }
 
 
@@ -58,24 +59,18 @@ export class AppComponent implements DoCheck, OnInit, AfterViewInit {
       //   .subscribe(async res => {
       //     params = await res;
       //   })
-             
+
       this.socket.on('chaton', data => {
+        console.log({ recep: data.receiver, yo: data_global.UserData.sub, data })
         if (data.receiver == data_global.UserData.sub) {
           console.log(data)
           /*Probar en incognito esta funcion cuando se vaya a validar, no funcionó la ultima vez*/
           //console.log(params)
           //if (params.tab != 'chats') {
-            this.notificationMsg(data);
+          this.notificationMsg(data);
           //}
         }
       });
-
-
-
-
-
-
-
 
     } else {
       console.log('Nadie en Storage')
@@ -91,10 +86,11 @@ export class AppComponent implements DoCheck, OnInit, AfterViewInit {
   }
 
   notificationMsg(data) {
-    this.iziToast.show({
+    this.izi.show({
       id: 'haduken',
       theme: 'light',
       icon: 'icon-contacts',
+      displayMode: 2,
       title: `${data.eData.nick}`,
       message: `${data.text}`,
       position: 'topCenter',
@@ -104,12 +100,17 @@ export class AppComponent implements DoCheck, OnInit, AfterViewInit {
       image: data.eData.image,
       imageWidth: 70,
       layout: 2,
-      onClosing: function () {
-        //console.info('onClosing');
-      },
-      onClosed: function (instance, toast, closedBy) {
-        //console.info('Closed | closedBy: ' + closedBy);
-      },
+      buttons: [
+        ['<button>Ver</button>', () => {
+          this._router.navigate(['/timeline']);      
+        }]
+      ],
+      // onClosing: function () {
+      //   console.info('onClosing');
+      // },
+      // onClosed: function (instance, toast, closedBy) {
+      //   console.info('Closed | closedBy: ' + closedBy);
+      // },
       iconColor: 'rgb(0, 255, 184)'
     });
   }

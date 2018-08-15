@@ -52,7 +52,7 @@ export class ChatComponent implements OnInit {
       let res: any = res1;
       this.followings = res.users
       this.userClick = res.users[0].followed
-      //this.GetMessage();
+      this.GetMessage();
 
     }, err => {
       this.iziToast.error({
@@ -66,7 +66,6 @@ export class ChatComponent implements OnInit {
   public LoadChatbyUser(user) {
     this.userClick = user.followed
     this.GetMessage()
-
   }
 
   public createMessage() {
