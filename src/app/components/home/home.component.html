@@ -4,20 +4,20 @@
 
   <div class="nav-scroller bg-white box-shadow bounceInLeft animated">
     <nav class="nav nav-underline">
-      <a class="nav-link active" >{{resMsg.summary}}</a>
-      <a class="nav-link" >
+      <a class="nav-link active">{{resMsg.summary}}</a>
+      <a class="nav-link">
         {{resMsg.followers}}
         <span class="badge badge-pill bg-light align-text-bottom">{{Counters.followers}}</span>
       </a>
-      <a class="nav-link" >
+      <a class="nav-link">
         {{resMsg.following}}
         <span class="badge badge-pill bg-light align-text-bottom">{{Counters.following}}</span>
       </a>
-      <a class="nav-link" >
+      <a class="nav-link">
         {{resMsg.publications}}
         <span class="badge badge-pill bg-light align-text-bottom">{{Counters.publications}}</span>
       </a>
-      <a class="nav-link" >Explore</a>
+      <a class="nav-link">Explore</a>
 
     </nav>
   </div>
@@ -42,7 +42,9 @@
               <a class="text-dark" href="#">Featured post</a>
             </h3>
             <div class="mb-1 text-muted">Nov 12</div>
-            <p class="card-text mb-auto">This is a wider card with supporting text below as a natural lead-in to additional content.</p>
+            <p class="card-text mb-auto">This is a wider card with supporting text below as a natural lead-in to additional
+              content.
+            </p>
             <a href="#">Continue reading</a>
           </div>
         </div>
@@ -56,7 +58,9 @@
               <a class="text-dark" href="#">Post title</a>
             </h3>
             <div class="mb-1 text-muted">Nov 11</div>
-            <p class="card-text mb-auto">This is a wider card with supporting text below as a natural lead-in to additional content.</p>
+            <p class="card-text mb-auto">This is a wider card with supporting text below as a natural lead-in to additional
+              content.
+            </p>
             <a href="#">Continue reading</a>
           </div>
         </div>
@@ -68,19 +72,21 @@
 
 
     <div class="row">
-   
+
 
       <div class="col-xs-12	col-sm-12	col-md-5 col-lg-4 col-xl-4">
         <div class="card md-row mb-4 box-shadow h-md-250">
 
 
           <div class="contain1">
-            <img id="profileImage" [src]="userData.image" [ngClass]="
+
+            <img id="profileImage" [src]="userData.image" (error)="setDefaultPic()" [ngClass]="
                   {                  
                   'image2 card-img-top flash animated': loading,
                   'image1 card-img-top flash animated': !loading,
                   'flash animated card-img-top': 1==1
                   }">
+
             <div class="middle1" [ngStyle]="{'opacity': loading ? '1' : '' }">
               <div style="display: none">>
                 <input class="form-control-file" id="pic" style="display: none" type="file" (change)="onChange($event)" [attr.disabled]="loading ? 'disabled' : null">
@@ -114,6 +120,25 @@
             <button [ngClass]="{'btn btn-outline-danger btn-sm': true }" type="button" (click)="logOut()">{{resMsg.sign_out}}</button>
           </div>
         </div>
+
+        <form *ngIf="adminLogged" #authForm="ngForm" (ngSubmit)="auth(authForm)" novalidate>
+          <div class="card-body">
+
+            <h6 class="border-bottom border-gray pb-2 mb-0">Auth</h6>           
+            <input ngModel name="auth"  type="password" class="form-control mb-2" id="auth" placeholder="Password" style="resize: none">
+            
+
+            <div class="row">
+
+              <div class="col-xs-6 col-sm-6	col-md-6 col-lg-6 col-xl-6 col-12">              
+                  <button class="btn btn-success text-right">Añadir</button>
+               
+              </div>
+            </div>
+
+          </div>
+        </form>
+
       </div>
 
       <div class="col-xs-12 col-sm-12	col-md-7 col-lg-8 col-xl-8">
@@ -131,7 +156,9 @@
                 <div class="col-xs-6 col-sm-6	col-md-6 col-lg-6 col-xl-6 col-12">
 
                   <input class="form-control-file" id="pic" style="display: none" type="file" (change)="onChange($event)">
-                  <a class="navbar-brand d-flex align-self-start mr-3" id="item" onclick="document.getElementById('pic').click()" style="font-size: 15px; margin-top: 3px ; color:#EBBA16; cursor: pointer">
+                  <a class="navbar-brand d-flex align-self-start mr-3" id="item" 
+                  onclick="document.getElementById('pic').click()" style="font-size: 15px; margin-top: 3px ; color:#EBBA16; cursor: pointer">
+
                     <img class="d-flex align-self-start mr-3" [src]="icons.folder" style="width: 22px;">
                     <b style="margin-left: -10px">Seleccionar archivos</b>
                   </a>
@@ -140,8 +167,7 @@
                 <div class="col-xs-6 col-sm-6	col-md-6 col-lg-6 col-xl-6 col-12">
 
                   <div class="text-right">
-                    <button class="btn btn-success text-right">Añadir</button>
-                    <button class="btn btn-primary text-right" (click)="testSocket()">socket</button>
+                    <button class="btn btn-success text-right">Añadir</button>                  
                   </div>
 
                 </div>

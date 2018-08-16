@@ -113,6 +113,7 @@ export class ChatComponent implements OnInit {
   mess() {
     var objDiv = document.getElementById("chateo1");
     objDiv.scrollTop = objDiv.scrollHeight;
+    //console.log('scroll down')
   }
 
 

@@ -16,7 +16,9 @@
             <div class="col-md-2">
               <div class="rounded-circle" id="box-mini" style="margin-left: 4px">
                 <div class="d-flex justify-content-center ">
-                  <img id="profile-img" [src]="user.image" id="mini-image" />
+                  <img id="profile-img" [src]="user.image" id="mini-image" 
+                  onError="this.src='https://firebasestorage.googleapis.com/v0/b/rober-firebase.appspot.com/o/Requiem-project%2FProfile-image%2Fdefault-user.png?alt=media&token=ba901b72-bbc0-44de-a897-cda79e6552a5';"
+                  />
                 </div>
               </div>
             </div>
@@ -46,7 +48,8 @@
 
                   <div class="rounded-circle" id="box-mini">
                     <div class="d-flex justify-content-center flash animated">
-                      <img src="{{f.followed.image}}" id="mini-image">
+                      <img src="{{f.followed.image}}" id="mini-image"
+                      onError="this.src='https://firebasestorage.googleapis.com/v0/b/rober-firebase.appspot.com/o/Requiem-project%2FProfile-image%2Fdefault-user.png?alt=media&token=ba901b72-bbc0-44de-a897-cda79e6552a5';">
                     </div>
                   </div>
 
@@ -78,7 +81,9 @@
         overflow: hidden;
         ">
           <div class="d-flex justify-content-center">
-            <img [src]="userClick.image" alt="" id="mini-image" style="height: 45px;" />
+            <img [src]="userClick.image" alt="" id="mini-image" style="height: 45px;" 
+            onError="this.src='https://firebasestorage.googleapis.com/v0/b/rober-firebase.appspot.com/o/Requiem-project%2FProfile-image%2Fdefault-user.png?alt=media&token=ba901b72-bbc0-44de-a897-cda79e6552a5';"
+            />
           </div>
         </div>
 
@@ -116,7 +121,7 @@
                 height: 30px;
                 display:block;
                 margin:auto;
-                float: left;" /> </span>
+                float: left;" onError="this.src='https://firebasestorage.googleapis.com/v0/b/rober-firebase.appspot.com/o/Requiem-project%2FProfile-image%2Fdefault-user.png?alt=media&token=ba901b72-bbc0-44de-a897-cda79e6552a5';"/> </span>
 
             </div>
             <p>{{m.text}}

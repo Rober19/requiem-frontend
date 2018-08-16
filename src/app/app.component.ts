@@ -19,7 +19,9 @@ export class AppComponent implements DoCheck, OnInit, AfterViewInit {
   public title: string;
   public ident;
   public resMsg: any;
-  private izi: any = iziToast
+  //iziToast npm for JS
+  private izi: any = iziToast;
+
   private socket = io(data_global.url_socket);
   //socket = io('http://192.168.1.63:3000');
 
@@ -31,6 +33,19 @@ export class AppComponent implements DoCheck, OnInit, AfterViewInit {
     this.title = 'app';
     this.resMsg = data.resMsg;
     //this.izi = iziToast.default;
+
+    this.socket.on('chaton', data => {
+      //console.log({ recep: data.receiver, yo: data_global.UserData.sub, data })
+      if (data.receiver == data_global.UserData.sub) {
+        console.log(data)
+        /*Probar en incognito esta funcion cuando se vaya a validar, no funcionó la ultima vez*/
+        //console.log(params)
+        //if (params.tab != 'chats') {
+        this.notificationMsg(data);
+        //}
+      }
+    });
+
   }
 
 
@@ -49,10 +64,10 @@ export class AppComponent implements DoCheck, OnInit, AfterViewInit {
   ngAfterViewInit() {
 
     if (localStorage.getItem('identity') && data_global.UserData.sub == undefined) {
-      let parseJ = JSON.parse(localStorage.getItem('user'));
-
-      data_global.UserData = parseJ;
+      let parseJ = JSON.parse(localStorage.getItem('user')); data_global.UserData = parseJ;
       data_global.UserData.sub = parseJ._id;
+
+
 
       // let params: any;
       // this._route.queryParams
@@ -60,17 +75,7 @@ export class AppComponent implements DoCheck, OnInit, AfterViewInit {
       //     params = await res;
       //   })
 
-      this.socket.on('chaton', data => {
-        console.log({ recep: data.receiver, yo: data_global.UserData.sub, data })
-        if (data.receiver == data_global.UserData.sub) {
-          console.log(data)
-          /*Probar en incognito esta funcion cuando se vaya a validar, no funcionó la ultima vez*/
-          //console.log(params)
-          //if (params.tab != 'chats') {
-          this.notificationMsg(data);
-          //}
-        }
-      });
+
 
     } else {
       console.log('Nadie en Storage')
@@ -102,7 +107,7 @@ export class AppComponent implements DoCheck, OnInit, AfterViewInit {
       layout: 2,
       buttons: [
         ['<button>Ver</button>', () => {
-          this._router.navigate(['/timeline']);      
+          this._router.navigate(['/timeline']);
         }]
       ],
       // onClosing: function () {

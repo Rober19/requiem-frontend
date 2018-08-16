@@ -11,7 +11,7 @@ import { TimelineComponent } from './components/timeline/timeline.component';
 
 const appRoutes: Routes = [
   { path: '', component: LoginComponent },  
-  { path: 'lobby', component: LobbyComponent },
+ // { path: 'lobby', component: LobbyComponent },
   { path: 'home', component: HomeComponent },
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent },

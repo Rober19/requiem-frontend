@@ -8,7 +8,7 @@
         <div class="col-lg-4" *ngFor="let i2 of UsersArr">
           <div style="background-color: white"class="rounded-circle bounceInRight animated" id="box-mini">
             <div class="d-flex justify-content-center flash animated">
-              <img  data-src="{{i2.image}}" id="mini-image" >
+              <img  data-src="{{i2.image}}" id="mini-image" onError="this.src='https://firebasestorage.googleapis.com/v0/b/rober-firebase.appspot.com/o/Requiem-project%2FProfile-image%2Fdefault-user.png?alt=media&token=ba901b72-bbc0-44de-a897-cda79e6552a5';" >
             </div>
           </div>
           <h2 [routerLink]="['/profile/',i2._id]" href="">{{i2.nick}}</h2>

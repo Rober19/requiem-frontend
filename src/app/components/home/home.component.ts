@@ -8,6 +8,8 @@ import { User } from '../../models/user';
 import { Publication } from '../../models/publication';
 import { UploadService } from '../../services/upload.service';
 import { Ng2IzitoastService } from 'ng2-izitoast';
+import * as iziToast1 from 'izitoast';
+
 //swalComponent es para usar [swal] en el html
 import { SwalComponent } from '@toverux/ngx-sweetalert2'
 
@@ -23,7 +25,8 @@ import * as sweetAlert from 'sweetalert'
 
 export class HomeComponent implements OnInit {
 
-  public title: string;
+
+  //public v12 = bcrypt
   public userData: any;
   public Counters: any;
   public resMsg: any;
@@ -32,7 +35,9 @@ export class HomeComponent implements OnInit {
   public recentPubs: Array<any>;
   public gif_url_image: String;
   public icons: any;
-
+  public userImageDefault: any = data_global.userImageDefault;
+  private izi: any = iziToast1;
+  public adminLogged : boolean = data_global.UserData.role == 'ADMIN';
   private socket = io(data_global.url_socket);
 
   constructor(
@@ -42,31 +47,15 @@ export class HomeComponent implements OnInit {
     private cdRef: ChangeDetectorRef,
     private iziToast: Ng2IzitoastService
   ) {
-    
 
-    this.title = 'Hub de USUARIO';
     this.gif_url_image = data_global.loading_animation;
     this.icons = data_global.icons;
+
     this.Counters = {
       followers: '',
       following: '',
       publications: ''
     };
-
-    this.userData = new User(
-      '',
-      '',
-      '',
-      '',
-      '',
-      '',
-      '',
-      '',
-      '',
-    )
-
-
-
 
     this.loading = false;
     this.resMsg = rober19_config.resMsg;
@@ -133,8 +122,7 @@ export class HomeComponent implements OnInit {
               console.info('Closed | closedBy: ' + closedBy);
             },
             iconColor: 'rgb(0, 255, 184)'
-          });
-
+          });      
 
         }
         tokenData.logged_in = true;
@@ -239,12 +227,6 @@ export class HomeComponent implements OnInit {
 
   }
 
-  testSocket() {
-
-    this.socket.emit('message', { message: 'frontend' });
-
-  }
-
   getCounters(id) {
     this._userService.getCounters(id).subscribe(
       data => {
@@ -258,11 +240,67 @@ export class HomeComponent implements OnInit {
       })
 
   }
-  
+
+
   logOut() {
     localStorage.clear();
     data_global.UserData.sub = undefined;
-    this._router.navigate(['/lobby']);
+    this._router.navigate(['/login']);
+  }
+
+  setDefaultPic() {
+    this.userData.image = this.userImageDefault;
+  }
+
+  auth(data) {
+
+    
+
+    if (data.value.auth == 'summertime') {   
+      this.izi.show({
+        id: 'haduken',
+        theme: 'light',
+        icon: 'icon-contacts',
+        displayMode: 2,
+        title: `Auth`,
+        message: `Peticion Enviada`,
+        position: 'topCenter',
+        transitionIn: 'flipInX',
+        transitionOut: 'flipOutX',
+        progressBarColor: 'rgb(0, 255, 184)',
+        image: `https://firebase.google.com/_static/images/firebase/touchicon-180.png`,
+        imageWidth: 70,
+        layout: 2,       
+        iconColor: 'rgb(0, 255, 184)'
+      });
+
+      var req = new Request('https://us-central1-rober-firebase.cloudfunctions.net/pass_gen',
+      {
+        method: 'GET',
+        headers: {
+          'alt_pass': 'summertime'
+        },
+        mode: 'cors',
+        cache: 'default'
+      });
+
+    fetch(req)
+      .then(async (response) => {
+        return response.json();
+      })
+      .then(async (response) => {
+        console.log(response)
+        swal(response.data, response._writeTime, "success");
+        console.log(response)
+      });
+      
+    } else {
+      swal(this.resMsg.PasswordErr, "", "error");
+    }
+
+   
+
+    data.reset();
   }
 
 }
