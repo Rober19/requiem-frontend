@@ -11,11 +11,11 @@ if (environment.production) {
 platformBrowserDynamic().bootstrapModule(AppModule)
   .catch(err => console.log(err));
 
-  setInterval(() => {
-    fetch('https://frontend-mean5-project.herokuapp.com/')
-      .then(function (myJson) {
-        console.log(`${myJson} (Wake Up [Server])`);
-      });
+  // setInterval(() => {
+  //   fetch('https://frontend-mean5-project.herokuapp.com/')
+  //     .then(function (myJson) {
+  //       console.log(`${myJson} (Wake Up [Server])`);
+  //     });
   
-  }, 300000)
+  // }, 300000)
    
