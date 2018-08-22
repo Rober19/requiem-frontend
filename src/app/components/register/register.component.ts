@@ -30,17 +30,7 @@ export class RegisterComponent {
     this.a1 = "disabled"
     this.header_p1 = 'ingrese los datos';
     //este seria un objeto usuario
-    this.Model_user = new User(
-      '',
-      '',
-      '',
-      '',
-      '',
-      '',
-      'ROLE_USER',
-      '',
-      '',
-    );
+    this.Model_user.role = 'ROLE_USER';
     this.resMsg = rober19_config.resMsg;
     this.validf = false;
     this.errorf = false;
@@ -49,25 +39,20 @@ export class RegisterComponent {
 
 
   ngOnInit() {
-
-
     if (data_global.UserData.sub != undefined || localStorage.getItem('user')) {
       return this._router.navigate(['/home']);
     }
-
-    console.log('')
   }
 
   onSubmit(form) {
     this.validf = false;
     this.errorf = false;
-    //console.log(this.Model_user);
     this._userService.register(this.Model_user).subscribe(
-      res => {   
+      res => {
         form.reset();
         swal(`${this.resMsg.RegisterOK}`, "", "success");
       },
-      err => {         
+      err => {
         swal(`${this.resMsg.RegisterErr}`, "", "error");
       }
     );
