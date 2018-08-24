@@ -28,12 +28,21 @@ export class RegisterComponent {
     private _userService: userService
   ) {
     this.a1 = "disabled"
-    this.header_p1 = 'ingrese los datos';
-    //este seria un objeto usuario
-    this.Model_user.role = 'ROLE_USER';
+    this.header_p1 = 'ingrese los datos';      
     this.resMsg = rober19_config.resMsg;
     this.validf = false;
     this.errorf = false;
+    this.Model_user = new User(
+      '',
+      '',
+      '',
+      '',
+      '',
+      '',
+      '',
+      '',
+      '',
+    );
   }
 
 
@@ -45,6 +54,7 @@ export class RegisterComponent {
   }
 
   onSubmit(form) {
+    this.Model_user.role = 'ROLE_USER';
     this.validf = false;
     this.errorf = false;
     this._userService.register(this.Model_user).subscribe(

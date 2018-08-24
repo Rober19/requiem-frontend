@@ -20,7 +20,7 @@ export class LoginComponent implements OnInit {
   //creamos una variable vacia para instanciar CONFIG
   public config: any;
   //creamos una variable de tipo USER sin darle los valores
-  public login_user: User;
+  public login_user: any;
   //esta variable guardará el usuario logueado
   public identLogin;
   //esta variable guardará el token del usuario
@@ -40,7 +40,19 @@ export class LoginComponent implements OnInit {
   ) {
     this.title = 'ingrese su indetificacion';
     //esta es la instancia de CONFIG
-    this.gif_url_image = data_global.loading_animation;  
+    this.gif_url_image = data_global.loading_animation;
+    //aqui está el objeto Usuario, del cual solo usaremos su EMAIL y PASSWORD
+    this.login_user = new User(
+      '',
+      '',
+      '',
+      '',
+      '',
+      '',
+      '',
+      '',
+      '',
+    );
 
     this.valid = false;
     this.resMsg = rober19_config.resMsg;
