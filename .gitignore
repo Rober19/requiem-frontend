@@ -3,7 +3,6 @@
 package-lock.json
 
 # compiled output
-/dist
 /dist-server
 /tmp
 /out-tsc
