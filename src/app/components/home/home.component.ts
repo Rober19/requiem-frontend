@@ -37,7 +37,7 @@ export class HomeComponent implements OnInit {
   public icons: any;
   public userImageDefault: any = data_global.userImageDefault;
   private izi: any = iziToast1;
-  public adminLogged : boolean = data_global.UserData.role == 'ADMIN';
+  public adminLogged: boolean = data_global.UserData.role == 'ADMIN';
   private socket = io(data_global.url_socket);
 
   constructor(
@@ -122,7 +122,7 @@ export class HomeComponent implements OnInit {
               console.info('Closed | closedBy: ' + closedBy);
             },
             iconColor: 'rgb(0, 255, 184)'
-          });      
+          });
 
         }
         tokenData.logged_in = true;
@@ -253,52 +253,65 @@ export class HomeComponent implements OnInit {
   }
 
   auth(data) {
-
-    
-
-    if (data.value.auth == 'summertime') {   
-      this.izi.show({
-        id: 'haduken',
-        theme: 'light',
-        icon: 'icon-contacts',
-        displayMode: 2,
-        title: `Auth`,
-        message: `Peticion Enviada`,
-        position: 'topCenter',
-        transitionIn: 'flipInX',
-        transitionOut: 'flipOutX',
-        progressBarColor: 'rgb(0, 255, 184)',
-        image: `https://firebase.google.com/_static/images/firebase/touchicon-180.png`,
-        imageWidth: 70,
-        layout: 2,       
-        iconColor: 'rgb(0, 255, 184)'
-      });
-
-      var req = new Request('https://us-central1-rober-firebase.cloudfunctions.net/pass_gen',
+  
+    const key = data.value.auth;
+  
+    const req = new Request(`${data_global.url_firebase_functions}/key_to_credential_compare`,
       {
         method: 'GET',
         headers: {
-          'alt_pass': 'summertime'
+          'pre_key': `${key}`
         },
         mode: 'cors',
         cache: 'default'
       });
+    //toast = request
+    this.izi.show({
+      id: 'haduken',
+      theme: 'light',
+      icon: 'icon-contacts',
+      displayMode: 2,
+      title: `Auth`,
+      message: `Peticion Enviada`,
+      position: 'topCenter',
+      transitionIn: 'flipInX',
+      transitionOut: 'flipOutX',
+      progressBarColor: 'rgb(0, 255, 184)',
+      image: `https://firebase.google.com/_static/images/firebase/touchicon-180.png`,
+      imageWidth: 70,
+      layout: 2,
+      iconColor: 'rgb(0, 255, 184)'
+    });
 
     fetch(req)
       .then(async (response) => {
         return response.json();
       })
       .then(async (response) => {
-        console.log(response)
-        swal(response.data, response._writeTime, "success");
-        console.log(response)
-      });
-      
-    } else {
-      swal(this.resMsg.PasswordErr, "", "error");
-    }
+        if (response) {
+          const req = new Request(`${data_global.url_firebase_functions}/pass_gen`,
+            {
+              method: 'GET',
+              headers: {
+                'alt_pass': `${key}`
+              },
+              mode: 'cors',
+              cache: 'default'
+            });
 
-   
+          fetch(req)
+            .then(async (response) => {
+              return response.json();
+            })
+            .then(async (response) => { 
+              console.log(response)          
+              swal(response.data, response._writeTime, "success");              
+            });
+
+        } else {
+          swal(this.resMsg.PasswordErr, "", "error");
+        }       
+      });
 
     data.reset();
   }

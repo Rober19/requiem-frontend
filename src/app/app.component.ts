@@ -62,7 +62,7 @@ export class AppComponent implements DoCheck, OnInit, AfterViewInit {
   }
 
   ngAfterViewInit() {
-
+    this.activate();
     if (localStorage.getItem('identity') && data_global.UserData.sub == undefined) {
       let parseJ = JSON.parse(localStorage.getItem('user')); data_global.UserData = parseJ;
       data_global.UserData.sub = parseJ._id;
@@ -125,6 +125,23 @@ export class AppComponent implements DoCheck, OnInit, AfterViewInit {
     this.ident = null;
     data_global.UserData.sub = undefined;
     this._router.navigate(['/login']);
+  }
+
+  activate() {
+    const req = new Request(`${data_global.url}/get`,
+    {
+      method: 'GET',    
+      mode: 'cors',
+      cache: 'default'
+    });
+
+  fetch(req)
+    .then(async (response) => {
+      return response.json();
+    })
+    .then(async (response) => { 
+                        
+    });
   }
 
 }
