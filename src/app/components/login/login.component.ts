@@ -69,11 +69,7 @@ export class LoginComponent implements OnInit {
 
         console.log(`LOGIN ${this.resMsg.loaded}`);
     }
-
-    test() {
-
-    }
-
+    
     sendLogin() {
 
         this.userService.login(this.login_user).subscribe(

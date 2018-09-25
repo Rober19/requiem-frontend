@@ -1,15 +1,13 @@
-
-
 <nav class="site-header sticky-top " *ngIf="ident" id="navbarHeader">
   <div class="container d-flex flex-md-row justify-content-between ">
     <a class="py-2" routerLink="/home">
       <img src="https://image.ibb.co/j3jkdm/afaw.png" alt="" width="20">
     </a>
-    <a class="py-2 d-md-inline-block" routerLink="/timeline">{{resMsg.timeline}}</a>    
-    
-    <div class="py-2 d-md-inline-block">      
+    <a class="py-2 d-md-inline-block" routerLink="/timeline">{{resMsg.timeline}}</a>
+
+    <div class="py-2 d-md-inline-block">
       <button [ngClass]="{'btn btn-outline-danger btn-sm': true }" type="button" (click)="logOut()">{{resMsg.sign_out}}</button>
-    </div> 
+    </div>
 
   </div>
 </nav>
@@ -24,10 +22,35 @@
 
 
 
-<!-- aquuiii -->
+    <!-- aquuiii -->
   </div>
 </nav>
 
-<router-outlet ></router-outlet>
+<button style="display: none" type="button" id="OpenButton" data-toggle="modal" data-target="#Loading2"></button>
+
+
+
+<div class="modal" id="Loading2" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true"
+  data-keyboard="false" data-backdrop="static">
+
+  <div class="modal-dialog modal-dialog-centered" role="document">
+
+
+    <div class="modal-body">
+
+      <div class="spinner">
+        <div class="cube1"></div>
+        <div class="cube2"></div>
+      </div>
+
+      <button style="display: none" id="CloseButton2" type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+
+    </div>
+
+
+  </div>
+</div>
+
+<router-outlet></router-outlet>
 
 <div id="foo"></div>

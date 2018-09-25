@@ -34,24 +34,28 @@ export class AppComponent implements DoCheck, OnInit, AfterViewInit {
     this.resMsg = data.resMsg;
     //this.izi = iziToast.default;
 
-    this.socket.on('chaton', data => {
-      //console.log({ recep: data.receiver, yo: data_global.UserData.sub, data })
-      if (data.receiver == data_global.UserData.sub) {
-        console.log(data)
-        /*Probar en incognito esta funcion cuando se vaya a validar, no funcionó la ultima vez*/
-        //console.log(params)
-        //if (params.tab != 'chats') {
-        this.notificationMsg(data);
-        //}
-      }
-    });
+    try {
+      this.socket.on('chaton', data => {        
+        //console.log({ recep: data.receiver, yo: data_global.UserData.sub, data })
+        if (data.receiver == data_global.UserData.sub) {
+          console.log(data)
+          /*Probar en incognito esta funcion cuando se vaya a validar, no funcionó la ultima vez*/
+          //console.log(params)
+          //if (params.tab != 'chats') {
+          this.notificationMsg(data);
+          //}
+        }
+      });
 
+    } catch (error) {
+      console.warn('Socket error')
+    }
   }
 
 
   //onInit es para cuando se inicia el componente
   ngOnInit() {
-
+    this.activate();
 
 
     // this.socket.emit('-myNotification', { option: 'like', message: 'hola' })
@@ -62,7 +66,7 @@ export class AppComponent implements DoCheck, OnInit, AfterViewInit {
   }
 
   ngAfterViewInit() {
-    this.activate();
+
     if (localStorage.getItem('identity') && data_global.UserData.sub == undefined) {
       let parseJ = JSON.parse(localStorage.getItem('user')); data_global.UserData = parseJ;
       data_global.UserData.sub = parseJ._id;
@@ -128,20 +132,26 @@ export class AppComponent implements DoCheck, OnInit, AfterViewInit {
   }
 
   activate() {
-    const req = new Request(`${data_global.url}/get`,
-    {
-      method: 'GET',    
-      mode: 'cors',
-      cache: 'default'
-    });
+    const open = document.getElementById("OpenButton") as any;
+    open.click();
+    console.log(1)
 
-  fetch(req)
-    .then(async (response) => {
-      return response.json();
-    })
-    .then(async (response) => { 
-                        
-    });
+    const req = new Request(`${data_global.url}/get`,
+      {
+        method: 'GET',
+        mode: 'cors',
+        cache: 'default'
+      });
+
+    fetch(req)
+      .then(async (response) => {
+        return response.json();
+      })
+      .then(async (response) => {
+        console.log('recibido')
+        const close = document.getElementById("CloseButton2") as any;
+        close.click();
+      });
   }
 
 }
