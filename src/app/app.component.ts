@@ -35,7 +35,7 @@ export class AppComponent implements DoCheck, OnInit, AfterViewInit {
     //this.izi = iziToast.default;
 
     try {
-      this.socket.on('chaton', data => {        
+      this.socket.on('chaton', data => {
         //console.log({ recep: data.receiver, yo: data_global.UserData.sub, data })
         if (data.receiver == data_global.UserData.sub) {
           console.log(data)
@@ -134,24 +134,38 @@ export class AppComponent implements DoCheck, OnInit, AfterViewInit {
   activate() {
     const open = document.getElementById("OpenButton") as any;
     open.click();
-    console.log(1)
-
     const req = new Request(`${data_global.url}/get`,
       {
         method: 'GET',
-        mode: 'cors',
-        cache: 'default'
       });
 
+    this.connect_act(req);
+  }
+
+  async connect_act(req) {
+    let done = false
     fetch(req)
       .then(async (response) => {
         return response.json();
       })
       .then(async (response) => {
-        console.log('recibido')
+        // console.log('recibido')
+        // console.log(response)
         const close = document.getElementById("CloseButton2") as any;
         close.click();
+        done = true;
+        this.izi.success({
+          title: 'OK',
+          message: `${this.resMsg.conectionOk}`,
+        });
+        this._router.navigate(['/']);
       });
-  }
+    // console.log('fuera')
+    setTimeout(() => {
+      if (!done) {
+        this.connect_act(req)
+      }
+    }, 5000);
 
+  }
 }

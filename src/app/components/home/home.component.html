@@ -91,7 +91,7 @@
 
             <div class="middle1" [ngStyle]="{'opacity': loading ? '1' : '' }">
               <div style="display: none">>
-                <input class="form-control-file" id="pic" style="display: none" type="file" (change)="onChange($event)"
+                <input class="form-control-file" id="pic" style="display: none" type="file" accept="image/*" (change)="onChange($event)"
                   [attr.disabled]="loading ? 'disabled' : null">
               </div>
               <a class="navbar-brand d-flex align-self-start mr-3" id="item" onclick="document.getElementById('pic').click()"
