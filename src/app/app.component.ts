@@ -157,6 +157,8 @@ export class AppComponent implements DoCheck, OnInit, AfterViewInit {
         this.izi.success({
           title: 'OK',
           message: `${this.resMsg.conectionOk}`,
+          displayMode: 2,
+          timeout: 1000,
         });
         this._router.navigate(['/']);
       });

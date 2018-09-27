@@ -115,12 +115,12 @@ export class HomeComponent implements OnInit {
                         image: data_global.UserData.image,
                         imageWidth: 70,
                         layout: 2,
-                        onClosing: function() {
-                            console.info('onClosing');
-                        },
-                        onClosed: function(instance, toast, closedBy) {
-                            console.info('Closed | closedBy: ' + closedBy);
-                        },
+                        // onClosing: function() {
+                        //     console.info('onClosing');
+                        // },
+                        // onClosed: function(instance, toast, closedBy) {
+                        //     console.info('Closed | closedBy: ' + closedBy);
+                        // },
                         iconColor: 'rgb(0, 255, 184)'
                     });
 
@@ -245,7 +245,7 @@ export class HomeComponent implements OnInit {
     logOut() {
         localStorage.clear();
         data_global.UserData.sub = undefined;
-        this._router.navigate(['/login']);
+        this._router.navigate(['/login']);        
     }
 
     setDefaultPic() {
