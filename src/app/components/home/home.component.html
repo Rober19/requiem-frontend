@@ -126,13 +126,14 @@
           </div>
         </div>
 
-        <div class="card md-row mb-4 box-shadow h-md-250 text-center">
+        <!-- Cred-Auth -->
+        <div *ngIf="adminLogged" class="card md-row mb-4 box-shadow h-md-250 text-center">
           <div class="card-body">
             <h5 class="card-title">Cred-Auth</h5>
             <h6 class="card-subtitle mb-2 text-muted">Request</h6>
 
 
-            <form *ngIf="adminLogged" #authForm="ngForm" (ngSubmit)="auth(authForm)" novalidate>
+            <form  #authForm="ngForm" (ngSubmit)="auth(authForm)" novalidate>
               <input ngModel name="auth" type="password" class="form-control mb-2" id="auth" placeholder="Password"
                 style="resize: none">
 
