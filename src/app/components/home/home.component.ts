@@ -253,7 +253,7 @@ export class HomeComponent implements OnInit {
     }
 
     auth(data) {
-
+        //prueba
         const key = data.value.auth;
         data.reset();
 
