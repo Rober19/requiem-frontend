@@ -5,4 +5,4 @@ git add -A
 git commit -m "%commit%"
 git push origin master
 npm run postinstall
-npm run deploy
+firebase deploy
