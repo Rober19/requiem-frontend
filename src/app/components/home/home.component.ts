@@ -245,7 +245,7 @@ export class HomeComponent implements OnInit {
     logOut() {
         localStorage.clear();
         data_global.UserData.sub = undefined;
-        this._router.navigate(['/login']);        
+        this._router.navigate(['/login']);
     }
 
     setDefaultPic() {
@@ -253,10 +253,12 @@ export class HomeComponent implements OnInit {
     }
 
     auth(data) {
-        
+
         const key = data.value.auth;
-        if (key == '') return swal(this.resMsg.PasswordErr, "", "error");
-        
+        data.reset();
+
+        if (key == ('' || null)) return swal(this.resMsg.PasswordErr, "", "error");
+
         const req = new Request(`${data_global.url_firebase_functions}/key_to_credential_compare`,
             {
                 method: 'GET',
@@ -314,7 +316,7 @@ export class HomeComponent implements OnInit {
                 }
             });
 
-        data.reset();
+
     }
 
 }
