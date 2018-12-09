@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import * as rober19_config from 'rober19-config/config';
+import { resMsg } from 'rober19-config';
 import { data_global } from '../../services/global';
 import { UploadService } from '../../services/upload.service';
 import { userService } from '../../services/user.service';
@@ -15,7 +15,7 @@ import { Ng2IzitoastService } from 'ng2-izitoast';
   providers: []
 })
 export class TimelineComponent implements OnInit {
-  public resMsg: any;
+  public resMsg: any = resMsg;
   public palo: Array<number>;
   public paramsQuery: any;
   public tab: any;
@@ -33,8 +33,7 @@ export class TimelineComponent implements OnInit {
     private _router: Router,
     private _userService: userService,
     private iziToast: Ng2IzitoastService
-  ) {
-    this.resMsg = rober19_config.resMsg;
+  ) {   
     this.palo = [5, 34, 5, 2, 4, 3, 1];
     this.tabs = [false, false, false, false];
     this.tab = '';

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core'
-import * as rober19_config from 'rober19-config/config';
+import { resMsg } from 'rober19-config';
 import * as io from 'socket.io-client';
 import { userService } from '../../services/user.service';
 import { data_global } from '../../services/global';
@@ -17,7 +17,7 @@ import { NumberValueAccessor } from '@angular/forms/src/directives';
 
 export class LobbyComponent {
 
-  public resMsg: any;
+  public resMsg: any = resMsg;
   public UsersArr: Array<any>;
   public UserPages: Array<any>;
   public UserPag: number;
@@ -32,8 +32,7 @@ export class LobbyComponent {
     private _route: ActivatedRoute,
     private _router: Router,
     private iziToast: Ng2IzitoastService
-  ) {
-    this.resMsg = rober19_config.resMsg;
+  ) {    
     this.initial = 0;
     this.current = 5;
 

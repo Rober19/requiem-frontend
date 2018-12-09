@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core'
 import { data_global } from '../../services/global'
 import { UploadService } from '../../services/upload.service';
 import { userService } from '../../services/user.service';
-import * as rober19_config from 'rober19-config/config';
+import { resMsg } from 'rober19-config';
 import * as io from 'socket.io-client';
 import { Router, ActivatedRoute } from '@angular/router';
 import { User } from '../../models/user';
@@ -19,7 +19,7 @@ export class ProfileComponent implements OnInit {
 
   public userData: any;
   public Publication: any;
-  public resMsg: any;
+  public resMsg: any = resMsg;
   public userCounters: any;
   public upt_button: boolean;
   public filesToUpload: Array<File>;
@@ -50,8 +50,7 @@ export class ProfileComponent implements OnInit {
       '',
       '',
       ''
-    );
-    this.resMsg = rober19_config.resMsg;
+    ); 
     this.userCounters = {};
 
     if (localStorage.getItem('identity')) {

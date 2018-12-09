@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { Router, ActivatedRoute, Params } from '@angular/router';
 import { User } from '../../models/user';
 import { userService } from '../../services/user.service';
-import * as rober19_config from 'rober19-config/config';
+import { resMsg } from 'rober19-config';
 import { data_global } from '../../services/global'
 import * as sweetalert from 'sweetalert'
 
@@ -17,7 +17,7 @@ export class RegisterComponent {
   public header_p1: string;
   public Model_user: User;
   public a1: string;
-  public resMsg: any;
+  public resMsg: any = resMsg;
   public respMsg: any;
   public validf: boolean;
   public errorf: boolean;
@@ -28,8 +28,8 @@ export class RegisterComponent {
     private _userService: userService
   ) {
     this.a1 = "disabled"
-    this.header_p1 = 'ingrese los datos';      
-    this.resMsg = rober19_config.resMsg;
+    this.header_p1 = 'ingrese los datos';    
+  
     this.validf = false;
     this.errorf = false;
     this.Model_user = new User(

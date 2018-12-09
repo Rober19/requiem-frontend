@@ -1,5 +1,5 @@
 import { Component, DoCheck, OnInit, ChangeDetectorRef } from '@angular/core';
-import * as data from 'rober19-config/config';
+import { resMsg } from 'rober19-config';
 import * as io from 'socket.io-client';
 import { userService } from '../../services/user.service';
 import { data_global } from '../../services/global';
@@ -14,7 +14,7 @@ import { Ng2IzitoastService } from 'ng2-izitoast';
 
 export class ChatComponent implements OnInit {
 
-  public resMsg: any;
+  public resMsg: any = resMsg;
   public user: any;
   public followings: Array<any>;
   public Chatpack: Array<any>;
@@ -31,8 +31,7 @@ export class ChatComponent implements OnInit {
     private cdRef: ChangeDetectorRef,
     private iziToast: Ng2IzitoastService
   ) {
-    this.resMsg = data.resMsg;
-
+    
     this.user = data_global.UserData;
     this.userClick = {};
     this.socket.on('chaton', data => {

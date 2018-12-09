@@ -2,10 +2,11 @@ import { Component, DoCheck, OnInit, AfterViewInit } from '@angular/core';
 import { Router, ActivatedRoute, Params } from '@angular/router'
 import { userService } from './services/user.service';
 import { data_global } from './services/global';
-import * as data from 'rober19-config/config';
+import  resMsg  from 'rober19-config/config-ts';
 import * as io from 'socket.io-client';
 import * as iziToast from 'izitoast';
 import { Ng2IzitoastService } from 'ng2-izitoast';
+
 
 // Nofitication Push Modules //
 
@@ -18,7 +19,7 @@ import { Ng2IzitoastService } from 'ng2-izitoast';
 export class AppComponent implements DoCheck, OnInit, AfterViewInit {
   public title: string;
   public ident;
-  public resMsg: any;
+  public resMsg: any = resMsg;
   //iziToast npm for JS
   private izi: any = iziToast;
 
@@ -31,7 +32,6 @@ export class AppComponent implements DoCheck, OnInit, AfterViewInit {
     private _router: Router,
   ) {
     this.title = 'app';
-    this.resMsg = data.resMsg;
     //this.izi = iziToast.default;
 
     try {
@@ -156,7 +156,7 @@ export class AppComponent implements DoCheck, OnInit, AfterViewInit {
         done = true;
         this.izi.success({
           title: 'OK',
-          message: `${this.resMsg.conectionOk}`,
+          message: `${resMsg.conectionErr}`,
           displayMode: 2,
           timeout: 1000,
         });

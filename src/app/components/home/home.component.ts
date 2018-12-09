@@ -1,6 +1,7 @@
 import { Component, OnInit, ChangeDetectorRef } from '@angular/core'
 import { Router } from '@angular/router'
-import * as rober19_config from 'rober19-config/config';
+import { resMsg } from 'rober19-config';
+
 import { data_global } from '../../services/global'
 import { userService } from '../../services/user.service';
 import * as io from 'socket.io-client';
@@ -29,7 +30,7 @@ export class HomeComponent implements OnInit {
     //public v12 = bcrypt
     public userData: any;
     public Counters: any;
-    public resMsg: any;
+    public resMsg: any = resMsg;
     public Publication: Publication;
     public loading: boolean;
     public recentPubs: Array<any>;
@@ -58,7 +59,7 @@ export class HomeComponent implements OnInit {
         };
 
         this.loading = false;
-        this.resMsg = rober19_config.resMsg;
+        
     }
 
     ngOnInit() {

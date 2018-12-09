@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import * as rober19_config from 'rober19-config/config';
+import resMsg from 'rober19-config/config-ts';
 import { User } from '../../models/user';
 import { userService } from '../../services/user.service'
 import { Router, ActivatedRoute, Params } from '@angular/router';
@@ -28,7 +28,7 @@ export class LoginComponent implements OnInit {
     //esta variable validara la entrada del usuario
     public valid: boolean;
     public test1: any;
-    public resMsg: any;
+    public resMsg: any = resMsg;
     public resServer: any;
     public gif_url_image: String;
 
@@ -54,9 +54,7 @@ export class LoginComponent implements OnInit {
             '',
         );
 
-        this.valid = false;
-        this.resMsg = rober19_config.resMsg;
-        
+        this.valid = false;          
 
     }
 
@@ -67,7 +65,7 @@ export class LoginComponent implements OnInit {
             return this._router.navigate(['/home']);
         }
 
-        console.log(`LOGIN ${this.resMsg.loaded}`);
+        console.log(`LOGIN ${resMsg.loaded}`);
     }
     
     sendLogin() {
