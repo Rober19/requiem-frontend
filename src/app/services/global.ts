@@ -1,6 +1,6 @@
 
 let urls = {
-  url1: 'http://192.168.1.63:3000',
+  url1: 'http://localhost:3000',
   url: 'https://back-requiem.herokuapp.com'
 };
 
