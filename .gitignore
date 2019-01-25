@@ -7,6 +7,9 @@ package-lock.json
 /tmp
 /out-tsc
 
+/dist
+/.firebase
+
 # dependencies
 /node_modules
 
