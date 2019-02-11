@@ -2,7 +2,7 @@
 
 # Requiem - Frontend [Platforma] [Obsoleta-2018]
 
-<img src="src/assets/images/login.png?raw=true"/>
+![](https://raw.githubusercontent.com/rober19/requiem-frontend/master/src/assets/images/login.PNG)
 
-<img src="src/assets/images/signup.png?raw=true"/>
+![](https://raw.githubusercontent.com/rober19/requiem-frontend/master/src/assets/images/signup.PNG)
 
