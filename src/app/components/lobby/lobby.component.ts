@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core'
 import { resMsg } from 'rober19-config';
 import * as io from 'socket.io-client';
 import { userService } from '../../services/user.service';
-import { data_global } from '../../services/global';
+import { data_global } from '../../config/global.config';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Ng2IzitoastService } from 'ng2-izitoast';
 import { NUMBER_TYPE } from '@angular/compiler/src/output/output_ast';

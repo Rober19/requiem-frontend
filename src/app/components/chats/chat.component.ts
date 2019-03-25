@@ -2,7 +2,7 @@ import { Component, DoCheck, OnInit, ChangeDetectorRef } from '@angular/core';
 import { resMsg } from 'rober19-config';
 import * as io from 'socket.io-client';
 import { userService } from '../../services/user.service';
-import { data_global } from '../../services/global';
+import { data_global } from '../../config/global.config';
 import { User } from '../../models/user';
 import { Ng2IzitoastService } from 'ng2-izitoast';
 

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core'
-import { data_global } from '../../services/global'
+import { data_global } from '../../config/global.config'
 import { UploadService } from '../../services/upload.service';
 import { userService } from '../../services/user.service';
 import { resMsg } from 'rober19-config';

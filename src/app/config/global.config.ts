@@ -21,7 +21,6 @@ export var data_global = {
   },
   userImageDefault: 'https://firebasestorage.googleapis.com/v0/b/rober-firebase.appspot.com/o/Requiem-project%2FProfile-image%2Fdefault-user.png?alt=media&token=ba901b72-bbc0-44de-a897-cda79e6552a5',
   url_firebase_functions: 'https://us-central1-rober-firebase.cloudfunctions.net',
-  url_firebase_functions2: 'http://localhost:5000/rober-firebase/us-central1'
-  
+  url_firebase_functions2: 'http://localhost:5000/rober-firebase/us-central1'  
 }
 

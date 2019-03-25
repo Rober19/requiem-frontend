@@ -4,7 +4,7 @@ import { User } from '../../models/user';
 import { userService } from '../../services/user.service'
 import { Router, ActivatedRoute, Params } from '@angular/router';
 import { tokenKey } from '@angular/core/src/view/util';
-import { data_global } from '../../services/global'
+import { data_global } from '../../config/global.config'
 import * as $ from 'jquery';
 import * as sweetAlert from 'sweetalert';
 

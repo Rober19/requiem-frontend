@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs/Observable';
-import { data_global } from './global'
+import { data_global } from '../config/global.config'
 import { resMsg } from 'rober19-config';
 import { User } from '../models/user';
 import { Publication } from '../models/publication';
