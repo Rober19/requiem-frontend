@@ -127,7 +127,7 @@ export class AppComponent implements DoCheck, OnInit, AfterViewInit {
 
   activate() {
     const open = document.getElementById('OpenButton') as any;
-    open.click();   
+    open.click();
 
     this.connect_act(`${data_global.url}/get`);
   }
@@ -135,25 +135,20 @@ export class AppComponent implements DoCheck, OnInit, AfterViewInit {
   async connect_act(req) {
     let done = false;
 
-    this.http
-      .http_get(req)
-      .then(async response => {
-        return response.json();
-      })
-      .then(async response => {
-        // console.log('recibido')
-        // console.log(response)
-        const close = document.getElementById('CloseButton2') as any;
-        close.click();
-        done = true;
-        this.izi.success({
-          title: 'OK',
-          message: `${resMsg.conectionErr}`,
-          displayMode: 2,
-          timeout: 1000,
-        });
-        this._router.navigate(['/']);
-      });
+    let response = await this.http.http_get(req);
+    // console.log('recibido')
+    // console.log(response)
+    const close = document.getElementById('CloseButton2') as any;
+    close.click();
+    done = true;
+    this.izi.success({
+      title: 'OK',
+      message: `${resMsg.conectionErr}`,
+      displayMode: 2,
+      timeout: 1000,
+    });
+    this._router.navigate(['/']);
+
     // console.log('fuera')
     setTimeout(() => {
       if (!done) {

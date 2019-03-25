@@ -121,7 +121,6 @@ body {
   border: 2px solid #e74c3c;
   height: auto;
   padding: 3px;
-
   float: left;
   cursor: pointer;
   -moz-transition: 0.3s border ease;
