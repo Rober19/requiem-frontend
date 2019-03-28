@@ -1,7 +1,7 @@
 
 let urls = {
-  url: 'http://localhost:3000',
-  url1: 'https://back-requiem.herokuapp.com'
+  url1: 'http://localhost:3000',
+  url: 'https://back-requiem.herokuapp.com'
 };
 
 export var data_global = {
