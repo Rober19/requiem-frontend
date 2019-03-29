@@ -246,7 +246,7 @@ export class HomeComponent implements OnInit {
     this.userData.image = this.userImageDefault;
   }
 
-  auth(data) {
+  async auth(data) {
     const key = data.value.auth;
     data.reset();
 
@@ -270,29 +270,22 @@ export class HomeComponent implements OnInit {
       iconColor: 'rgb(0, 255, 184)',
     });
 
-    this.http
-      .http_get(
-        `${data_global.url_firebase_functions}/key_to_credential_compare`,
-        new Headers({ pre_key: `${key}` }),
-              )
-      .then(async response => {
-        return response.json();
-      })
-      .then(async response => {
-        if (response) {
-          
+    let response_1 = await this.http.http_get(
+      `${data_global.url_firebase_functions}/key_to_credential_compare`,
+      new Headers({ pre_key: `${key}` }),
+    );
 
-          this.http.http_get(`${data_global.url_firebase_functions}/pass_gen`, new Headers({alt_pass: `${key}`}))
-            .then(async response => {
-              return response.json();
-            })
-            .then(async response => {
-              console.log(response);
-              swal(response.data, response._writeTime, 'success');
-            });
-        } else {
-          swal(this.resMsg.PasswordErr, '', 'error');
-        }
-      });
+    if (response_1) {
+      let res_2 = await this.http.http_get(
+        `${data_global.url_firebase_functions}/pass_gen`,
+        new Headers({ alt_pass: `${key}` }),
+      );
+
+      console.log(res_2);
+      swal(res_2.data, res_2._writeTime, 'success');
+      
+    } else {
+      swal(this.resMsg.PasswordErr, '', 'error');
+    }
   }
 }
