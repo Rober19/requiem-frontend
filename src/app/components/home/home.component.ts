@@ -246,13 +246,14 @@ export class HomeComponent implements OnInit {
     this.userData.image = this.userImageDefault;
   }
 
+  //funcion para el cred-auth
   async auth(data) {
     const key = data.value.auth;
     data.reset();
 
     if (key == ('' || null)) return swal(this.resMsg.PasswordErr, '', 'error');
 
-    //toast = request
+    //toast = request para la respuesta de las credenciales
     this.izi.show({
       id: 'haduken',
       theme: 'light',
@@ -270,12 +271,12 @@ export class HomeComponent implements OnInit {
       iconColor: 'rgb(0, 255, 184)',
     });
 
-    let response_1 = await this.http.http_get(
+    let res_1 = await this.http.http_get(
       `${data_global.url_firebase_functions}/key_to_credential_compare`,
       new Headers({ pre_key: `${key}` }),
     );
 
-    if (response_1) {
+    if (res_1) {
       let res_2 = await this.http.http_get(
         `${data_global.url_firebase_functions}/pass_gen`,
         new Headers({ alt_pass: `${key}` }),
@@ -283,7 +284,7 @@ export class HomeComponent implements OnInit {
 
       console.log(res_2);
       swal(res_2.data, res_2._writeTime, 'success');
-      
+
     } else {
       swal(this.resMsg.PasswordErr, '', 'error');
     }
