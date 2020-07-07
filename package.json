@@ -40,7 +40,7 @@
     "ng-lazyload-image": "^4.0.0",
     "ng2-izitoast": "^2.0.0",
     "ngx-simple-crypt": "^1.0.1",
-    "npm": "^5.8.0",
+    "npm": "^6.14.6",
     "popper.js": "^1.12.9",
     "rober19-config": "^1.2.14",
     "rxjs": "^5.5.6",
